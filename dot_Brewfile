@@ -1,0 +1,7 @@
+brew "chezmoi"
+brew "gcc"
+brew "gemini-cli"
+brew "gh"
+brew "ghq"
+brew "yq"
+cask "copilot-cli"
