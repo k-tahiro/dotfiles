@@ -1,4 +1,5 @@
 brew "chezmoi"
+brew "fzf"
 brew "gcc"
 brew "gemini-cli"
 brew "gh"
@@ -8,3 +9,13 @@ brew "neovim"
 brew "yq"
 cask "claude-code"
 cask "copilot-cli"
+
+{{ if eq .chezmoi.os "darwin" }}
+cask "wezterm"
+{{ end }}
+
+{{ if eq .chezmoi.os "linux" }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+# WSL特有のツールがあればここに
+{{   end }}
+{{ end }}
