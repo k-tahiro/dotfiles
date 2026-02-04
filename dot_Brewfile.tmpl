@@ -1,7 +1,6 @@
 brew "chezmoi"
 brew "fzf"
 brew "gcc"
-brew "gemini-cli"
 brew "gh"
 brew "ghq"
 brew "mise"
@@ -16,6 +15,6 @@ cask "wezterm"
 
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-# WSL特有のツールがあればここに
+brew "gemini-cli"
 {{   end }}
 {{ end }}
