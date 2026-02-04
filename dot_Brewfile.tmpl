@@ -9,12 +9,12 @@ brew "yq"
 cask "claude-code"
 cask "copilot-cli"
 
-{{ if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 cask "wezterm"
-{{ end }}
+{{- end }}
 
-{{ if eq .chezmoi.os "linux" }}
-{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{- if eq .chezmoi.os "linux" }}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 brew "gemini-cli"
-{{   end }}
-{{ end }}
+{{-   end }}
+{{- end }}
