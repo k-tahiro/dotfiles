@@ -6,10 +6,8 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-{{- if eq .chezmoi.os "linux" }}
-{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{- if eq .chezmoi.os "windows" }}
 config.default_domain = 'WSL:Ubuntu'
-{{-   end }}
 {{- end }}
 config.hide_tab_bar_if_only_one_tab = true
 config.use_ime = true
