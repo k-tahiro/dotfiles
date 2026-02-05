@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # miseのconfig.toml のハッシュ値が変わった（＝中身が書き換わった）時だけ実行されます
-# {{ include "dot_config/mise/config.toml.tmpl" | sha256sum }}
+# {{ include "dot_config/mise/config.toml" | sha256sum }}
 
 echo "Checking for new mise packages..."
 mise install
