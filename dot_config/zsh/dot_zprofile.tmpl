@@ -9,6 +9,10 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 ### mise ###
 eval "$(mise activate zsh)"
 
+### Editor ###
+export EDITOR="nvim"
+export VISUAL="$EDITOR"
+
 ### local ###
 if [ -f "$ZDOTDIR/.zprofile.local" ]; then
     source "$ZDOTDIR/.zprofile.local"
