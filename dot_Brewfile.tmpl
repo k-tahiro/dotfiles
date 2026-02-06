@@ -22,8 +22,8 @@ cask "wezterm"
 
 {{- if eq .chezmoi.os "linux" }}
 {{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-tap "anomalyco/tap"
 brew "gemini-cli"
+tap "anomalyco/tap"
 brew "anomalyco/tap/opencode"
 {{-   end }}
 {{- end }}
