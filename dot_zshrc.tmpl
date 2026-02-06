@@ -44,3 +44,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 {{- end }}
 eval "$(mise activate zsh)"
+
+# local
+if [ -f "$ZDOTDIR/.zshrc.local" ]; then
+    source "$ZDOTDIR/.zshrc.local"
+fi
