@@ -1,4 +1,7 @@
-# Functions
+### starship ###
+eval "$(starship init zsh)"
+
+### functions ###
 function git_prune_branches {
     git fetch --prune
     git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
@@ -11,7 +14,7 @@ function notify {
 }
 {{- end }}
 
-# local
+### local ###
 if [ -f "$ZDOTDIR/.zshrc.local" ]; then
     source "$ZDOTDIR/.zshrc.local"
 fi
