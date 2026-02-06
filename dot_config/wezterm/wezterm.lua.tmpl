@@ -1,29 +1,27 @@
--- Pull in the wezterm API
+-- WezTerm Configuration
 local wezterm = require 'wezterm'
-
--- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- Only for Windows
+-- OS Specific Settings
 {{- if eq .chezmoi.os "windows" }}
 config.default_domain = 'WSL:Ubuntu'
 {{- end }}
 
--- Color & Appearance
-config.color_scheme = 'Materia (base16)'
-config.hide_tab_bar_if_only_one_tab = true
-
--- Fonts
-config.font = wezterm.font 'FiraCode Nerd Font'
-config.font_size = 14
-
+-- General Behavior
 config.automatically_reload_config = false
 config.window_close_confirmation = 'AlwaysPrompt'
 config.use_ime = true
+config.default_cursor_style = 'BlinkingUnderline'
+
+-- Appearance & Layout
+config.color_scheme = 'Materia (base16)'
+config.hide_tab_bar_if_only_one_tab = true
 config.enable_scroll_bar = true
 config.initial_rows = 36
 config.initial_cols = 120
-config.default_cursor_style = 'BlinkingUnderline'
 
--- Finally, return the configuration to wezterm:
+-- Font Settings
+config.font = wezterm.font 'FiraCode Nerd Font'
+config.font_size = 13
+
 return config
