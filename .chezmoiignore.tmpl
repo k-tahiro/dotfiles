@@ -13,3 +13,8 @@ README.md
 *.sh
 *.sh.tmpl
 {{ end }}
+
+### for Others ###
+{{ if ne .chezmoi.os "windows" }}
+Documents
+{{ end }}
