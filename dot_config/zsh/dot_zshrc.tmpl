@@ -3,15 +3,17 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 source <(fzf --zsh)
 
-### aliases ###
+### command aliases ###
 alias cat='bat'
 alias cd='z'
 alias find='fd'
 alias grep='rg'
 alias ls='eza'
-alias ll='ls -la'
-alias make='just'
 alias top='btm'
+
+### aliases ###
+alias ll='ls -la'
+alias relogin='exec $SHELL -l'
 
 ### functions ###
 function git_prune_branches {
