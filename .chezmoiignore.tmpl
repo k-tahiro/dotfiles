@@ -2,7 +2,7 @@
 LICENSE
 README.md
 
-### for Windows ###
+### Windows ###
 {{ if eq .chezmoi.os "windows" }}
 .config/homebrew
 .config/mise
@@ -10,14 +10,11 @@ README.md
 .zshenv
 **/*.sh
 **/*.sh.tmpl
+{{ else }}
+Documents
 {{ end }}
 
-### for Others ###
-{{ if ne .chezmoi.os "windows" }}
-Documents
-
-#### for WSL ####
+### for WSL ###
 {{ if .isWsl }}
 .config/wezterm
-{{ end }}
 {{ end }}
