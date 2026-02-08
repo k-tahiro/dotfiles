@@ -25,7 +25,7 @@ brew "gemini-cli"
 brew "anomalyco/tap/opencode"
 {{- end }}
 
-{{- if .hasGui }}
+{{- if not .isHeadless }}
 cask "raycast"
 cask "wezterm"
 {{- end }}
