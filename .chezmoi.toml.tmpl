@@ -5,9 +5,7 @@
 
 [edit]
     apply = true
-
 {{- if eq .chezmoi.os "windows" }}
-[edit]
     command = "code"
     args = ["--wait"]
 {{- else }}
