@@ -1,6 +1,6 @@
 [data]
     isWsl = {{ and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-    isWork = {{ not or (eq .chezmoi.os "windows") .isWsl }}
+    isWork = {{ not (or (eq .chezmoi.os "windows") .isWsl) }}
 
 {{- if eq .chezmoi.os "windows" }}
 [edit]
