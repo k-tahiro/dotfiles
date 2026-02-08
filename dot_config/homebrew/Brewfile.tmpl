@@ -21,8 +21,8 @@ cask "font-fira-code-nerd-font"
 cask "claude-code"
 {{- else }}
 tap "anomalyco/tap"
-brew "anomalyco/tap/opencode"
 brew "gemini-cli"
+brew "anomalyco/tap/opencode"
 {{- end }}
 
 {{- if .hasGui }}
