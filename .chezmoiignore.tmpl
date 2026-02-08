@@ -14,7 +14,7 @@ README.md
 Documents
 {{ end }}
 
-### for WSL ###
-{{ if .isWsl }}
+### GUI Applications ###
+{{ if not .isGui }}
 .config/wezterm
 {{ end }}
