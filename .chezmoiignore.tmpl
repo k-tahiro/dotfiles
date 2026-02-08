@@ -3,15 +3,15 @@ LICENSE
 README.md
 
 ### Windows ###
-{{ if eq .chezmoi.os "windows" }}
+{{ if ne .chezmoi.os "windows" }}
+Documents
+{{ else }}
 .config/homebrew
 .config/mise
 .config/zsh
 .zshenv
 **/*.sh
 **/*.sh.tmpl
-{{ else }}
-Documents
 {{ end }}
 
 ### GUI Applications ###
