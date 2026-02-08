@@ -1,7 +1,7 @@
 [data]
     isWsl = {{ and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
     isWork = {{ not (or (eq .chezmoi.os "windows") .isWsl) }}
-    isGui = {{ or (eq .chezmoi.os "windows") (eq .chezmoi.os "darwin") }}
+    hasGui = {{ or (eq .chezmoi.os "windows") (eq .chezmoi.os "darwin") }}
 
 {{- if eq .chezmoi.os "windows" }}
 [edit]
