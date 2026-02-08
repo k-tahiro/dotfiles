@@ -3,6 +3,9 @@
     isWork = {{ not (or (eq .chezmoi.os "windows") .isWsl) }}
     hasGui = {{ or (eq .chezmoi.os "windows") (eq .chezmoi.os "darwin") }}
 
+[edit]
+    apply = true
+
 {{- if eq .chezmoi.os "windows" }}
 [edit]
     command = "code"
