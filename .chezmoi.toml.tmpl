@@ -1,11 +1,12 @@
-{{ if eq .chezmoi.os "windows" }}
+{{- if eq .chezmoi.os "windows" }}
 [edit]
     command = "code"
     args = ["--wait"]
-{{ else }}
+{{- else }}
 [edit]
     command = "nvim"
-{{ end }}
+{{- end }}
+
 [git]
     autoCommit = true
     autoPush = true
