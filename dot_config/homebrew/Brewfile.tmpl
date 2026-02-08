@@ -16,11 +16,11 @@ cask "copilot-cli"
 cask "font-fira-code-nerd-font"
 
 {{- if .isWork }}
+cask "claude-code"
+{{- else }}
 brew "gemini-cli"
 tap "anomalyco/tap"
 brew "anomalyco/tap/opencode"
-{{- else }}
-cask "claude-code"
 {{- end }}
 
 {{- if .isGui }}
