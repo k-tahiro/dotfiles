@@ -23,6 +23,6 @@ tap "anomalyco/tap"
 brew "anomalyco/tap/opencode"
 {{- end }}
 
-{{- if .isGui }}
+{{- if .hasGui }}
 cask "wezterm"
 {{- end }}
