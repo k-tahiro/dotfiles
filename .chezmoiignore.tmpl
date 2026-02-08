@@ -17,9 +17,5 @@ README.md
 Documents
 
 #### for WSL ####
-{{   if eq .chezmoi.os "linux" }}
-{{     if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 .config/wezterm
-{{     end }}
-{{   end }}
 {{ end }}
