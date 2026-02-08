@@ -16,4 +16,9 @@ README.md
 ### for Others ###
 {{ if ne .chezmoi.os "windows" }}
 Documents
+{{- if eq .chezmoi.os "linux" }}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+.config/wezterm
+{{-   end }}
+{{- end }}
 {{ end }}
