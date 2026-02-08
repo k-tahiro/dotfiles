@@ -15,14 +15,14 @@ brew "zoxide"
 cask "copilot-cli"
 cask "font-fira-code-nerd-font"
 
-{{- if eq .chezmoi.os "darwin" }}
-cask "wezterm"
-{{- end }}
-
 {{- if .isWork }}
 brew "gemini-cli"
 tap "anomalyco/tap"
 brew "anomalyco/tap/opencode"
 {{- else }}
 cask "claude-code"
+{{- end }}
+
+{{- if .isGui }}
+cask "wezterm"
 {{- end }}
