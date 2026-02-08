@@ -20,10 +20,8 @@ cask "claude-code"
 cask "wezterm"
 {{- end }}
 
-{{- if eq .chezmoi.os "linux" }}
-{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{- if .isWsl }}
 brew "gemini-cli"
 tap "anomalyco/tap"
 brew "anomalyco/tap/opencode"
-{{-   end }}
 {{- end }}
