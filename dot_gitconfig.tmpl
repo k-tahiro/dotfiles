@@ -3,11 +3,11 @@
     email = "14054951+k-tahiro@users.noreply.github.com"
 {{- if eq .chezmoi.os "darwin" }}
 [credential "https://github.com"]
-       helper =
-       helper = !/opt/homebrew/bin/gh auth git-credential
+    helper =
+    helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-       helper =
-       helper = !/opt/homebrew/bin/gh auth git-credential
+    helper =
+    helper = !/opt/homebrew/bin/gh auth git-credential
 {{- else if eq .chezmoi.os "linux" }}
 [credential "https://github.com"]
     helper =
