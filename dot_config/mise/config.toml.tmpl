@@ -1,3 +1,7 @@
 [tools]
 node = "lts"
 uv = "latest"
+
+{{- if .isWork }}
+terraform = "1.9.7"
+{{- end }}
