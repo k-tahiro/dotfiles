@@ -10,6 +10,8 @@ brews = [
     "gcc",
     "gh",
     "ghq",
+    "jq",
+    "lazygit",
     "mise",
     "neovim",
     "ripgrep",
@@ -25,8 +27,19 @@ casks = [
 
 [homebrew.work]
 taps = []
-brews = []
-casks = ["claude-code", "raycast", "wezterm"]
+brews = [
+    "awscli",
+    "azure-cli",
+    "git-secret"
+]
+casks = [
+    "claude-code",
+    "firefox",
+    "karabiner-elements",
+    "raycast",
+    "visual-studio-code",
+    "wezterm"
+]
 
 [homebrew.private]
 taps = ["anomalyco/tap"]
