@@ -30,7 +30,9 @@ taps = []
 brews = [
     "awscli",
     "azure-cli",
-    "git-secret"
+    "git-secret",
+    "lima",
+    "colima"
 ]
 casks = [
     "claude-code",
