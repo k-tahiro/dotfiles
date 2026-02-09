@@ -1,0 +1,34 @@
+[homebrew.shared]
+taps = []
+brews = [
+    "bat",
+    "bottom",
+    "chezmoi",
+    "eza",
+    "fd",
+    "fzf",
+    "gcc",
+    "gh",
+    "ghq",
+    "mise",
+    "neovim",
+    "ripgrep",
+    "starship",
+    "yq",
+    "zellij",
+    "zoxide"
+]
+casks = [
+    "copilot-cli",
+    "font-fira-code-nerd-font"
+]
+
+[homebrew.work]
+taps = []
+brews = []
+casks = ["claude-code", "raycast", "wezterm"]
+
+[homebrew.private]
+taps = ["anomalyco/tap"]
+brews = ["gemini-cli", "anomalyco/tap/opencode"]
+casks = []
