@@ -1,31 +1,41 @@
-brew "bat"
-brew "bottom"
-brew "chezmoi"
-brew "eza"
-brew "fd"
-brew "fzf"
-brew "gcc"
-brew "gh"
-brew "ghq"
-brew "mise"
-brew "neovim"
-brew "ripgrep"
-brew "starship"
-brew "yq"
-brew "zellij"
-brew "zoxide"
-cask "copilot-cli"
-cask "font-fira-code-nerd-font"
-
+# --- Taps ---
+{{ range .homebrew.shared.taps -}}
+tap {{ . | quote }}
+{{ end -}}
 {{- if .isWork }}
-cask "claude-code"
+{{ range .homebrew.work.taps -}}
+tap {{ . | quote }}
+{{ end -}}
 {{- else }}
-tap "anomalyco/tap"
-brew "gemini-cli"
-brew "anomalyco/tap/opencode"
+{{ range .homebrew.private.taps -}}
+tap {{ . | quote }}
+{{ end -}}
 {{- end }}
 
-{{- if not .isHeadless }}
-cask "raycast"
-cask "wezterm"
+# --- Brews ---
+{{ range .homebrew.shared.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{- if .isWork }}
+{{ range .homebrew.work.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{- else }}
+{{ range .homebrew.private.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{- end }}
+
+# --- Casks (Mac only) ---
+{{ range .homebrew.shared.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{- if .isWork }}
+{{ range .homebrew.work.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{- else }}
+{{ range .homebrew.private.casks -}}
+cask {{ . | quote }}
+{{ end -}}
 {{- end }}
