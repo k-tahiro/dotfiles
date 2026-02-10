@@ -37,8 +37,10 @@ brews = [
 casks = [
     "claude-code",
     "firefox",
+    "gcloud-cli",
     "karabiner-elements",
     "raycast",
+    "rectangle",
     "visual-studio-code",
     "wezterm"
 ]
