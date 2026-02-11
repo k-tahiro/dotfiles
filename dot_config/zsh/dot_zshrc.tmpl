@@ -1,6 +1,9 @@
 ### tool setup ###
 eval "$(starship init zsh)"
-eval "$(zellij setup --generate-auto-start zsh)"
+# Only start zellij if not already inside a zellij session
+if [[ -z "$ZELLIJ" ]]; then
+    eval "$(zellij setup --generate-auto-start zsh)"
+fi
 eval "$(zoxide init zsh)"
 source <(fzf --zsh)
 
