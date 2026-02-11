@@ -1,11 +1,18 @@
-{{- isWindows := eq .chezmoi.os "windows" -}}
-{{- isMac := eq .chezmoi.os "darwin" -}}
-{{- isWsl := and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+{{- $isWindows := eq .chezmoi.os "windows" -}}
+{{- $isMac := eq .chezmoi.os "darwin" -}}
+{{- $isWsl := and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+{{- $isLinux := and (eq .chezmoi.os "linux") (not $isWsl) -}}
+
+{{- $defaultIsWork := or $isMac $isLinux -}}
+{{- $isWork := promptBool "Is this a work machine" $defaultIsWork -}}
+
+{{- $defaultIsHeadless := not (or $isWindows $isMac) -}}
+{{- $isHeadless := promptBool "Is this a headless machine" $defaultIsHeadless -}}
 
 [data]
     isWsl = {{ $isWsl }}
-    isWork = {{ or (eq .chezmoi.os "darwin") (and (eq .chezmoi.os "linux") (not .isWsl)) }}
-    isHeadless = {{ not (or (eq .chezmoi.os "windows") (eq .chezmoi.os "darwin")) }}
+    isWork = {{ $isWork }}
+    isHeadless = {{ $isHeadless }}
 
 [edit]
     apply = true
