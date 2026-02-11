@@ -1,0 +1,39 @@
+[winget]
+packages = [
+    # --- Core & Development ---
+    "7zip.7zip",
+    "Git.Git",
+    "Neovim.Neovim",
+    "twpayne.chezmoi",
+    "Starship.Starship",
+    "BurntSushi.ripgrep.MSVC",
+    "Microsoft.PowerShell",
+    "Microsoft.WindowsTerminal",
+    "Microsoft.WSL",
+    "Canonical.Ubuntu",
+
+    # --- GUI Apps ---
+    "Zen-Team.Zen-Browser",
+    "Microsoft.VisualStudioCode",
+    "wez.wezterm",
+    "Obsidian.Obsidian",
+    "Logitech.OptionsPlus",
+    "CPUID.CPU-Z",
+    "Win32diskimager.win32diskimager",
+    "Balena.Etcher",
+
+    # --- Private / Gaming / Hobby ---
+    "Valve.Steam",
+    "EpicGames.EpicGamesLauncher",
+    "Roblox.Roblox",
+    "OuterWildsMods.OuterWildsModManager",
+    "ElementLabs.LMStudio",
+]
+
+# --- MS Store Apps ---
+msstore_packages = [
+    "XP99J3KP4XZ4VV",  # Zoom Workspace
+    "XP8CBJ40XLBWKX",  # Docker Desktop
+    "XPDC2RH70K22MN",  # Discord
+    "XPFCC4CD725961"   # LINE
+]
