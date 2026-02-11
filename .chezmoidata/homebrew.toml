@@ -22,7 +22,8 @@ brews = [
 ]
 casks = [
     "copilot-cli",
-    "font-fira-code-nerd-font"
+    "font-fira-code-nerd-font",
+    "font-hackgen-nerd"
 ]
 
 [homebrew.work]
