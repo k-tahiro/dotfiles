@@ -20,9 +20,7 @@ brews = [
     "zellij",
     "zoxide"
 ]
-casks = [
-    "copilot-cli"
-]
+casks = []
 
 [homebrew.work]
 taps = []
@@ -35,13 +33,12 @@ brews = [
 ]
 casks = [
     "claude-code",
-    "gcloud-cli"
-]
-mac_casks = [
+    "copilot-cli",
     "firefox",
     "font-fira-code-nerd-font",
     "font-hackgen-nerd",
     "font-moralerspace",
+    "gcloud-cli",
     "karabiner-elements",
     "raycast",
     "rectangle",

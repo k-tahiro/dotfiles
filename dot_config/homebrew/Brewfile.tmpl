@@ -27,20 +27,8 @@ brew {{ . | quote }}
 {{- end }}
 
 # --- Casks (Mac only) ---
-{{ range .homebrew.shared.casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{- if .isWork }}
+{{- if and (eq .chezmoi.os "darwin") .isWork }}
 {{ range .homebrew.work.casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{- if eq .chezmoi.os "darwin" }}
-{{ range .homebrew.mac_casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{- end }}
-{{- else }}
-{{ range .homebrew.private.casks -}}
 cask {{ . | quote }}
 {{ end -}}
 {{- end }}
