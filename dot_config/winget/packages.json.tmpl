@@ -1,1 +1,22 @@
-{}
+{
+  "$schema": "https://aka.ms/winget-packages.schema.2.0.json",
+  "CreationDate": "{{ now }}",
+  "WinGetVersion": "1.9.0",
+  "Sources": [
+    {
+      "SourceDetails": {
+        "Name": "winget",
+        "Type": "Microsoft.PreIndexed.Package"
+      },
+      "Packages": [
+        {{- $packages := .winget.packages -}}
+        {{- range $index, $pkg := $packages -}}
+        {{- if $index }},{{ end }}
+        {
+          "PackageIdentifier": "{{ $pkg }}"
+        }
+        {{- end }}
+      ]
+    }
+  ]
+}
