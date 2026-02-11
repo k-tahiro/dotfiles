@@ -1,7 +1,6 @@
 [data]
     isWsl = {{ and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-    isPrivate = {{ or (eq .chezmoi.os "windows") (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) }}
-    isWork = {{ not (or (eq .chezmoi.os "windows") (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft"))) }}
+    isWork = {{ or (eq .chezmoi.os "darwin") (and (eq .chezmoi.os "linux") (not .isWsl)) }}
     isHeadless = {{ not (or (eq .chezmoi.os "windows") (eq .chezmoi.os "darwin")) }}
 
 [edit]
