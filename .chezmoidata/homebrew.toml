@@ -24,7 +24,7 @@ casks = [
     "copilot-cli",
     "font-fira-code-nerd-font",
     "font-hackgen-nerd",
-    "font-moralerspace"
+    "font-moralerspace-nf"
 ]
 
 [homebrew.work]
