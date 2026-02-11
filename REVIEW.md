@@ -77,18 +77,9 @@ echo "Checking for new Homebrew packages..."
 brew bundle --global
 ```
 
-#### 5. Potential Issue with Zellij Auto-Start
+#### 5. ~~Potential Issue with Zellij Auto-Start~~ (Reverted - Not an Issue)
 **File**: `dot_config/zsh/dot_zshrc.tmpl` (Line 3)  
-**Issue**: `eval "$(zellij setup --generate-auto-start zsh)"` runs on every shell, could cause nested sessions  
-**Impact**: Multiple nested terminal multiplexer sessions  
-**Recommendation**: Add guard to prevent nesting:
-
-```bash
-# Only start zellij if not already inside a zellij session
-if [[ -z "$ZELLIJ" ]]; then
-    eval "$(zellij setup --generate-auto-start zsh)"
-fi
-```
+**Status**: Originally flagged as an issue, but Zellij's `--generate-auto-start` feature already handles nested sessions correctly according to [Zellij documentation](https://zellij.dev/documentation/integration.html). The original implementation is correct and should not be modified.
 
 #### 6. Redundant Path in `.zprofile`
 **File**: `dot_config/zsh/dot_zprofile.tmpl` (Line 12)  
@@ -170,14 +161,13 @@ fi
 1. **Fix hardcoded path** in `.zprofile` (Line 12)
 2. **Add error handling** to installation scripts
 3. **Expand README.md** with proper documentation
-4. **Add Zellij nesting guard** to prevent nested sessions
 
 ### Suggested Improvements:
-5. Add Windows credential helper support to `.gitconfig`
-6. Enhance Git configuration with common settings
-7. Create `.gitattributes` for cross-platform consistency
-8. Consider customizing Starship prompt format
-9. Expand PowerShell profile configuration
+4. Add Windows credential helper support to `.gitconfig`
+5. Enhance Git configuration with common settings
+6. Create `.gitattributes` for cross-platform consistency
+7. Consider customizing Starship prompt format
+8. Expand PowerShell profile configuration
 
 ## Conclusion
 
