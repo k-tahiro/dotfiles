@@ -16,7 +16,7 @@
 
 [edit]
     apply = true
-{{- if eq .chezmoi.os "windows" }}
+{{- if $isWindows }}
     command = "code"
     args = ["--wait"]
 {{- else }}
