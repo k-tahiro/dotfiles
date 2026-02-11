@@ -21,10 +21,7 @@ brews = [
     "zoxide"
 ]
 casks = [
-    "copilot-cli",
-    "font-fira-code-nerd-font",
-    "font-hackgen-nerd",
-    "font-moralerspace"
+    "copilot-cli"
 ]
 
 [homebrew.work]
@@ -42,6 +39,9 @@ casks = [
 ]
 mac_casks = [
     "firefox",
+    "font-fira-code-nerd-font",
+    "font-hackgen-nerd",
+    "font-moralerspace",
     "karabiner-elements",
     "raycast",
     "rectangle",
