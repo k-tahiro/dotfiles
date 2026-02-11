@@ -1,0 +1,14 @@
+# 1. winget.toml が変更されたら、自動的に packages.json が再生成される
+# 2. packages.json の中身が変わったら、このスクリプトが走る
+# {{ include "dot_config/winget/packages.json.tmpl" | sha256sum }}
+
+$jsonPath = "{{ .chezmoi.homeDir }}/.config/winget/packages.json"
+
+Write-Host "Importing Winget packages from $jsonPath ..."
+
+# インポート実行
+# --ignore-unavailable: 見つからないアプリがあっても止まらないようにする
+# --no-upgrade: 既にインストール済みならスキップ（高速化）
+winget import --import-file "$jsonPath" --accept-package-agreements --accept-source-agreements --ignore-unavailable --no-upgrade
+
+Write-Host "Winget import complete."

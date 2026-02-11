@@ -5,6 +5,9 @@ README.md
 ### Windows ###
 {{ if ne .chezmoi.os "windows" }}
 Documents
+.config/winget
+**/*.ps1
+**/*.ps1.tmpl
 {{ else }}
 .config/homebrew
 .config/mise
