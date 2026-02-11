@@ -2,6 +2,11 @@
 {{ range .homebrew.shared.taps -}}
 tap {{ . | quote }}
 {{ end -}}
+{{- if eq .chezmoi.os "darwin" }}
+{{ range .homebrew.mac.taps -}}
+tap {{ . | quote }}
+{{ end -}}
+{{- end }}
 {{- if .isWork }}
 {{ range .homebrew.work.taps -}}
 tap {{ . | quote }}
@@ -16,6 +21,11 @@ tap {{ . | quote }}
 {{ range .homebrew.shared.brews -}}
 brew {{ . | quote }}
 {{ end -}}
+{{- if eq .chezmoi.os "darwin" }}
+{{ range .homebrew.mac.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{- end }}
 {{- if .isWork }}
 {{ range .homebrew.work.brews -}}
 brew {{ . | quote }}
@@ -30,6 +40,11 @@ brew {{ . | quote }}
 {{ range .homebrew.shared.casks -}}
 cask {{ . | quote }}
 {{ end -}}
+{{- if eq .chezmoi.os "darwin" }}
+{{ range .homebrew.mac.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{- end }}
 {{- if .isWork }}
 {{ range .homebrew.work.casks -}}
 cask {{ . | quote }}
