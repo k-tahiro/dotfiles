@@ -19,6 +19,23 @@
         }
         {{- end }}
       ]
+    },
+    {
+      "SourceDetails": {
+        "Argument" : "https://storeedgefd.dsx.mp.microsoft.com/v9.0",
+        "Identifier" : "StoreEdgeFD",
+        "Name" : "msstore",
+        "Type" : "Microsoft.Rest"
+      },
+      "Packages": [
+        {{- $packages := .winget.msstore_packages -}}
+        {{- range $index, $pkg := $packages -}}
+        {{- if $index }},{{ end }}
+        {
+          "PackageIdentifier": "{{ $pkg }}"
+        }
+        {{- end }}
+      ]
     }
   ]
 }
