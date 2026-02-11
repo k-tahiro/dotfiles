@@ -1,7 +1,13 @@
 #!/bin/bash
+set -euo pipefail
 
 # miseのconfig.toml のハッシュ値が変わった（＝中身が書き換わった）時だけ実行されます
 # {{ include "dot_config/mise/config.toml.tmpl" | sha256sum }}
+
+if ! command -v mise &> /dev/null; then
+    echo "Error: mise is not installed. Please install mise first."
+    exit 1
+fi
 
 echo "Checking for new mise packages..."
 mise install
