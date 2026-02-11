@@ -16,12 +16,7 @@
 
 [edit]
     apply = true
-{{- if $isWindows }}
-    command = "code"
-    args = ["--wait"]
-{{- else }}
     command = "nvim"
-{{- end }}
 
 [git]
     autoCommit = true
