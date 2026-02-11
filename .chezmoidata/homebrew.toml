@@ -25,6 +25,18 @@ casks = [
     "font-fira-code-nerd-font"
 ]
 
+[homebrew.gui]
+taps = []
+brews = []
+casks = [
+    "firefox",
+    "karabiner-elements",
+    "raycast",
+    "rectangle",
+    "visual-studio-code",
+    "wezterm"
+]
+
 [homebrew.work]
 taps = []
 brews = [
@@ -36,13 +48,7 @@ brews = [
 ]
 casks = [
     "claude-code",
-    "firefox",
-    "gcloud-cli",
-    "karabiner-elements",
-    "raycast",
-    "rectangle",
-    "visual-studio-code",
-    "wezterm"
+    "gcloud-cli"
 ]
 
 [homebrew.private]
