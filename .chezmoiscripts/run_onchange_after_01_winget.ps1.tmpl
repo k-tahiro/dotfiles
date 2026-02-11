@@ -8,8 +8,6 @@ $jsonPath = "{{ .chezmoi.homeDir }}/.config/winget/packages.json"
 Write-Host "Importing Winget packages from $jsonPath ..."
 
 # インポート実行
-# --ignore-unavailable: 見つからないアプリがあっても止まらないようにする
-# --no-upgrade: 既にインストール済みならスキップ（高速化）
 winget import --import-file "$jsonPath" --accept-package-agreements --accept-source-agreements
 
 Write-Host "Winget import complete."
