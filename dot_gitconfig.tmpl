@@ -1,6 +1,16 @@
 [user]
     name = "Keisuke Hirota"
     email = "14054951+k-tahiro@users.noreply.github.com"
+
+[core]
+    autocrlf = input
+    
+[init]
+    defaultBranch = main
+    
+[pull]
+    rebase = false
+
 {{- if eq .chezmoi.os "darwin" }}
 [credential "https://github.com"]
     helper =
@@ -15,4 +25,7 @@
 [credential "https://gist.github.com"]
     helper =
     helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+{{- else if eq .chezmoi.os "windows" }}
+[credential]
+    helper = manager-core
 {{- end }}
