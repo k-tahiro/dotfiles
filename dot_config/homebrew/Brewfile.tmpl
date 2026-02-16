@@ -1,6 +1,5 @@
 # --- Taps ---
 {{ range .homebrew.shared.taps -}}
-
 tap {{ . | quote }}
 {{ end -}}
 {{- if .isWork }}
