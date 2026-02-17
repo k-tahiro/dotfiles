@@ -8,6 +8,7 @@ brews = [
     "fd",
     "fzf",
     "gcc",
+    "gemini-cli",
     "gh",
     "ghq",
     "jq",
@@ -48,5 +49,5 @@ casks = [
 
 [homebrew.private]
 taps = ["anomalyco/tap"]
-brews = ["gemini-cli", "anomalyco/tap/opencode"]
+brews = ["anomalyco/tap/opencode"]
 casks = []
