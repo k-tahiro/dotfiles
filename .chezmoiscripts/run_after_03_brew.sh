@@ -6,5 +6,5 @@ if ! command -v brew &> /dev/null; then
     exit 1
 fi
 
-echo "Updating for Homebrew packages..."
+echo "Upgrading for Homebrew packages..."
 brew upgrade
