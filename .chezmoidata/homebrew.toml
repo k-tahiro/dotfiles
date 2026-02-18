@@ -19,10 +19,13 @@ brews = [
     "starship",
     "yq",
     "zellij",
-    "zoxide"
+    "zoxide",
 ]
 casks = [
+    "claude-code",
+    "codex",
     "copilot-cli",
+    "gcloud-cli",
 ]
 
 [homebrew.work]
@@ -32,19 +35,18 @@ brews = [
     "azure-cli",
     "git-secret",
     "lima",
-    "colima"
+    "colima",
 ]
 casks = [
     "firefox",
     "font-fira-code-nerd-font",
     "font-hackgen-nerd",
     "font-moralerspace",
-    "gcloud-cli",
     "karabiner-elements",
     "raycast",
     "rectangle",
     "visual-studio-code",
-    "wezterm"
+    "wezterm",
 ]
 
 [homebrew.private]
