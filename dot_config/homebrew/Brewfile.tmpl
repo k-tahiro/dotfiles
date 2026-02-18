@@ -26,8 +26,7 @@ brew {{ . | quote }}
 {{ end -}}
 {{- end }}
 
-# --- Casks (Mac only) ---
-{{- if eq .chezmoi.os "darwin" }}
+# --- Casks ---
 {{ range .homebrew.shared.casks -}}
 cask {{ . | quote }}
 {{ end -}}
@@ -39,5 +38,4 @@ cask {{ . | quote }}
 {{ range .homebrew.private.casks -}}
 cask {{ . | quote }}
 {{ end -}}
-{{- end }}
 {{- end }}

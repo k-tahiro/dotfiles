@@ -21,7 +21,9 @@ brews = [
     "zellij",
     "zoxide"
 ]
-casks = []
+casks = [
+    "copilot-cli",
+]
 
 [homebrew.work]
 taps = []
@@ -33,7 +35,6 @@ brews = [
     "colima"
 ]
 casks = [
-    "copilot-cli",
     "firefox",
     "font-fira-code-nerd-font",
     "font-hackgen-nerd",
