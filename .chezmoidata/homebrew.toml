@@ -33,7 +33,6 @@ brews = [
     "colima"
 ]
 casks = [
-    "claude-code",
     "copilot-cli",
     "firefox",
     "font-fira-code-nerd-font",
