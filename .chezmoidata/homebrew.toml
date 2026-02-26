@@ -23,6 +23,7 @@ brews = [
 casks = [
     "copilot-cli",
 ]
+gui_casks = []
 
 [homebrew.work]
 taps = []
@@ -34,11 +35,11 @@ brews = [
     "colima",
 ]
 casks = [
-    # Linux available
     "claude-code",
     "codex",
     "gcloud-cli",
-    # Mac only
+]
+gui_casks = [
     "firefox",
     "font-fira-code-nerd-font",
     "font-hackgen-nerd",
@@ -59,3 +60,4 @@ brews = [
     "anomalyco/tap/opencode",
 ]
 casks = []
+gui_casks = []
