@@ -55,7 +55,7 @@ taps = [
     "anomalyco/tap",
 ]
 brews = [
-    "anomalyco/tap/opencode",
     "gemini-cli",
+    "anomalyco/tap/opencode",
 ]
 casks = []
