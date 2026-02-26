@@ -20,6 +20,11 @@ config.enable_scroll_bar = true
 config.initial_rows = 36
 config.initial_cols = 120
 
+wezterm.on('gui-startup', function(cmd)
+  local tab, pane, window = mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
+end)
+
 -- Font Settings
 config.font = wezterm.font_with_fallback {
     'Moralerspace Neon',
