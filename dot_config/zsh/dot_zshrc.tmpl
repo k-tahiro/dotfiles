@@ -1,6 +1,10 @@
+### Zellij auto-start ###
+export ZELLIJ_AUTO_ATTACH=true
+export ZELLIJ_AUTO_EXIT=true
+eval "$(zellij setup --generate-auto-start zsh)"
+
 ### tool setup ###
 eval "$(starship init zsh)"
-eval "$(zellij setup --generate-auto-start zsh)"
 eval "$(zoxide init zsh)"
 source <(fzf --zsh)
 
