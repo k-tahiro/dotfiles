@@ -1,7 +1,9 @@
 ### Zellij auto-start ###
-export ZELLIJ_AUTO_ATTACH=true
-export ZELLIJ_AUTO_EXIT=true
-eval "$(zellij setup --generate-auto-start zsh)"
+if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+    export ZELLIJ_AUTO_ATTACH=true
+    export ZELLIJ_AUTO_EXIT=true
+    eval "$(zellij setup --generate-auto-start zsh)"
+fi
 
 ### tool setup ###
 eval "$(starship init zsh)"
