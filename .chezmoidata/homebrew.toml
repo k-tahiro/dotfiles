@@ -30,9 +30,9 @@ taps = []
 brews = [
     "awscli",
     "azure-cli",
-    "git-secret",
-    "lima",
     "colima",
+    "git-secret",
+    "gnupg",
 ]
 casks = [
     "claude-code",
@@ -40,10 +40,15 @@ casks = [
     "gcloud-cli",
 ]
 gui_casks = [
+    "arc",
+    "clipy",
     "firefox",
     "font-fira-code-nerd-font",
     "font-hackgen-nerd",
+    "font-jetbrains-mono-nerd-font",
     "font-moralerspace",
+    "font-sauce-code-pro-nerd-font",
+    "jetbrains-toolbox",
     "karabiner-elements",
     "raycast",
     "rectangle",
