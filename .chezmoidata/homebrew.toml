@@ -30,6 +30,7 @@ taps = []
 brews = [
     "awscli",
     "azure-cli",
+    "colima",
     "docker",
     "docker-buildx",
     "docker-compose",
