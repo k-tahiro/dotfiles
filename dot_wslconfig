@@ -2,4 +2,6 @@
 memory=8GB
 swap=0
 networkingMode=mirrored
+
+[experimental]
 autoMemoryReclaim=dropCache
