@@ -1,3 +1,3 @@
 [wsl2]
-networkingMode=mirrored
-#ignoredPorts=22
+memory=8GB
+swap=8GB
