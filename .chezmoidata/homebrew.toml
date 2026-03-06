@@ -45,6 +45,7 @@ casks = [
 gui_casks = [
     "arc",
     "clipy",
+    "codex-app",
     "firefox",
     "font-fira-code-nerd-font",
     "font-hackgen-nerd",
