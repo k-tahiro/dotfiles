@@ -23,7 +23,22 @@ brews = [
 casks = [
     "copilot-cli",
 ]
-gui_casks = []
+gui_casks = [
+    "arc",
+    "clipy",
+    "firefox",
+    "font-fira-code-nerd-font",
+    "font-hackgen-nerd",
+    "font-jetbrains-mono-nerd-font",
+    "font-moralerspace",
+    "font-sauce-code-pro-nerd-font",
+    "karabiner-elements",
+    "raycast",
+    "rectangle",
+    "scroll-reverser",
+    "visual-studio-code",
+    "wezterm",
+]
 
 [homebrew.work]
 taps = []
@@ -43,21 +58,8 @@ casks = [
     "gcloud-cli",
 ]
 gui_casks = [
-    "arc",
-    "clipy",
     "codex-app",
-    "firefox",
-    "font-fira-code-nerd-font",
-    "font-hackgen-nerd",
-    "font-jetbrains-mono-nerd-font",
-    "font-moralerspace",
-    "font-sauce-code-pro-nerd-font",
     "jetbrains-toolbox",
-    "karabiner-elements",
-    "raycast",
-    "rectangle",
-    "visual-studio-code",
-    "wezterm",
 ]
 
 [homebrew.private]
