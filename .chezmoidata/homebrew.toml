@@ -19,6 +19,8 @@ brews = [
     "yq",
     "zellij",
     "zoxide",
+    "zsh-autosuggestions",
+    "zsh-syntax-highlighting",
 ]
 casks = [
     "copilot-cli",
