@@ -134,12 +134,27 @@ function notify() {
 }
 {{- end }}
 
-# 6. Local
+# 6. プラグイン (Plugins)
+# ------------------------------------------
+# Homebrewのインストール先パスを取得
+HOMEBREW_PREFIX=$(brew --prefix)
+
+# ① 過去の履歴からコマンドを薄いグレーでサジェスト（右矢印 '→' または 'Ctrl+E' で確定）
+if [ -f "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  source "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
+
+# ② コマンドの構文ハイライト（※必ず設定の最後に読み込む！）
+if [ -f "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
+
+# 7. Local
 # ------------------------------------------
 if [ -f "$ZDOTDIR/.zshrc.local" ]; then
   source "$ZDOTDIR/.zshrc.local"
 fi
 
-# 7. プロンプト (Prompt) - ※必ず最後に読み込む
+# 8. プロンプト (Prompt) - ※必ず最後に読み込む
 # ------------------------------------------
 eval "$(starship init zsh)"
