@@ -1,18 +1,31 @@
-### brew ###
+# ==========================================
+# .zprofile
+# ==========================================
+
+# Homebrewの初期化 (Apple Silicon Macの場合。Intelの場合は /usr/local/bin/brew)
 {{- if eq .chezmoi.os "darwin" }}
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 {{- else if eq .chezmoi.os "linux" }}
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+if [ -x /opt/linuxbrew/.linuxbrew/bin/brew ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+fi
 {{- end }}
 
-### mise ###
-eval "$(mise activate zsh)"
-
-### Editor ###
+# デフォルトエディタを Neovim に設定
 export EDITOR="nvim"
-export VISUAL="$EDITOR"
+export VISUAL="nvim"
 
-### local ###
+# fzfのデフォルトコマンドを fd に変更 (隠しファイルを含め、.gitを除外)
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
+
+# PATH設定 (GoやCargoなど他のツールチェーンがあればここに追加)
+export PATH="$HOME/.local/bin:$PATH"
+
+# local #
 if [ -f "$ZDOTDIR/.zprofile.local" ]; then
-    source "$ZDOTDIR/.zprofile.local"
+  source "$ZDOTDIR/.zprofile.local"
 fi
