@@ -17,12 +17,23 @@ fi
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-# fzfのデフォルトコマンドを fd に変更 (隠しファイルを含め、.gitを除外)
+# --- fzf のベース設定 (fd 連携とモダンなUI) ---
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
 
-# PATH設定 (GoやCargoなど他のツールチェーンがあればここに追加)
+# 画面下40%を使い、モダンなカラーリングと枠線をつける
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --inline-info --color=hl:#ffb86c,hl+:#ff79c6,pointer:#bd93f9,info:#ffb86c,prompt:#50fa7b"
+
+# --- fzf のプレビュー強化 (bat / eza 連携) ---
+# Ctrl+T (ファイル検索): bat でシンタックスハイライト
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+# Alt+C (ディレクトリ移動): eza でツリー表示
+export FZF_ALT_C_OPTS="--preview 'eza -T -L 2 --icons {}'"
+# Ctrl+R (履歴検索): 長いコマンドを折り返し表示
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window up:3:hidden:wrap --bind '?:toggle-preview'"
+
+# PATH設定
 export PATH="$HOME/.local/bin:$PATH"
 
 # local #
