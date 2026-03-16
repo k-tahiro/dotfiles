@@ -15,21 +15,16 @@ fi
 setopt auto_cd           # ディレクトリ名だけで移動
 setopt hist_ignore_dups  # 重複した履歴を保存しない
 setopt share_history     # 複数端末で履歴を共有
+
+# 履歴ファイルも ZDOTDIR の中に隠す
 HISTFILE="$ZDOTDIR/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 
 # 2. ツールの初期化 (Initialization)
 # ------------------------------------------
-# mise (バージョンマネージャー / タスクランナー)
 eval "$(mise activate zsh)"
-
-# zoxide (モダンな cd 代替)
-# --cmd cd をつけることで、通常の cd コマンドが zoxide に置き換わり、
-# 対話的移動も 'cdi' コマンドとして使えるようになります。
 eval "$(zoxide init zsh --cmd cd)"
-
-# fzf (ファジーファインダー)
 source <(fzf --zsh)
 
 # 3. エイリアス (Aliases)
@@ -39,12 +34,10 @@ alias ls='eza --icons --group-directories-first'
 alias ll='eza -l --icons --group-directories-first --time-style=long-iso'
 alias la='eza -la --icons --group-directories-first --time-style=long-iso'
 alias tree='eza -T --icons'
-
-alias cat='bat --theme=TwoDark' # テーマは好みに合わせて変更してください
+alias cat='bat --theme=TwoDark'
 alias grep='rg'
 alias rgi='rg -i'
 alias rgh='rg --hidden'
-
 alias vi='nvim'
 alias vim='nvim'
 
@@ -89,7 +82,7 @@ alias -g H='--help 2>&1 | bat --language=help --style=plain' # 使い方例: ls 
 
 # 5. 関数とキーバインド (Functions & Keybinds)
 # ------------------------------------------
-# ghq + fzf: Ctrl+G でリポジトリを検索して移動
+# 【1】ghq + fzf: Ctrl+G でリポジトリを検索して移動
 function ghq-fzf() {
   local repo=$(ghq list | fzf --preview "eza -la --icons $(ghq root)/{} | head -n 20")
   if [ -n "$repo" ]; then
@@ -101,13 +94,41 @@ function ghq-fzf() {
 zle -N ghq-fzf
 bindkey '^g' ghq-fzf
 
-function git_prune_branches {
+# 【2】fgrep: rg で全ファイルの中身を検索 → bat でプレビュー → nvim で該当行を開く
+function fgrep() {
+  local file_line=$(
+    rg --line-number --no-heading --color=always --smart-case "" |
+    fzf --ansi \
+        --color "hl:-1:underline,hl+:-1:underline:reverse" \
+        --delimiter : \
+        --preview 'bat --color=always --style=numbers {1} --highlight-line {2}' \
+        --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
+  )
+  
+  if [ -n "$file_line" ]; then
+    local file=$(echo "$file_line" | awk -F: '{print $1}')
+    local line=$(echo "$file_line" | awk -F: '{print $2}')
+    nvim "$file" +"$line"
+  fi
+}
+
+# 【3】gcb: Gitブランチをプレビュー付きで高速切り替え
+function gcb() {
+  local branch=$(git branch -a --format='%(refname:short)' | fzf --height 30% --prompt="Branch> " --preview "git log -n 10 --color=always {}")
+  if [ -n "$branch" ]; then
+    git checkout "$branch"
+  fi
+}
+
+# 【4】gpb: リモートで削除されたブランチのローカルブランチ一括削除
+function gpb() {
   git fetch --prune
   git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
 }
 
 {{- if eq .chezmoi.os "darwin" }}
-function notify {
+# 【5】notify: macにおける通知作成
+function notify() {
   local message="$1"
   osascript -e "display notification \"$message\" with title \"Shell\""
 }
