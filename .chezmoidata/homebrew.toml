@@ -24,20 +24,20 @@ casks = [
     "copilot-cli",
 ]
 gui_casks = [
-    "arc",
     "clipy",
-    "firefox",
     "font-fira-code-nerd-font",
     "font-hackgen-nerd",
     "font-jetbrains-mono-nerd-font",
     "font-moralerspace",
     "font-sauce-code-pro-nerd-font",
     "karabiner-elements",
+    "lm-studio",
     "raycast",
     "rectangle",
     "scroll-reverser",
     "visual-studio-code",
     "wezterm",
+    "zen",
 ]
 
 [homebrew.work]
