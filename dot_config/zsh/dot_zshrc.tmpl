@@ -66,6 +66,7 @@ alias gst='git status'
 alias gd='git diff'
 alias gco='git checkout'
 alias gcm='git commit -m'
+alias gpb='git prune-branches'
 
 # --- その他 ---
 alias relogin='exec $SHELL -l'
@@ -120,14 +121,8 @@ function gcb() {
   fi
 }
 
-# 【4】gpb: リモートで削除されたブランチのローカルブランチ一括削除
-function gpb() {
-  git fetch --prune
-  git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
-}
-
 {{- if eq .chezmoi.os "darwin" }}
-# 【5】notify: macにおける通知作成
+# 【4】notify: macにおける通知作成
 function notify() {
   local message="$1"
   osascript -e "display notification \"$message\" with title \"Shell\""
