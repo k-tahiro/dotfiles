@@ -33,6 +33,13 @@ export FZF_ALT_C_OPTS="--preview 'eza -T -L 2 --icons {}'"
 # Ctrl+R (履歴検索): 長いコマンドを折り返し表示
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window up:3:hidden:wrap --bind '?:toggle-preview'"
 
+# PATH設定
+{{- if eq .chezmoi.os "darwin" }}
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:$HOME/.lmstudio/bin"
+# End of LM Studio CLI section
+{{- end }}
+
 # Local
 if [ -f "$ZDOTDIR/.zprofile.local" ]; then
   source "$ZDOTDIR/.zprofile.local"
