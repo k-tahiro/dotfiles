@@ -10,5 +10,5 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 ### local ###
 if [ -f "$ZDOTDIR/.zshenv.local" ]; then
-    source "$ZDOTDIR/.zshenv.local"
+  source "$ZDOTDIR/.zshenv.local"
 fi
