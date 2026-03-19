@@ -12,6 +12,7 @@ brews = [
     "ghq",
     "jq",
     "lazygit",
+    "libomp",
     "mise",
     "neovim",
     "ripgrep",
