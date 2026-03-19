@@ -28,6 +28,7 @@ brews = [
 ]
 casks = [
     "copilot-cli",
+    "obsidian",
 ]
 gui_casks = [
     "clipy",
