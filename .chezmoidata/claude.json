@@ -13,6 +13,7 @@
           "Bash(gcloud logging read *)",
           "Bash(gh * list *)",
           "Bash(gh issue view *)",
+          "Bash(git *)",
           "Bash(gsutil ls *)",
           "Bash(mkdir *)",
           "Bash(uv *)",
