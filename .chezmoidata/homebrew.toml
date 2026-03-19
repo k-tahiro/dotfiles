@@ -1,5 +1,6 @@
 [homebrew.shared]
-taps = []
+taps = [
+]
 brews = [
     "bat",
     "bottom",
@@ -8,6 +9,7 @@ brews = [
     "fd",
     "fzf",
     "gcc",
+    "gemini-cli",
     "gh",
     "ghq",
     "jq",
@@ -44,7 +46,8 @@ gui_casks = [
 ]
 
 [homebrew.work]
-taps = []
+taps = [
+]
 brews = [
     "awscli",
     "azure-cli",
@@ -70,8 +73,9 @@ taps = [
     "anomalyco/tap",
 ]
 brews = [
-    "gemini-cli",
     "anomalyco/tap/opencode",
 ]
-casks = []
-gui_casks = []
+casks = [
+]
+gui_casks = [
+]
