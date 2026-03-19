@@ -26,6 +26,7 @@ SAVEHIST=10000
 eval "$(mise activate zsh)"
 eval "$(zoxide init zsh --cmd cd)"
 source <(fzf --zsh)
+eval "$(direnv hook zsh)"
 
 # 3. エイリアス (Aliases)
 # ------------------------------------------

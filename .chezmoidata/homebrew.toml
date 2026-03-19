@@ -5,6 +5,7 @@ brews = [
     "bat",
     "bottom",
     "chezmoi",
+    "direnv",
     "eza",
     "fd",
     "fzf",
