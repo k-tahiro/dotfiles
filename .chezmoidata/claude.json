@@ -15,7 +15,7 @@
           "Bash(uv *)",
           "Bash(* --help)",
           "Bash(* --version)"
-	],
+        ],
         "ask": [
           "Bash(git push *)",
           "Bash(gh api *)",
@@ -26,7 +26,7 @@
           "Bash(gh sub-issue create *)",
           "Bash(gh sub-issue remove *)",
           "Bash(uv run *)"
-	],
+        ],
         "deny": [
           "Bash(gcloud auth *)",
           "Bash(uv auth *)",
@@ -34,7 +34,7 @@
           "Read(~/.config/zsh/.zprofile.local)",
           "Read(~/.config/zsh/.zshrc.local)",
           "Read(./.env)"
-	]
+        ]
       }
     }
   }
