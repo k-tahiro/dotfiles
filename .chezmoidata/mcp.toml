@@ -1,0 +1,4 @@
+[mcpServers.datadog]
+type = "http"
+url = "https://mcp.ap1.datadoghq.com/api/unstable/mcp-server/mcp"
+headers = {DD_API_KEY = "${DD_API_KEY}", DD_APPLICATION_KEY = "${DD_APPLICATION_KEY}"}
