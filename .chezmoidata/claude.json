@@ -1,0 +1,41 @@
+{
+  "claude": {
+    "settings": {
+      "permissions": {
+        "allow": [
+	  "Bash(echo *)",
+	  "Bash(gcloud * list *)",
+	  "Bash(gcloud * * list *)",
+	  "Bash(gcloud config get *)",
+	  "Bash(gcloud logging read *)",
+	  "Bash(gh * list *)",
+	  "Bash(gh issue view *)",
+	  "Bash(gsutil ls *)",
+	  "Bash(mkdir *)",
+	  "Bash(uv *)",
+	  "Bash(* --help)",
+	  "Bash(* --version)"
+	],
+        "ask": [
+	  "Bash(git push *)",
+	  "Bash(gh api *)",
+	  "Bash(gh issue comment *)",
+	  "Bash(gh issue create *)",
+	  "Bash(gh issue edit *)",
+	  "Bash(gh sub-issue add *)",
+	  "Bash(gh sub-issue create *)",
+	  "Bash(gh sub-issue remove *)",
+	  "Bash(uv run *)"
+	],
+        "deny": [
+	  "Bash(gcloud auth *)",
+	  "Bash(uv auth *)",
+	  "Bash(uv publish *)",
+	  "Read(~/.config/zsh/.zprofile.local)",
+	  "Read(~/.config/zsh/.zshrc.local)",
+	  "Read(./.env)"
+	]
+      }
+    }
+  }
+}
