@@ -1,28 +1,19 @@
 {{- $taps := .homebrew.shared.taps -}}
 {{- $brews := .homebrew.shared.brews -}}
 {{- $casks := .homebrew.shared.casks -}}
+{{- if not .isHeadless }}
+{{-   $casks := concat $casks .homebrew.shared.gui_casks -}}
+{{-   if eq .chezmoi.os "darwin" -}}
+{{-     $casks = concat $casks .homebrew.shared.darwin_casks -}}
+{{-   end }}
+{{- end }}
 {{- if .isWork }}
-{{- $taps = append $taps .homebrew.work.taps -}}
-{{- $brews = append $brews .homebrew.work.brews -}}
-{{- $casks = append $casks .homebrew.work.casks -}}
+{{-   $taps = concat $taps .homebrew.work.taps -}}
+{{-   $brews = concat $brews .homebrew.work.brews -}}
+{{-   $casks = concat $casks .homebrew.work.casks -}}
 {{- else }}
-{{- $taps = concat $taps .homebrew.private.taps -}}
-{{- $brews = concat $brews .homebrew.private.brews -}}
-{{- $casks = concat $casks .homebrew.private.casks -}}
+{{-   $taps = concat $taps .homebrew.private.taps -}}
+{{-   $brews = concat $brews .homebrew.private.brews -}}
+{{-   $casks = concat $casks .homebrew.private.casks -}}
 {{ end -}}
 {{ template "homebrew" dict "taps" $taps "brews" $brews "casks" $casks }}
-{{- if not .isHeadless }}
-# --- GUI Casks ---
-{{ range .homebrew.shared.gui_casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{- if .isWork }}
-{{ range .homebrew.work.gui_casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{- else }}
-{{ range .homebrew.private.gui_casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{- end }}
-{{- end }}
