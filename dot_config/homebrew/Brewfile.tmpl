@@ -1,43 +1,8 @@
-# --- Taps ---
-{{ range .homebrew.shared.taps -}}
-tap {{ . | quote }}
-{{ end -}}
+{{ template "homebrew" dict "taps" .homebrew.shared.taps "brews" .homebrew.shared.brews "casks" .homebrew.shared.casks }}
 {{- if .isWork }}
-{{ range .homebrew.work.taps -}}
-tap {{ . | quote }}
-{{ end -}}
+{{ template "homebrew" dict "taps" .homebrew.work.taps "brews" .homebrew.work.brews "casks" .homebrew.work.casks }}
 {{- else }}
-{{ range .homebrew.private.taps -}}
-tap {{ . | quote }}
-{{ end -}}
-{{- end }}
-
-# --- Brews ---
-{{ range .homebrew.shared.brews -}}
-brew {{ . | quote }}
-{{ end -}}
-{{- if .isWork }}
-{{ range .homebrew.work.brews -}}
-brew {{ . | quote }}
-{{ end -}}
-{{- else }}
-{{ range .homebrew.private.brews -}}
-brew {{ . | quote }}
-{{ end -}}
-{{- end }}
-
-# --- Casks (CLI / Tools) ---
-{{ range .homebrew.shared.casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{- if .isWork }}
-{{ range .homebrew.work.casks -}}
-cask {{ . | quote }}
-{{ end -}}
-{{- else }}
-{{ range .homebrew.private.casks -}}
-cask {{ . | quote }}
-{{ end -}}
+{{ template "homebrew" dict "taps" .homebrew.private.taps "brews" .homebrew.private.brews "casks" .homebrew.private.casks }}
 {{- end }}
 
 {{- if not .isHeadless }}

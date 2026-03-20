@@ -1,0 +1,9 @@
+{{ range .taps -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ range .brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .casks -}}
+cask {{ . | quote }}
+{{ end -}}
