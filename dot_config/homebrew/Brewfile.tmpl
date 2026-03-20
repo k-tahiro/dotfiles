@@ -1,9 +1,16 @@
-{{ template "homebrew" dict "taps" .homebrew.shared.taps "brews" .homebrew.shared.brews "casks" .homebrew.shared.casks }}
+{{- $taps := .homebrew.shared.taps -}}
+{{- $brews := .homebrew.shared.brews -}}
+{{- $casks := .homebrew.shared.casks -}}
 {{- if .isWork }}
-{{ template "homebrew" dict "taps" .homebrew.work.taps "brews" .homebrew.work.brews "casks" .homebrew.work.casks }}
+{{- $taps = append $taps .homebrew.work.taps -}}
+{{- $brews = append $brews .homebrew.work.brews -}}
+{{- $casks = append $casks .homebrew.work.casks -}}
 {{- else }}
-{{ template "homebrew" dict "taps" .homebrew.private.taps "brews" .homebrew.private.brews "casks" .homebrew.private.casks }}
+{{- $taps = append $taps .homebrew.private.taps -}}
+{{- $brews = append $brews .homebrew.private.brews -}}
+{{- $casks = append $casks .homebrew.private.casks -}}
 {{- end }}
+{{ template "homebrew" dict "taps" $taps "brews" $brews "casks" $casks }}
 
 {{- if not .isHeadless }}
 # --- GUI Casks ---
