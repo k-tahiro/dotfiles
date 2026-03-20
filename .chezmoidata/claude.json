@@ -6,6 +6,7 @@
       },
       "permissions": {
         "allow": [
+          "Bash(cat *)",
           "Bash(echo *)",
           "Bash(gcloud * list *)",
           "Bash(gcloud * * list *)",
@@ -15,6 +16,7 @@
           "Bash(gh issue view *)",
           "Bash(git *)",
           "Bash(gsutil ls *)",
+          "Bash(ls *)",
           "Bash(mkdir *)",
           "Bash(uv *)",
           "Bash(* --help)",
