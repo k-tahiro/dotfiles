@@ -28,7 +28,6 @@ brews = [
 ]
 casks = [
     "copilot-cli",
-    "obsidian",
 ]
 gui_casks = [
     "clipy",
@@ -39,6 +38,7 @@ gui_casks = [
     "font-sauce-code-pro-nerd-font",
     "karabiner-elements",
     "lm-studio",
+    "obsidian",
     "raycast",
     "rectangle",
     "scroll-reverser",
