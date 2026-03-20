@@ -9,7 +9,7 @@
 {{- $taps = concat $taps .homebrew.private.taps -}}
 {{- $brews = concat $brews .homebrew.private.brews -}}
 {{- $casks = concat $casks .homebrew.private.casks -}}
-{{- end }}
+{{ end -}}
 {{ template "homebrew" dict "taps" $taps "brews" $brews "casks" $casks }}
 
 {{- if not .isHeadless }}
