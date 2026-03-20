@@ -1,9 +1,9 @@
-{{ range .taps -}}
+{{ range (sortAlpha .taps) -}}
 tap {{ . | quote }}
 {{ end -}}
-{{ range .brews -}}
+{{ range (sortAlpha .brews) -}}
 brew {{ . | quote }}
 {{ end -}}
-{{ range .casks -}}
+{{ range (sortAlpha .casks) -}}
 cask {{ . | quote }}
 {{ end -}}

@@ -16,5 +16,4 @@
 {{-   $brews = concat $brews .homebrew.private.brews -}}
 {{-   $casks = concat $casks .homebrew.private.casks -}}
 {{ end -}}
-{{- $taps := sortAlpha $taps -}}
 {{ template "homebrew" dict "taps" $taps "brews" $brews "casks" $casks }}
