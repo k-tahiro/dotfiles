@@ -6,9 +6,9 @@
 {{- $brews = append $brews .homebrew.work.brews -}}
 {{- $casks = append $casks .homebrew.work.casks -}}
 {{- else }}
-{{- $taps = append $taps .homebrew.private.taps -}}
-{{- $brews = append $brews .homebrew.private.brews -}}
-{{- $casks = append $casks .homebrew.private.casks -}}
+{{- $taps = concat $taps .homebrew.private.taps -}}
+{{- $brews = concat $brews .homebrew.private.brews -}}
+{{- $casks = concat $casks .homebrew.private.casks -}}
 {{- end }}
 {{ template "homebrew" dict "taps" $taps "brews" $brews "casks" $casks }}
 
