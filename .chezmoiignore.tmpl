@@ -27,3 +27,9 @@ Documents
 {{ if .isHeadless }}
 .config/wezterm
 {{ end }}
+
+### Claude Code ###
+{{ if not (isExecutable "claude") }}
+.claude
+.claude.json
+{{ end }}
