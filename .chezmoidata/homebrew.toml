@@ -36,7 +36,7 @@ gui_casks = [
     "font-moralerspace",
     "font-sauce-code-pro-nerd-font",
 ]
-darwin_casks = [
+mac_casks = [
     "clipy",
     "karabiner-elements",
     "lm-studio",
@@ -69,7 +69,7 @@ casks = [
 ]
 gui_casks = [
 ]
-darwin_casks = [
+mac_casks = [
     "codex-app",
     "jetbrains-toolbox",
 ]
@@ -85,5 +85,5 @@ casks = [
 ]
 gui_casks = [
 ]
-darwin_casks = [
+mac_casks = [
 ]

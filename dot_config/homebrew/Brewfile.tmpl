@@ -4,7 +4,7 @@
 {{- if not .isHeadless -}}
 {{-   $casks := concat $casks .homebrew.shared.gui_casks -}}
 {{-   if eq .chezmoi.os "darwin" -}}
-{{-     $casks = concat $casks .homebrew.shared.darwin_casks -}}
+{{-     $casks = concat $casks .homebrew.shared.mac_casks -}}
 {{-   end -}}
 {{- end -}}
 {{- if .isWork -}}
@@ -14,7 +14,7 @@
 {{-   if not .isHeadless -}}
 {{-     $casks := concat $casks .homebrew.work.gui_casks -}}
 {{-     if eq .chezmoi.os "darwin" -}}
-{{-       $casks = concat $casks .homebrew.work.darwin_casks -}}
+{{-       $casks = concat $casks .homebrew.work.mac_casks -}}
 {{-     end -}}
 {{-   end -}}
 {{- else -}}
@@ -24,7 +24,7 @@
 {{-   if not .isHeadless -}}
 {{-     $casks := concat $casks .homebrew.private.gui_casks -}}
 {{-     if eq .chezmoi.os "darwin" -}}
-{{-       $casks = concat $casks .homebrew.private.darwin_casks -}}
+{{-       $casks = concat $casks .homebrew.private.mac_casks -}}
 {{-     end -}}
 {{-   end -}}
 {{- end -}}
