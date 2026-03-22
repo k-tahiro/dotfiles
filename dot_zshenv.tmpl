@@ -14,7 +14,7 @@ if [ -x /opt/homebrew/bin/brew ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 {{- else if eq .chezmoi.os "linux" }}
-if [ -x /opt/linuxbrew/.linuxbrew/bin/brew ]; then
+if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 fi
 {{- end }}
