@@ -28,4 +28,12 @@
 {{-     end -}}
 {{-   end -}}
 {{- end -}}
-{{ template "homebrew" dict "taps" $taps "brews" $brews "casks" $casks }}
+{{ range (sortAlpha $taps) -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ range (sortAlpha $brews) -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range (sortAlpha $casks) -}}
+cask {{ . | quote }}
+{{ end -}}
