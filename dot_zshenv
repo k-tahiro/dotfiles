@@ -1,14 +1,25 @@
-### XDG ###
+# XDG
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export PATH="$HOME/.local/bin:$PATH"
 
-### zsh ###
+# zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-### local ###
+# Homebrew
+{{- if eq .chezmoi.os "darwin" }}
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+{{- else if eq .chezmoi.os "linux" }}
+if [ -x /opt/linuxbrew/.linuxbrew/bin/brew ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+fi
+{{- end }}
+
+# local
 if [ -f "$ZDOTDIR/.zshenv.local" ]; then
   source "$ZDOTDIR/.zshenv.local"
 fi
