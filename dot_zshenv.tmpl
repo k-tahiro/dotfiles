@@ -8,17 +8,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-# Homebrew
-{{- if eq .chezmoi.os "darwin" }}
-if [ -x /opt/homebrew/bin/brew ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-{{- else if eq .chezmoi.os "linux" }}
-if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
-fi
-{{- end }}
-
 # local
 if [ -f "$ZDOTDIR/.zshenv.local" ]; then
   source "$ZDOTDIR/.zshenv.local"
