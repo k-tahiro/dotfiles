@@ -15,7 +15,6 @@ brews = [
     "ghq",
     "jq",
     "lazygit",
-    "libomp",
     "mise",
     "neovim",
     "ripgrep",
@@ -60,6 +59,7 @@ brews = [
     "docker-compose",
     "git-secret",
     "gnupg",
+    "libomp",
 ]
 casks = [
     "claude-code",
