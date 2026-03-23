@@ -37,7 +37,6 @@ gui_casks = [
     "font-sauce-code-pro-nerd-font",
 ]
 mac_casks = [
-    "clipy",
     "karabiner-elements",
     "lm-studio",
     "obsidian",
