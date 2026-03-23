@@ -29,11 +29,8 @@ casks = [
     "copilot-cli",
 ]
 gui_casks = [
-    "font-fira-code-nerd-font",
     "font-hackgen-nerd",
-    "font-jetbrains-mono-nerd-font",
     "font-moralerspace",
-    "font-sauce-code-pro-nerd-font",
 ]
 mac_casks = [
     "karabiner-elements",
