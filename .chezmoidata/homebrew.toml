@@ -1,5 +1,6 @@
 [homebrew.shared]
 taps = [
+    "anomalyco/tap",
 ]
 brews = [
     "bat",
@@ -24,14 +25,12 @@ brews = [
     "zoxide",
     "zsh-autosuggestions",
     "zsh-syntax-highlighting",
+    "anomalyco/tap/opencode",
 ]
 casks = [
-    "claude-code",
-    "codex",
     "copilot-cli",
 ]
 mac_casks = [
-    "codex-app",
     "font-hackgen-nerd",
     "font-moralerspace",
     "karabiner-elements",
@@ -60,18 +59,19 @@ brews = [
     "libomp",
 ]
 casks = [
+    "claude-code",
+    "codex",
     "gcloud-cli",
 ]
 mac_casks = [
+    "codex-app",
     "jetbrains-toolbox",
 ]
 
 [homebrew.private]
 taps = [
-    "anomalyco/tap",
 ]
 brews = [
-    "anomalyco/tap/opencode",
 ]
 casks = [
 ]
