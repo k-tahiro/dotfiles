@@ -1,6 +1,5 @@
 [homebrew.shared]
 taps = [
-    "anomalyco/tap",
 ]
 brews = [
     "bat",
@@ -25,7 +24,6 @@ brews = [
     "zoxide",
     "zsh-autosuggestions",
     "zsh-syntax-highlighting",
-    "anomalyco/tap/opencode",
 ]
 casks = [
     "copilot-cli",
@@ -70,8 +68,10 @@ mac_casks = [
 
 [homebrew.private]
 taps = [
+    "anomalyco/tap",
 ]
 brews = [
+    "anomalyco/tap/opencode",
 ]
 casks = [
 ]
