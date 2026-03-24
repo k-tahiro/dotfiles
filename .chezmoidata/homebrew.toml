@@ -26,9 +26,12 @@ brews = [
     "zsh-syntax-highlighting",
 ]
 casks = [
+    "claude-code",
+    "codex",
     "copilot-cli",
 ]
 mac_casks = [
+    "codex-app",
     "font-hackgen-nerd",
     "font-moralerspace",
     "karabiner-elements",
@@ -57,12 +60,9 @@ brews = [
     "libomp",
 ]
 casks = [
-    "claude-code",
-    "codex",
     "gcloud-cli",
 ]
 mac_casks = [
-    "codex-app",
     "jetbrains-toolbox",
 ]
 
