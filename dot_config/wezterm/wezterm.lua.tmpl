@@ -31,4 +31,9 @@ config.font = wezterm.font_with_fallback {
 }
 config.font_size = 16.0
 
+-- Notification
+wezterm.on('bell', function(window, pane)
+  window:toast_notification('Claude Code', 'Task completed', nil, 4000)
+end)
+
 return config
