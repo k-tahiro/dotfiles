@@ -29,7 +29,7 @@ config.font = wezterm.font_with_fallback {
     { family = 'Moralerspace Neon', weight = "Bold" },
     { family = 'HackGen Console NF', weight = "Bold" }
 }
-config.font_size = {{- if eq .chezmoi.os "windows" -}}14.0{{ else }}16.0{{ end }}
+config.font_size = {{ if eq .chezmoi.os "windows" -}}14.0{{ else }}16.0{{ end }}
 
 -- Claude Code
 -- Shift+Enterで改行を送信
