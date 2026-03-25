@@ -31,7 +31,17 @@ config.font = wezterm.font_with_fallback {
 }
 config.font_size = 16.0
 
--- Notification
+-- Claude Code
+-- Shift+Enterで改行を送信
+config.keys = {
+  {
+    key = 'Enter',
+    mods = 'SHIFT',
+    action = wezterm.action.SendString('\n')
+  },
+}
+
+-- 通知
 local function is_claude(pane)
   local process = pane:get_foreground_process_info()
   if not process or not process.argv then
