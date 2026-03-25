@@ -1,18 +1,2 @@
-{
-  "security": {
-    "auth": {
-      "selectedType": "oauth-personal"
-    }
-  },
-  "general": {
-    "previewFeatures": true,
-    "sessionRetention": {
-      "enabled": true,
-      "maxAge": "30d",
-      "warningAcknowledged": true
-    }
-  },
-  "output": {
-    "format": "text"
-  }
-}
+{{- /* chezmoi:modify-template */ -}}
+{{ fromJson .chezmoi.stdin | setValueAtPath "context" (dict "fileName" list "CLAUDE.md") | toPrettyJson }}
