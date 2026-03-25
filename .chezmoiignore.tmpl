@@ -35,6 +35,6 @@ Documents
 {{ end }}
 
 ### Gemini ###
-{{ if not (isExecutable "gemini") }}
+{{ if not (lookPath "gemini") }}
 .gemini
 {{ end }}
