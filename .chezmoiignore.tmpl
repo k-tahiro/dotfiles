@@ -29,7 +29,7 @@ Documents
 {{ end }}
 
 ### Claude Code ###
-{{ if not (isExecutable "claude") }}
+{{ if not (lookPath "claude") }}
 .claude
 .claude.json
 {{ end }}
