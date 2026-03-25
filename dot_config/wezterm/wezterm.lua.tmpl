@@ -33,14 +33,13 @@ config.font_size = 16.0
 
 -- Claude Code
 -- Shift+Enterで改行を送信
-config.enable_kitty_keyboard = false
---config.keys = {
---  {
---    key = 'Enter',
---    mods = 'SHIFT',
---    action = wezterm.action.SendString('\n')
---  },
---}
+config.keys = {
+  {
+    key = 'Enter',
+    mods = 'SHIFT',
+    action = wezterm.action.SendString('\n')
+  },
+}
 
 -- 通知
 local function is_claude(pane)
