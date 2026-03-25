@@ -33,3 +33,8 @@ Documents
 .claude
 .claude.json
 {{ end }}
+
+### Gemini ###
+{{ if not (isExecutable "gemini") }}
+.gemini
+{{ end }}
