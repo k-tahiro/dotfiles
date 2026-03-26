@@ -123,7 +123,7 @@ wezterm.on('gui-startup', function(cmd)
     "stderr:",
     tostring(stderr),
   }, "\n")
-  local tab, pane, window = mux.spawn_window({
+  local tab, pane, window = wezterm.mux.spawn_window({
     args = {
       "/bin/zsh",
       "-lc",
