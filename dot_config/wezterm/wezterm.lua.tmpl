@@ -59,45 +59,44 @@ wezterm.on("bell", function(window, pane)
 end)
 
 wezterm.on('gui-startup', function(cmd)
-  local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
-  window:gui_window():maximize()
-
   -- Zellij session一覧取得
   local success, stdout, stderr = wezterm.run_child_process({
     "zellij",
     "list-sessions",
   })
-  if not success then
-    wezterm.log_error("failed to get zellij sessions: " .. stderr)
-    return
-  end
-
   local sessions = {}
-  for line in stdout:gmatch("[^\r\n]+") do
-    if line ~= "" then
-      table.insert(sessions, line)
-    end
+  if success and stdout then
+    for line in stdout:gmatch("[^\r\n]+") do
+      local s = line:match("^%s*(.-)%s*$")
+      if s ~= "" then
+        table.insert(sessions, s)
+      end
+  else
+    wezterm.log_error("failed to get zellij sessions: " .. stderr)
   end
 
-  if #sessions == 0 then
-    -- sessionがなければ最初のタブで新規作成
-    -- pane:send_text("zellij attach -c default\n")
-    return
-  end
-
-  -- 最初のタブに1つ目のsession
-  pane:send_text("zellij attach " .. sessions[1] .. "\n")
-
-  -- 残りを新規タブで開く
-  for i = 2, #sessions do
-    window:spawn_tab({
+  local tab, pane, window
+  if #sessions > 0 then
+    tab, pane, window = mux.spawn_window({
       args = {
         "zsh",
         "-lc",
-        "exec zellij attach " .. sessions[i],
+        'exec zellij attach "' .. sessions[1] .. '"',
       },
     })
+
+    for i = 2, #sessions do
+      window:spawn_tab({
+        args = {
+          "zsh",
+          "-lc",
+          'exec zellij attach "' .. sessions[i] .. '"',
+        },
+      })
+    end
   end
+
+  window:gui_window():maximize()
 end)
 
 return config
