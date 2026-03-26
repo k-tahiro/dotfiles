@@ -100,7 +100,7 @@ wezterm.on('gui-startup', function(cmd)
       args = {
         "zsh",
         "-lc",
-        'exec "' .. zellij .. '" attach "' .. sessions[1] .. '"',
+        'exec "' .. zellij .. '" "attach" "' .. sessions[1] .. '"',
       },
     })
 
@@ -109,7 +109,7 @@ wezterm.on('gui-startup', function(cmd)
         args = {
           "zsh",
           "-lc",
-          'exec "' .. zellij .. '" attach "' .. sessions[i] .. '"',
+          'exec "' .. zellij .. '" "attach" "' .. sessions[i] .. '"',
         },
       })
     end
