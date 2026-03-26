@@ -95,7 +95,7 @@ wezterm.on('gui-startup', function(cmd)
   end
 
   local _, _, window = wezterm.mux.spawn_window(cmd or {})
-  return
+  return 0
 
   local tab, pane, window
   if #sessions > 0 then
