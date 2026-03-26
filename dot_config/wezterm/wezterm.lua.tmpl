@@ -20,6 +20,9 @@ config.char_select_bg_color = "#282A36"
 config.char_select_fg_color = "#F8F8F2"
 config.hide_tab_bar_if_only_one_tab = true
 config.enable_scroll_bar = true
+wezterm.on("format-tab-title", function(tab)
+  return tab.active_pane.title
+end)
 
 -- Font Settings
 config.font = wezterm.font_with_fallback {
