@@ -19,7 +19,6 @@ brews = [
     "mise",
     "neovim",
     "ripgrep",
-    "sk",
     "starship",
     "yq",
     "zellij",

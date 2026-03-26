@@ -121,21 +121,6 @@ function gcb() {
   fi
 }
 
-# 【4】zellij + sk: Alt+Z でZellijのセッションを検索して移動
-function zellij-sk() {
-  ZJ_SESSIONS=$(zellij list-sessions)
-  NO_SESSIONS=$(echo "${ZJ_SESSIONS}" | wc -l)
-
-  if [ "${NO_SESSIONS}" -ge 2 ]; then
-    zellij attach \
-    "$(echo "${ZJ_SESSIONS}" | sk)"
-  else
-    zellij attach -c
-  fi
-}
-zle -N zellij-sk
-bindkey '^[z' zellij-sk
-
 {{- if eq .chezmoi.os "darwin" }}
 # 【4】notify: macにおける通知作成
 function notify() {
