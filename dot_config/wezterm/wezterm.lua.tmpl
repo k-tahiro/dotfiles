@@ -115,20 +115,6 @@ wezterm.on('gui-startup', function(cmd)
     end
   end
 
-  -- 何があっても落ちない保険用ウィンドウ
-  local msg = table.concat({
-    "success=" .. tostring(success),
-    "stdout: " .. tostring(stdout),
-    "stderr: " .. tostring(stderr),
-  }, "\n")
-  local tab, pane, window = wezterm.mux.spawn_window({
-    args = {
-      "/bin/zsh",
-      "-lc",
-      'printf "%s\n\nPress Enter to close..." ' .. string.format("%q", msg) .. '; read',
-    },
-  })
-
   window:gui_window():maximize()
 end)
 
