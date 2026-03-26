@@ -29,6 +29,12 @@ config.font_size = {{ if eq .chezmoi.os "windows" -}}14.0{{ else }}16.0{{ end }}
 
 -- Keybind
 config.keys = {
+  -- Debug log
+  {
+    key = 'L',
+    mods = 'CTRL',
+    action = wezterm.action.ShowDebugOverlay
+  },
   -- Shift+Enterで改行を送信
   {
     key = 'Enter',
