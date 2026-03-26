@@ -72,6 +72,7 @@ wezterm.on('gui-startup', function(cmd)
         table.insert(sessions, s)
       end
     end
+    wezterm.log_info("successed to get zellij sessions: " .. stdout)
   else
     wezterm.log_error("failed to get zellij sessions: " .. stderr)
   end
