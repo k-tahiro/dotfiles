@@ -65,11 +65,12 @@ wezterm.on("bell", function(window, pane)
 end)
 
 wezterm.on('gui-startup', function(cmd)
+{{- if eq .chezmoi.os "windows" }}
+  local _, _, window = wezterm.mux.spawn_window(cmd or {})
+{{- elif eq .chezmoi.os "darwin" }}
   -- Zellij session一覧取得
   local success, stdout, stderr = wezterm.run_child_process({
-    {{- if eq .chezmoi.os "darwin" }}
     "/opt/homebrew/bin/zellij",
-    {{- end }}
     "list-sessions",
   })
   local sessions = {}
@@ -105,6 +106,7 @@ wezterm.on('gui-startup', function(cmd)
       })
     end
   end
+{{- end }}
 
   window:gui_window():maximize()
 end)
