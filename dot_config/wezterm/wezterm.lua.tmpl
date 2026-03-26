@@ -118,10 +118,8 @@ wezterm.on('gui-startup', function(cmd)
   -- 何があっても落ちない保険用ウィンドウ
   local msg = table.concat({
     "success=" .. tostring(success),
-    "stdout:",
-    tostring(stdout),
-    "stderr:",
-    tostring(stderr),
+    "stdout: " .. tostring(stdout),
+    "stderr: " .. tostring(stderr),
   }, "\n")
   local tab, pane, window = wezterm.mux.spawn_window({
     args = {
