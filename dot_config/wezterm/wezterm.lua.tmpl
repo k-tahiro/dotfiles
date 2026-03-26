@@ -19,10 +19,6 @@ config.char_select_bg_color = "#282A36"
 config.char_select_fg_color = "#F8F8F2"
 config.hide_tab_bar_if_only_one_tab = true
 config.enable_scroll_bar = true
-wezterm.on('gui-startup', function()
-  local _, _, window = wezterm.mux.spawn_window({})
-  window:gui_window():maximize()
-end)
 
 -- Font Settings
 config.font = wezterm.font_with_fallback {
@@ -31,7 +27,15 @@ config.font = wezterm.font_with_fallback {
 }
 config.font_size = {{ if eq .chezmoi.os "windows" -}}14.0{{ else }}16.0{{ end }}
 
--- Claude Code
+-- Keybind
+config.keys = {
+  -- Shift+Enterで改行を送信
+  {
+    key = 'Enter',
+    mods = 'SHIFT',
+    action = wezterm.action.SendString('\n')
+  },
+}
 
 -- 通知
 local function is_claude(pane)
@@ -54,14 +58,46 @@ wezterm.on("bell", function(window, pane)
   end
 end)
 
--- Keybind
-config.keys = {
-  -- Shift+Enterで改行を送信
-  {
-    key = 'Enter',
-    mods = 'SHIFT',
-    action = wezterm.action.SendString('\n')
-  },
-}
+wezterm.on('gui-startup', function(cmd)
+  local _, _, window = wezterm.mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
+
+  -- Zellij session一覧取得
+  local success, stdout, stderr = wezterm.run_child_process({
+    "zellij",
+    "list-sessions",
+  })
+  if not success then
+    wezterm.log_error("failed to get zellij sessions: " .. stderr)
+    return
+  end
+
+  local sessions = {}
+  for line in stdout:gmatch("[^\r\n]+") do
+    if line ~= "" then
+      table.insert(sessions, line)
+    end
+  end
+
+  if #sessions == 0 then
+    -- sessionがなければ最初のタブで新規作成
+    -- pane:send_text("zellij attach -c default\n")
+    return
+  end
+
+  -- 最初のタブに1つ目のsession
+  pane:send_text("zellij attach " .. sessions[1] .. "\n")
+
+  -- 残りを新規タブで開く
+  for i = 2, #sessions do
+    window:spawn_tab({
+      args = {
+        "zsh",
+        "-lc",
+        "exec zellij attach " .. sessions[i],
+      },
+    })
+  end
+end)
 
 return config
