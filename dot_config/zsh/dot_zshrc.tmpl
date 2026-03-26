@@ -4,9 +4,52 @@
 
 # 0. Zellij
 # ------------------------------------------
-if [[ "$TERM_PROGRAM" = "WezTerm" ]]; then
-  export ZELLIJ_AUTO_EXIT=true
-  eval "$(zellij setup --generate-auto-start zsh)"
+#if [[ "$TERM_PROGRAM" = "WezTerm" ]]; then
+#  export ZELLIJ_AUTO_EXIT=true
+#  eval "$(zellij setup --generate-auto-start zsh)"
+#fi
+# ==========================================
+# Zellij Auto-Start & Session Selector
+# ==========================================
+if [[ -z "$ZELLIJ" ]] && type fzf >/dev/null 2>&1; then
+    local zellij_sessions=$(zellij list-sessions -n 2>/dev/null | awk '{print $1}')
+    
+    local choices="✨ [New] 自動で名前をつけて新規作成\n✏️ [New] 名前を指定して新規作成"
+    if [[ -n "$zellij_sessions" ]]; then
+        choices="$choices\n$zellij_sessions"
+    fi
+    
+    # fzfでメニューを表示して選択させる
+    local selected=$(echo -e "$choices" | fzf --prompt="Zellij Session ❯ " --height=40% --reverse --border --inline-info)
+    
+    if [[ -n "$selected" ]]; then
+        # Zellijに渡すオプション引数を配列として準備
+        local zellij_args=()
+        
+        if [[ "$selected" == "✨ [New] 自動で名前をつけて新規作成" ]]; then
+            # 引数なし（空の配列のまま）
+            :
+        elif [[ "$selected" == "✏️ [New] 名前を指定して新規作成" ]]; then
+            echo -n "新しいセッション名を入力してください: "
+            # fzfの後に標準入力を正しく受け取るため </dev/tty を明示
+            read session_name </dev/tty
+            if [[ -n "$session_name" ]]; then
+                zellij_args=(attach -c "$session_name")
+            fi
+        else
+            # 既存セッションを選択した場合
+            zellij_args=(attach "$selected")
+        fi
+        
+        # ZELLIJ_AUTO_EXIT の値によって起動方法（execの有無）を切り替える
+        if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+            # trueの場合: 現在のzshプロセスをZellijで上書き。Zellij終了・デタッチ時にタブも閉じる
+            exec zellij "${zellij_args[@]}"
+        else
+            # falseまたは未設定の場合: 子プロセスとしてZellijを起動。終了・デタッチ時は親のzshに戻る
+            zellij "${zellij_args[@]}"
+        fi
+    fi
 fi
 
 # 1. Zshの基本設定
