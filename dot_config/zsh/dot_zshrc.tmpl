@@ -4,64 +4,6 @@
 
 # 0. Zellij
 # ------------------------------------------
-if [[ -z "$ZELLIJ" ]] && type fzf >/dev/null 2>&1; then
-  local zellij_sessions=$(zellij list-sessions -n 2>/dev/null | awk '{print $1}')
-  
-  # メニューの選択肢
-  local choices="✨ [New] 自動で名前をつけて新規作成\n✏️ [New] 名前を指定して新規作成"
-  if [[ -n "$zellij_sessions" ]]; then
-    choices="$choices\n$zellij_sessions"
-  fi
-  
-  # fzfでメニュー表示
-  local selected=$(echo -e "$choices" | fzf --prompt="Zellij Session ❯ " --height=40% --reverse --border --inline-info)
-  
-  if [[ -n "$selected" ]]; then
-    local target_session=""
-    local zellij_args=()
-    
-    if [[ "$selected" == "✨ [New] 自動で名前をつけて新規作成" ]]; then
-      # 終了・デタッチ判定のためにセッション名を追跡する必要があるため、
-      # Zellijのおまかせ命名ではなく、zsh側で日時ベースのユニークな名前を生成します
-      target_session="session-$(date +%Y%m%d-%H%M%S)"
-      zellij_args=(attach -c "$target_session")
-      
-    elif [[ "$selected" == "✏️ [New] 名前を指定して新規作成" ]]; then
-      echo -n "新しいセッション名を入力してください: "
-      read target_session </dev/tty
-      if [[ -n "$target_session" ]]; then
-        zellij_args=(attach -c "$target_session")
-      else
-        # 未入力時は日時ベースにする
-        target_session="session-$(date +%Y%m%d-%H%M%S)"
-        zellij_args=(attach -c "$target_session")
-      fi
-      
-    else
-      # 既存セッションを選択した場合
-      target_session="$selected"
-      zellij_args=(attach "$target_session")
-    fi
-    
-    # exec は使わず、通常のコマンドとしてZellijを起動（親シェルの処理はここで一時停止）
-    zellij "${zellij_args[@]}"
-    local zellij_exit_code=$?
-    
-    # Zellijがクラッシュ等の異常終了をした場合は、安全のため判定をスキップしてシェルを残す
-    if [[ $zellij_exit_code -eq 0 ]]; then
-      # Zellijから抜けた後、ターゲットにしていたセッションがまだ存在するか確認
-      local session_exists=$(zellij list-sessions -n 2>/dev/null | awk -v t="$target_session" '$1 == t {print $1}')
-      
-      if [[ -z "$session_exists" ]]; then
-        # セッションが存在しない = exit（全ペインを閉じた）で抜けた
-        # WezTermのタブごと閉じるために親シェルも終了させる
-        exit
-      fi
-      # セッションが存在する = detach で抜けた
-      # このまま下の処理（.zshrcの続き）へ進み、元のシェルのプロンプトを出す
-    fi
-  fi
-fi
 
 # 1. Zshの基本設定
 # ------------------------------------------
