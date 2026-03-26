@@ -62,63 +62,6 @@ config.keys = {
     mods = 'SHIFT',
     action = wezterm.action.SendString('\n')
   },
-  -- Alt+T でZellijセッション選択メニューを開き、新しいタブで起動する
-  {
-    key = 't',
-    mods = 'ALT',
-    action = wezterm.action_callback(function(window, pane)
-      -- 1. Zellijの既存セッション一覧をバックグラウンドで取得
-      local success, stdout, stderr = wezterm.run_child_process({'zellij', 'list-sessions', '-n'})
-      local choices = {}
-
-      -- 2. メニューの上部に「新規作成」の選択肢を配置（これがデフォルトになります）
-      table.insert(choices, { label = "✨ 新規セッション作成 (名前は自動)", id = "NEW_AUTO" })
-      table.insert(choices, { label = "✏️ 新規セッション作成 (名前を指定)", id = "NEW_NAMED" })
-
-      -- 3. 既存のセッションがあればリストに追加
-      if success and stdout then
-        for line in stdout:gmatch("[^\r\n]+") do
-          table.insert(choices, { label = "📂 " .. line, id = line })
-        end
-      end
-
-      -- 4. 選択メニュー（InputSelector）を表示
-      window:perform_action(
-        act.InputSelector {
-          title = ' Zellij Sessions ',
-          choices = choices,
-          fuzzy = true,
-          action = wezterm.action_callback(function(inner_window, inner_pane, id, label)
-            if not id and not label then
-              -- Escなどでキャンセルした場合は何もしない
-              return
-            elseif id == "NEW_AUTO" then
-              -- 「自動命名」を選択：新しいタブで単に `zellij` を実行
-              inner_window:perform_action(act.SpawnCommandInNewTab { args = { 'zellij' } }, inner_pane)
-            elseif id == "NEW_NAMED" then
-                -- 「名前を指定」を選択：プロンプトを出して入力された名前で作成
-                inner_window:perform_action(
-                  act.PromptInputLine {
-                    description = '新しいZellijセッション名を入力:',
-                    action = wezterm.action_callback(function(w, p, line)
-                      if line and line ~= "" then
-                        -- "attach -c" は、存在しなければ作成・あればアタッチするZellijのコマンドです
-                        w:perform_action(act.SpawnCommandInNewTab { args = { 'zellij', 'attach', '-c', line } }, p)
-                      end
-                    end)
-                  }, inner_pane)
-            else
-              -- 既存セッションを選択：新しいタブでそのセッションにアタッチ
-              -- ※出力に "(attached)" などの文字が含まれる場合を考慮し、先頭のセッション名だけ抽出
-              local session_name = id:match("([^%s]+)")
-              inner_window:perform_action(act.SpawnCommandInNewTab { args = { 'zellij', 'attach', session_name } }, inner_pane)
-            end
-          end),
-        },
-        pane
-      )
-    end),
-  },
 }
 
 return config
