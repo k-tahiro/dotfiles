@@ -67,7 +67,7 @@ end)
 wezterm.on('gui-startup', function(cmd)
 {{- if eq .chezmoi.os "windows" }}
   local _, _, window = wezterm.mux.spawn_window(cmd or {})
-{{- elif eq .chezmoi.os "darwin" }}
+{{- else if eq .chezmoi.os "darwin" }}
   -- Zellij session一覧取得
   local success, stdout, stderr = wezterm.run_child_process({
     "/opt/homebrew/bin/zellij",
