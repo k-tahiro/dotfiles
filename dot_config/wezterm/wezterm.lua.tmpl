@@ -94,8 +94,9 @@ wezterm.on('gui-startup', function(cmd)
     wezterm.log_error("failed to get zellij sessions: " .. stderr)
   end
 
+  local tab, pane, window
   if #sessions > 0 then
-    local tab, pane, window = wezterm.mux.spawn_window({
+    tab, pane, window = wezterm.mux.spawn_window({
       args = {
         "zsh",
         "-lc",
