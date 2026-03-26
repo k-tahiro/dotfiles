@@ -64,16 +64,20 @@ wezterm.on("bell", function(window, pane)
   end
 end)
 
+-- Startup
+{{- if eq .chezmoi.os "darwin" }}
+local zellij = "/opt/homebrew/bin/zellij"
+{{- else }}
+local zellij = "/home/linuxbrew/.linuxbrew/bin/zellij"
+{{- end }}
 wezterm.on('gui-startup', function(cmd)
   -- Zellij session一覧取得
   local success, stdout, stderr = wezterm.run_child_process({
 {{- if eq .chezmoi.os "windows" }}
     "wsl.exe",
     "--",
-    "/home/linuxbrew/.linuxbrew/bin/zellij",
-{{- else if eq .chezmoi.os "darwin" }}
-    "/opt/homebrew/bin/zellij",
 {{- end }}
+    zellij,
     "list-sessions",
   })
   local sessions = {}
@@ -95,7 +99,7 @@ wezterm.on('gui-startup', function(cmd)
       args = {
         "zsh",
         "-lc",
-        'exec zellij attach "' .. sessions[1] .. '"',
+        'exec "' .. zellij .. '" attach "' .. sessions[1] .. '"',
       },
     })
 
@@ -104,7 +108,7 @@ wezterm.on('gui-startup', function(cmd)
         args = {
           "zsh",
           "-lc",
-          'exec zellij attach "' .. sessions[i] .. '"',
+          'exec "' .. zellij .. '" attach "' .. sessions[i] .. '"',
         },
       })
     end
