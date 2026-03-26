@@ -4,7 +4,8 @@ local config = wezterm.config_builder()
 
 -- OS Specific Settings
 {{- if eq .chezmoi.os "windows" }}
-config.default_domain = 'WSL:Ubuntu'
+local distro = "Ubuntu"
+config.default_domain = 'WSL:' .. distro
 {{- end }}
 
 -- General Behavior
@@ -75,6 +76,8 @@ wezterm.on('gui-startup', function(cmd)
   local success, stdout, stderr = wezterm.run_child_process({
 {{- if eq .chezmoi.os "windows" }}
     "wsl.exe",
+    "-d",
+    distro,
     "--",
 {{- end }}
     "/bin/zsh",
