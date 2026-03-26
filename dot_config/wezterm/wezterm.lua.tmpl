@@ -76,9 +76,10 @@ wezterm.on('gui-startup', function(cmd)
 {{- if eq .chezmoi.os "windows" }}
     "wsl.exe",
     "--",
-{{- end }}
-    zellij,
-    "list-sessions",
+{{- end }},
+    "/bin/zsh",
+    "-lc",
+    zellij .. "list-sessions",
   })
   local sessions = {}
   if success and stdout then
