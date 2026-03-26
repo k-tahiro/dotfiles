@@ -84,7 +84,7 @@ alias -g H='--help 2>&1 | bat --language=help --style=plain' # 使い方例: ls 
 
 # 5. 関数とキーバインド (Functions & Keybinds)
 # ------------------------------------------
-# 【1】ghq + fzf: Ctrl+G でリポジトリを検索して移動
+# 【1】ghq + fzf: Alt+G でリポジトリを検索して移動
 function ghq-fzf() {
   local repo=$(ghq list | fzf --preview "eza -la --icons $(ghq root)/{} | head -n 20")
   if [ -n "$repo" ]; then
