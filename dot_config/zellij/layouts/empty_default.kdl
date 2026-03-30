@@ -1,6 +1,8 @@
 layout {
-  pane size=20 borderless=true {
-    plugin location="zellij:session-manager"
+  pane split_direction="horizontal" {
+    pane size="20%" borderless=true {
+      plugin location="zellij:session-manager"
+    }
+    pane
   }
-  pane
 }
