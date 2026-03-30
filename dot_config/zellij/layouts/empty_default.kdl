@@ -1,10 +1,6 @@
 layout {
-  tab {
-    pane split_direction="horizontal" {
-      pane size="20%" borderless=true {
-        plugin location="zellij:session-manager"
-      }
-      pane focus=true
-    }
+  tab split_direction="horizontal" {
+    pane size="25%" borderless=true
+    pane focus=true
   }
 }
