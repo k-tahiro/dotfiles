@@ -1,5 +1,5 @@
 layout {
-  tab split_direction="horizontal" {
+  tab split_direction="vertical" {
     pane size="25%" borderless=true
     pane focus=true
   }
