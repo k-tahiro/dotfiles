@@ -35,11 +35,13 @@
         ],
         "deny": [
           "Bash(gcloud auth *)",
+          "Bash(rm *)",
           "Bash(uv auth *)",
           "Bash(uv publish *)",
           "Read(~/.config/zsh/.zprofile.local)",
           "Read(~/.config/zsh/.zshrc.local)",
-          "Read(./.env)"
+          "Read(./.env)",
+          "Read(./.envrc)"
         ]
       }
     }
