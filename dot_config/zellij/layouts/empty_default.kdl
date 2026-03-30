@@ -3,6 +3,6 @@ layout {
     pane size="20%" borderless=true {
       plugin location="zellij:session-manager"
     }
-    pane
+    pane focus=true
   }
 }
