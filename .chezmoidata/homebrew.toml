@@ -28,7 +28,6 @@ brews = [
     "anomalyco/tap/opencode",
 ]
 casks = [
-    "claude-code",
     "codex",
     "copilot-cli",
 ]
