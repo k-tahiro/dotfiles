@@ -17,6 +17,7 @@
           "Bash(gh * list *)",
           "Bash(gh issue view *)",
           "Bash(git *)",
+          "Bash(grep *)",
           "Bash(gsutil ls *)",
           "Bash(ls *)",
           "Bash(mkdir *)",
