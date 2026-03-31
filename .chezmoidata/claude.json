@@ -21,7 +21,8 @@
           "Bash(mkdir *)",
           "Bash(uv *)",
           "Bash(* --help)",
-          "Bash(* --version)"
+          "Bash(* --version)",
+          "Read"
         ],
         "ask": [
           "Bash(git push *)",
@@ -36,7 +37,8 @@
         ],
         "deny": [
           "Bash(gcloud auth *)",
-          "Bash(rm *)",
+          "Bash(rm -rf *)",
+          "Bash(sudo *)",
           "Bash(uv auth *)",
           "Bash(uv publish *)",
           "Read(~/.config/zsh/.zprofile.local)",
