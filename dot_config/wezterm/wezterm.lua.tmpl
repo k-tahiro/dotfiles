@@ -87,6 +87,17 @@ config.keys = {
 
   -- Shift+Enterで改行を送信（Claude Code用）
   { key = 'Enter', mods = 'SHIFT', action = act.SendString('\n') },
+
+  -- 新しいタブを開く（デフォルトドメイン = WSL）
+  { key = 'T', mods = 'CTRL|SHIFT', action = act.SpawnTab 'DefaultDomain' },
+
+{{- if eq .chezmoi.os "windows" }}
+  -- PowerShellを新しいタブで開く（Windows専用）
+  { key = 'T', mods = 'CTRL|ALT', action = act.SpawnCommandInNewTab {
+    args = { 'pwsh.exe' },
+    domain = { DomainName = 'local' },
+  }},
+{{- end }}
 }
 
 -- 通知
