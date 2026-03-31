@@ -91,8 +91,7 @@ config.keys = {
 {{- if eq .chezmoi.os "windows" }}
   -- WSL HOMEで新しいタブを開く（Windows専用: DefaultDomainだとWindows側HOMEになるため明示指定）
   { key = 'T', mods = 'CTRL|SHIFT', action = act.SpawnCommandInNewTab {
-    args = { '/bin/zsh', '-l' },
-    cwd = '/home/tahiro',
+    args = { '/bin/zsh', '-lc', 'cd && exec /bin/zsh -l' },
     domain = { DomainName = 'WSL:' .. distro },
   }},
   -- PowerShellを新しいタブで開く（Windows専用）
