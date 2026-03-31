@@ -93,7 +93,7 @@ config.keys = {
 
 {{- if eq .chezmoi.os "windows" }}
   -- PowerShellを新しいタブで開く（Windows専用）
-  { key = 'T', mods = 'CTRL|ALT', action = act.SpawnCommandInNewTab {
+  { key = 'W', mods = 'CTRL|SHIFT', action = act.SpawnCommandInNewTab {
     args = { 'pwsh.exe' },
     domain = { DomainName = 'local' },
   }},
