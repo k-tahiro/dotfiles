@@ -88,15 +88,20 @@ config.keys = {
   -- Shift+Enterで改行を送信（Claude Code用）
   { key = 'Enter', mods = 'SHIFT', action = act.SendString('\n') },
 
-  -- 新しいタブを開く（デフォルトドメイン = WSL）
-  { key = 'T', mods = 'CTRL|SHIFT', action = act.SpawnTab 'DefaultDomain' },
-
 {{- if eq .chezmoi.os "windows" }}
+  -- WSL HOMEで新しいタブを開く（Windows専用: DefaultDomainだとWindows側HOMEになるため明示指定）
+  { key = 'T', mods = 'CTRL|SHIFT', action = act.SpawnCommandInNewTab {
+    args = { '/bin/zsh', '-l' },
+    domain = { DomainName = 'WSL:' .. distro },
+  }},
   -- PowerShellを新しいタブで開く（Windows専用）
   { key = 'W', mods = 'CTRL|SHIFT', action = act.SpawnCommandInNewTab {
     args = { 'pwsh.exe' },
     domain = { DomainName = 'local' },
   }},
+{{- else }}
+  -- 新しいタブを開く（デフォルトドメイン）
+  { key = 'T', mods = 'CTRL|SHIFT', action = act.SpawnTab 'DefaultDomain' },
 {{- end }}
 }
 
