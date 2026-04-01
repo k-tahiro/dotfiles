@@ -136,6 +136,18 @@ function gcb() {
   fi
 }
 
+# from https://qiita.com/dai_chi/items/c6590a2ca91c132afdf8
+# yazi: シェル統合（終了時にカレントディレクトリを変更）
+# Yaziで移動したディレクトリを、終了後もシェルに反映させる
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
 {{- if eq .chezmoi.os "darwin" }}
 # 【4】notify: macにおける通知作成
 function notify() {
