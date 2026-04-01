@@ -2,13 +2,6 @@
 # .zshrc
 # ==========================================
 
-# 0. Zellij
-# ------------------------------------------
-if [[ "$TERM_PROGRAM" = "WezTerm" ]]; then
-  export ZELLIJ_AUTO_EXIT=true
-  eval "$(zellij setup --generate-auto-start zsh)"
-fi
-
 # 1. Zshの基本設定
 # ------------------------------------------
 setopt auto_cd           # ディレクトリ名だけで移動
