@@ -20,6 +20,7 @@ brews = [
     "neovim",
     "ripgrep",
     "starship",
+    "yazi",
     "yq",
     "zellij",
     "zoxide",
