@@ -128,58 +128,8 @@ wezterm.on("bell", function(window, pane)
 end)
 
 -- Startup
-{{- if eq .chezmoi.os "darwin" }}
-local zellij = "/opt/homebrew/bin/zellij"
-{{- else }}
-local zellij = "/home/linuxbrew/.linuxbrew/bin/zellij"
-{{- end }}
 wezterm.on('gui-startup', function(cmd)
-  -- Zellij session一覧取得
-  local success, stdout, stderr = wezterm.run_child_process({
-{{- if eq .chezmoi.os "windows" }}
-    "wsl.exe",
-    "-d",
-    distro,
-    "--",
-{{- end }}
-    "/bin/zsh",
-    "-lc",
-    zellij .. " list-sessions --no-formatting --short",
-  })
-  local sessions = {}
-  if success and stdout then
-    for line in stdout:gmatch("[^\r\n]+") do
-      local s = line:match("^%s*(.-)%s*$")
-      if s ~= "" then
-        table.insert(sessions, s)
-      end
-    end
-    wezterm.log_info("successed to get zellij sessions: " .. stdout)
-  else
-    wezterm.log_error("failed to get zellij sessions: " .. stderr)
-  end
-
-  local tab, pane, window
-  if #sessions > 0 then
-    tab, pane, window = wezterm.mux.spawn_window({
-      args = {
-        "zsh",
-        "-lc",
-        'exec ' .. zellij .. ' attach ' .. sessions[1],
-      },
-    })
-
-    for i = 2, #sessions do
-      window:spawn_tab({
-        args = {
-          "zsh",
-          "-lc",
-          'exec ' .. zellij .. ' attach ' .. sessions[i],
-        },
-      })
-    end
-  end
-
+  tab, pane, window = wezterm.mux.spawn_window(cmd or {})
   window:gui_window():maximize()
 end)
 
