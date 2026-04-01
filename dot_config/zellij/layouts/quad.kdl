@@ -1,0 +1,33 @@
+// 4ペインClaude Codeレイアウト
+// 使い方: zellij --layout quad
+// エイリアス: cc4
+layout {
+    // cwd を起動時のディレクトリに設定
+    cwd ""
+
+    pane split_direction="horizontal" {
+        // 上段 (50%)
+        pane size="50%" split_direction="vertical" {
+            // 左上: Claude Code
+            pane size="50%" focus=true {
+                command "claude"
+            }
+            // 右上: Claude Code
+            pane size="50%" {
+                command "claude"
+            }
+        }
+        // 下段 (50%)
+        pane size="50%" split_direction="vertical" {
+            // 左下: Claude Code
+            pane size="50%" {
+                command "claude"
+            }
+            // 右下: Claude Code
+            pane size="50%" {
+                command "claude"
+            }
+        }
+    }
+}
+
