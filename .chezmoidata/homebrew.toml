@@ -24,6 +24,7 @@ brews = [
     "yq",
     "zellij",
     "zoxide",
+    "zsh",
     "zsh-autosuggestions",
     "zsh-syntax-highlighting",
     "anomalyco/tap/opencode",
