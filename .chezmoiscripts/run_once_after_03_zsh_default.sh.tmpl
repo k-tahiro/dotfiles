@@ -9,6 +9,13 @@ BREW="/opt/homebrew/bin/brew"
 BREW="/usr/local/bin/brew"
 {{ end -}}
 
+if [[ ! -x "$BREW" ]]; then
+    echo "Error: Homebrew not found at $BREW"
+    exit 1
+fi
+
+eval "$("$BREW" shellenv)"
+
 ZSH_PATH="$("$BREW" --prefix)/bin/zsh"
 
 if [[ ! -x "$ZSH_PATH" ]]; then

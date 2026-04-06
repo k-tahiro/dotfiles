@@ -14,5 +14,7 @@ if [[ ! -x "$BREW" ]]; then
     exit 1
 fi
 
+eval "$("$BREW" shellenv)"
+
 echo "Upgrading for Homebrew packages..."
 "$BREW" upgrade

@@ -18,5 +18,7 @@ if [[ ! -x "$BREW" ]]; then
     exit 1
 fi
 
+eval "$("$BREW" shellenv)"
+
 echo "Checking for new Homebrew packages..."
 "$BREW" bundle --cleanup --global
