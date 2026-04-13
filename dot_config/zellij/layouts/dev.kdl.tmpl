@@ -18,11 +18,11 @@ layout {
             // 右上: Claude Code (60%)
             // focus=true で起動時にこのペインにフォーカス
             pane size="60%" focus=true {
-	        {{- if .isWork }}
+                {{- if .isWork }}
                 command "claude"
-		{{- else }}
-		command "gemini"
-		{{- end }}
+                {{- else }}
+                command "gemini"
+                {{- end }}
             }
             // 右下: Lazygit (40%)
             pane size="40%" {
