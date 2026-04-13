@@ -25,7 +25,6 @@ packages = [
     # --- Private / Gaming / Hobby ---
     "Valve.Steam",
     "EpicGames.EpicGamesLauncher",
-    "Roblox.Roblox",
     "OuterWildsMods.OuterWildsModManager",
     "ElementLabs.LMStudio",
 ]
