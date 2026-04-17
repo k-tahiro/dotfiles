@@ -2,6 +2,7 @@
 LICENSE
 README.md
 CLAUDE.md
+AGENTS.md
 
 ### Windows ###
 {{ if ne .chezmoi.os "windows" }}
@@ -36,7 +37,17 @@ Documents
 .claude.json
 {{ end }}
 
+### Codex ###
+{{ if not (lookPath "codex") }}
+.codex
+{{ end }}
+
 ### Gemini ###
 {{ if not (lookPath "gemini") }}
 .gemini
+{{ end }}
+
+### Opencode ###
+{{ if not (lookPath "opencode") }}
+.config/opencode
 {{ end }}
