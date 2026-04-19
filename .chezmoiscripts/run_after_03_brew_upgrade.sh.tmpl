@@ -1,13 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-{{ if eq .chezmoi.os "linux" -}}
-BREW="/home/linuxbrew/.linuxbrew/bin/brew"
-{{ else if eq .chezmoi.arch "arm64" -}}
-BREW="/opt/homebrew/bin/brew"
-{{ else -}}
-BREW="/usr/local/bin/brew"
-{{ end -}}
+BREW="{{- .brewPrefix -}}/bin/brew"
 
 if [[ ! -x "$BREW" ]]; then
     echo "Error: Homebrew not found at $BREW"

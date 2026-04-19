@@ -4,13 +4,7 @@ set -euo pipefail
 # miseのconfig.toml のハッシュ値が変わった（＝中身が書き換わった）時だけ実行されます
 # {{ include "dot_config/mise/config.toml.tmpl" | sha256sum }}
 
-{{ if eq .chezmoi.os "linux" -}}
-BREW="/home/linuxbrew/.linuxbrew/bin/brew"
-{{ else if eq .chezmoi.arch "arm64" -}}
-BREW="/opt/homebrew/bin/brew"
-{{ else -}}
-BREW="/usr/local/bin/brew"
-{{ end -}}
+BREW="{{- .brewPrefix -}}/bin/brew"
 
 if [[ ! -x "$BREW" ]]; then
     echo "Error: Homebrew not found at $BREW"
