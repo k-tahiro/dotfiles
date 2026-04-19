@@ -13,6 +13,11 @@
     isWsl = {{ $isWsl }}
     isWork = {{ $isWork }}
     isHeadless = {{ $isHeadless }}
+{{- if $isMac -}}
+    brewPrefix = "/opt/homebrew"
+{{- else if or $isWsl $isLinux -}}
+    brewPrefix = "/home/linuxbrew/.linuxbrew"
+{{- end -}}
 
 [edit]
     apply = true
