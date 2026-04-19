@@ -11,7 +11,6 @@ brews = [
     "fd",
     "fzf",
     "gcc",
-    "gemini-cli",
     "gh",
     "ghq",
     "jq",
@@ -35,6 +34,7 @@ casks = [
     "copilot-cli",
 ]
 mac_casks = [
+    "codex-app",
     "font-hackgen-nerd",
     "font-moralerspace",
     "karabiner-elements",
@@ -66,12 +66,12 @@ casks = [
     "gcloud-cli",
 ]
 mac_casks = [
-    "codex-app",
     "jetbrains-toolbox",
 ]
 
 [homebrew.private]
 taps = [
+    "gemini-cli",
 ]
 brews = [
 ]
