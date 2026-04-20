@@ -71,9 +71,9 @@ mac_casks = [
 
 [homebrew.private]
 taps = [
-    "gemini-cli",
 ]
 brews = [
+    "gemini-cli",
 ]
 casks = [
 ]
