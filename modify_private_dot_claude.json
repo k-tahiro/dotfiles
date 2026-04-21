@@ -1,2 +1,6 @@
 {{- /* chezmoi:modify-template */ -}}
-{{ default "{}" .chezmoi.stdin | fromJson | setValueAtPath "mcpServers" .mcpServers | toPrettyJson }}
+{{
+  fromJson (default "{}" .chezmoi.stdin)
+  | setValueAtPath "mcpServers" .mcpServers
+  | toPrettyJson
+}}

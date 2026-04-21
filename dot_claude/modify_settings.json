@@ -1,2 +1,6 @@
 {{- /* chezmoi:modify-template */ -}}
-{{ default "{}" .chezmoi.stdin | fromJson | setValueAtPath "permissions" .claude.settings.permissions | toPrettyJson }}
+{{
+  fromJson (default "{}" .chezmoi.stdin)
+  | setValueAtPath "permissions" .claude.settings.permissions
+  | toPrettyJson
+}}
