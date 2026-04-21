@@ -3,7 +3,7 @@
 {{- range $name, $server := .mcpServers -}}
   {{- $codexServer := dict -}}
   {{- range $key, $value := $server -}}
-    {{- if ne $key "headers" -}}
+    {{- if and (ne $key "headers") (ne $key "type") -}}
       {{- $_ := set $codexServer $key $value -}}
     {{- end -}}
   {{- end -}}
