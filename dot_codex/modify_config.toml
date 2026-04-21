@@ -1,6 +1,15 @@
 {{- /* chezmoi:modify-template */ -}}
-{{ 
-  fromToml (default "" .chezmoi.stdin)
-  | setValueAtPath (list "mcp_servers" "datadog") .mcpServers.datadog
-  | toToml
-}}
+{{- $config := fromToml (default "" .chezmoi.stdin) -}}
+{{- range $name, $server := .mcpServers -}}
+  {{- $codexServer := dict -}}
+  {{- range $key, $value := $server -}}
+    {{- if ne $key "headers" -}}
+      {{- $_ := set $codexServer $key $value -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if hasKey $server "headers" -}}
+    {{- $_ := set $codexServer "env_http_headers" $server.headers -}}
+  {{- end -}}
+  {{- $config = setValueAtPath (list "mcp_servers" $name) $codexServer $config -}}
+{{- end -}}
+{{- $config | toToml -}}
