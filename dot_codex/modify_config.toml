@@ -1,0 +1,6 @@
+{{- /* chezmoi:modify-template */ -}}
+{{ 
+  fromToml (default "" .chezmoi.stdin)
+  | setValueAtPath (list "mcp_servers" "datadog") .mcpServers.datadog
+  | toToml
+}}
