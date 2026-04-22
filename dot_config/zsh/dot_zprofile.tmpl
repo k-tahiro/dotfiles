@@ -17,6 +17,9 @@ fi
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# GitHub
+export GITHUB_PAT="$(gh auth token)"
+
 # PATH設定
 {{- if eq .chezmoi.os "darwin" }}
 # Added by LM Studio CLI (lms)
