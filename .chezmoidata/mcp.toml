@@ -7,3 +7,7 @@ bearer_token_env_var = "GITHUB_PAT"
 
 [mcpServers.miro-mcp]
 url = "https://mcp.miro.com/"
+
+[mcpServers.serena]
+command = "uvx"
+args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server"]
