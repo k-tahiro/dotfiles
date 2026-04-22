@@ -1,6 +1,6 @@
 {{- /* chezmoi:modify-template */ -}}
-{{
+{{-
   fromJson (default "{}" .chezmoi.stdin)
-  | setValueAtPath "context" (dict "fileName" (list "CLAUDE.md"))
+  | setValueAtPath "context" (dict "fileName" (list "AGENTS.md" "CLAUDE.md"))
   | toPrettyJson
-}}
+-}}
