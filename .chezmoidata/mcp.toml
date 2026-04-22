@@ -1,7 +1,5 @@
 [mcpServers.datadog]
-type = "http"
 url = "https://mcp.ap1.datadoghq.com/api/unstable/mcp-server/mcp"
 
 [mcpServers.miro-mcp]
-type = "http"
 url = "https://mcp.miro.com/"
