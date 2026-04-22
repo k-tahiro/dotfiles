@@ -1,6 +1,8 @@
 {{- /* chezmoi:modify-template */ -}}
+{{- $config := fromToml (default "" .chezmoi.stdin) -}}
 {{-
-  fromToml (default "" .chezmoi.stdin)
-  | setValueAtPath "mcp_servers" .mcpServers
-  | toToml
+  $config := $config | setValueAtPath "mcp_servers" (
+    $config.mcp_servers | default dict | mergeOverwrite .mcpServers
+  )
 -}}
+{{- $config | toToml -}}
