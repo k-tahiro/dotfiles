@@ -2,9 +2,14 @@
 {{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
 {{- $servers := dict -}}
 {{- range $name, $server := (.mcpServers | default dict) -}}
-  {{- $serverConfig := mergeOverwrite (dict) $server -}}
+  {{- $serverConfig := omit $server "bearer_token_env_var" -}}
   {{- if and (hasKey $serverConfig "url") (not (hasKey $serverConfig "type")) -}}
     {{- $serverConfig = mergeOverwrite $serverConfig (dict "type" "http") -}}
+  {{- end -}}
+  {{- if hasKey $server "bearer_token_env_var" -}}
+    {{- $headerValue := printf "Bearer ${%s}" $server.bearer_token_env_var -}}
+    {{- $headers := mergeOverwrite (dict) (get $serverConfig "headers" | default dict) (dict "Authorization" $headerValue) -}}
+    {{- $serverConfig = mergeOverwrite $serverConfig (dict "headers" $headers) -}}
   {{- end -}}
   {{- $servers = mergeOverwrite $servers (dict $name $serverConfig) -}}
 {{- end -}}
