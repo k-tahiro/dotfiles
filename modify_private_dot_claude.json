@@ -1,9 +1,8 @@
 {{- /* chezmoi:modify-template */ -}}
-{{
-  fromJson (default "{}" .chezmoi.stdin)
-  | setValueAtPath "mcpServers" (
-    ((fromJson (default "{}" .chezmoi.stdin)).mcpServers | default dict)
-    | mergeOverwrite .mcpServers
+{{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
+{{-
+  $config := $config | setValueAtPath "mcpServers" (
+    $config.mcpServers | default dict | mergeOverwrite .mcpServers
   )
-  | toPrettyJson
-}}
+-}}
+{{- $config | toPrettyJson -}}
