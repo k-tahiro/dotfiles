@@ -1,7 +1,12 @@
 {{- /* chezmoi:modify-template */ -}}
 {{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
+{{- $sourceServers := (.mcpServers | default dict) -}}
+{{- with (get $sourceServers "serena") -}}
+  {{- $args := concat (.args | default list) (list "claude-code") -}}
+  {{- $sourceServers = mergeOverwrite $sourceServers (dict "serena" (mergeOverwrite . (dict "args" $args))) -}}
+{{- end -}}
 {{- $servers := dict -}}
-{{- range $name, $server := (.mcpServers | default dict) -}}
+{{- range $name, $server := $sourceServers -}}
   {{- $serverConfig := omit $server "bearer_token_env_var" -}}
   {{- if and (hasKey $serverConfig "url") (not (hasKey $serverConfig "type")) -}}
     {{- $serverConfig = mergeOverwrite $serverConfig (dict "type" "http") -}}

@@ -1,4 +1,9 @@
 {{- /* chezmoi:modify-template */ -}}
 {{- $config := fromToml (default "" .chezmoi.stdin) -}}
-{{- $config = mergeOverwrite $config (dict "mcp_servers" (.mcpServers | default dict)) -}}
+{{- $servers := (.mcpServers | default dict) -}}
+{{- with (get $servers "serena") -}}
+  {{- $args := concat (.args | default list) (list "codex") -}}
+  {{- $servers = mergeOverwrite $servers (dict "serena" (mergeOverwrite . (dict "args" $args))) -}}
+{{- end -}}
+{{- $config = mergeOverwrite $config (dict "mcp_servers" $servers) -}}
 {{- $config | toToml -}}
