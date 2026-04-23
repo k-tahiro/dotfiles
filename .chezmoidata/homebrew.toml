@@ -1,6 +1,5 @@
 [homebrew.shared]
 taps = [
-    "anomalyco/tap",
 ]
 brews = [
     "bat",
@@ -26,7 +25,6 @@ brews = [
     "zsh",
     "zsh-autosuggestions",
     "zsh-syntax-highlighting",
-    "anomalyco/tap/opencode",
 ]
 casks = [
     "claude-code@latest",
@@ -71,9 +69,11 @@ mac_casks = [
 
 [homebrew.private]
 taps = [
+    "anomalyco/tap",
 ]
 brews = [
     "gemini-cli",
+    "anomalyco/tap/opencode",
 ]
 casks = [
 ]
