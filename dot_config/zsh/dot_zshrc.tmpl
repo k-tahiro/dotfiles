@@ -83,6 +83,9 @@ alias gpb='git prune-branches'
 
 # --- その他 ---
 alias relogin='exec $SHELL -l'
+{{- if .isWsl }}
+alias pbcopy='clip.exe'
+{{- end }}
 
 # 4. グローバルエイリアス (Global Aliases)
 # ------------------------------------------
