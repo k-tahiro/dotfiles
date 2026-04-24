@@ -43,7 +43,7 @@ mac_casks = [
     "scroll-reverser",
     "visual-studio-code",
     "wezterm",
-    "zen",
+    # "zen",
 ]
 
 [homebrew.work]
