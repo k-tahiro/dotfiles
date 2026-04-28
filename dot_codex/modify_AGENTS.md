@@ -1,2 +1,2 @@
 {{- /* chezmoi:modify-template */ -}}
-{{ default "" .chezmoi.stdin }}
+{{- default "" .chezmoi.stdin -}}
