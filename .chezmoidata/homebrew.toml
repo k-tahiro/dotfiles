@@ -33,6 +33,7 @@ casks = [
 ]
 mac_casks = [
     "codex-app",
+    "firefox",
     "font-hackgen-nerd",
     "font-moralerspace",
     "karabiner-elements",
