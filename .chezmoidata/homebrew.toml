@@ -53,6 +53,7 @@ brews = [
     "awscli",
     "azure-cli",
     "colima",
+    "crane",
     "docker",
     "docker-buildx",
     "docker-compose",
