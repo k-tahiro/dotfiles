@@ -35,7 +35,7 @@ chezmoi固有のプレフィックス・サフィックスでファイルの役�
 
 - `homebrew.toml` — Homebrewパッケージ（`shared` / `work` / `private`別）
 - `claude.json` — Claude Code権限設定
-- `mcp.toml` — MCPサーバー設定
+- `mcp.toml` — MCPサーバー設定（`shared` / `work` / `private`別）
 - `winget.toml` — Windows Packageマネージャー設定
 
 テンプレート内では `.chezmoi.os`、`.chezmoi.hostname` 等の組み込み変数に加え、`.chezmoidata` 以下のカスタム変数が使える。`chezmoi data` で現在の変数値を確認できる。
