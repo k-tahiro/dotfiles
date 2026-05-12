@@ -1,6 +1,11 @@
 {{- /* chezmoi:modify-template */ -}}
 {{- $config := fromToml (default "" .chezmoi.stdin) -}}
-{{- $servers := (.mcpServers | default dict) -}}
+{{- $servers := (.mcp.shared | default dict) -}}
+{{- if .isWork -}}
+{{-   $servers = mergeOverwrite $servers (.mcp.work | default dict) -}}
+{{- else -}}
+{{-   $servers = mergeOverwrite $servers (.mcp.private | default dict) -}}
+{{- end -}}
 {{- with (get $servers "serena") -}}
   {{- $args := concat (.args | default list) (list "codex") -}}
   {{- $servers = mergeOverwrite $servers (dict "serena" (mergeOverwrite . (dict "args" $args))) -}}

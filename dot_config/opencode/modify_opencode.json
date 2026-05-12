@@ -1,3 +1,36 @@
 {{- /* chezmoi:modify-template */ -}}
 {{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
+{{- $mcpServers := (.mcp.shared | default dict) -}}
+{{- if .isWork -}}
+{{-   $mcpServers = mergeOverwrite $mcpServers (.mcp.work | default dict) -}}
+{{- else -}}
+{{-   $mcpServers = mergeOverwrite $mcpServers (.mcp.private | default dict) -}}
+{{- end -}}
+
+{{- range $name, $server := $mcpServers -}}
+  {{- $entry := dict "enabled" true -}}
+
+  {{- if hasKey $server "url" -}}
+    {{- $entry = set $entry "type" "remote" -}}
+    {{- $entry = set $entry "url" $server.url -}}
+
+    {{- if eq $name "github" -}}
+      {{- $token_env := $server.bearer_token_env_var -}}
+      {{- $entry = set $entry "headers" (dict "Authorization" (printf "Bearer {env:%s}" $token_env)) -}}
+    {{- end -}}
+  {{- else if hasKey $server "command" -}}
+    {{- $entry = set $entry "type" "local" -}}
+    {{- $cmd := list $server.command -}}
+    {{- if hasKey $server "args" -}}
+      {{- range $server.args -}}
+        {{- $cmd = append $cmd . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $entry = set $entry "command" $cmd -}}
+  {{- end -}}
+
+  {{- $mcpServers = set $mcpServers $name $entry -}}
+{{- end -}}
+
+{{- $config = set $config "mcp" $mcpServers -}}
 {{- $config | toPrettyJson -}}

@@ -1,6 +1,11 @@
 {{- /* chezmoi:modify-template */ -}}
 {{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
-{{- $sourceServers := (.mcpServers | default dict) -}}
+{{- $sourceServers := (.mcp.shared | default dict) -}}
+{{- if .isWork -}}
+{{-   $sourceServers = mergeOverwrite $sourceServers (.mcp.work | default dict) -}}
+{{- else -}}
+{{-   $sourceServers = mergeOverwrite $sourceServers (.mcp.private | default dict) -}}
+{{- end -}}
 {{- with (get $sourceServers "serena") -}}
   {{- $args := concat (.args | default list) (list "claude-code") -}}
   {{- $sourceServers = mergeOverwrite $sourceServers (dict "serena" (mergeOverwrite . (dict "args" $args))) -}}
