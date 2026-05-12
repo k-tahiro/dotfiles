@@ -28,7 +28,6 @@ brews = [
     "zsh-syntax-highlighting",
 ]
 casks = [
-    "claude-code@latest",
     "codex",
     "copilot-cli",
 ]
@@ -63,6 +62,7 @@ brews = [
     "libomp",
 ]
 casks = [
+    "claude-code@latest",
     "gcloud-cli",
 ]
 mac_casks = [
