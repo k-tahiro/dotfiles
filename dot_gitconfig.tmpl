@@ -7,5 +7,7 @@
 [credential "https://gist.github.com"]
     helper =
     helper = !{{- .brewPrefix -}}/bin/gh auth git-credential
+[pull]
+    rebase = true
 [alias]
     prune-branches = "!f() { git fetch -p; branches=$(git branch -vv | awk \"/: gone]/{print \\$1}\"); if [ -n \"$branches\" ]; then echo \"$branches\" | xargs git branch -D; echo \"不要なブランチを削除しました。\"; else echo \"削除する不要なブランチはありません。\"; fi; }; f"
