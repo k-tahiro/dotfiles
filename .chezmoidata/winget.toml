@@ -6,6 +6,7 @@ packages = [
     "Neovim.Neovim",
     "twpayne.chezmoi",
     "Starship.Starship",
+    "Tailscale.Tailscale",
     "BurntSushi.ripgrep.MSVC",
     "Microsoft.PowerShell",
     "Microsoft.WindowsTerminal",
