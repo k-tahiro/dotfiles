@@ -1,2 +1,4 @@
 source $VIMRUNTIME/defaults.vim
+{{- if ne .chezmoi.os "windows" }}
 set rtp+={{- .brewPrefix -}}/opt/fzf
+{{- end }}
