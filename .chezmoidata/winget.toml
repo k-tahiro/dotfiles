@@ -22,6 +22,7 @@ packages = [
     "CPUID.CPU-Z",
     "Win32diskimager.win32diskimager",
     "Balena.Etcher",
+    "RaspberryPiFoundation.RaspberryPiImager",
 
     # --- Private / Gaming / Hobby ---
     "Valve.Steam",
