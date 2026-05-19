@@ -11,4 +11,5 @@
   {{- $servers = mergeOverwrite $servers (dict "serena" (mergeOverwrite . (dict "args" $args))) -}}
 {{- end -}}
 {{- $config = mergeOverwrite $config (dict "mcp_servers" $servers) -}}
+{{- $config = mergeOverwrite $config (dict "project_doc_fallback_filenames" (list "CLAUDE.md")) -}}
 {{- $config | toToml -}}
