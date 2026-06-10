@@ -8,10 +8,5 @@ command = "serena"
 args = ["start-mcp-server", "--project-from-cwd", "--context"]
 
 [mcp.work]
-[mcp.work.datadog]
-url = "https://mcp.ap1.datadoghq.com/api/unstable/mcp-server/mcp"
-
-[mcp.work.miro-mcp]
-url = "https://mcp.miro.com/"
 
 [mcp.private]
