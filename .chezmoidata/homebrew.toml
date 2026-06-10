@@ -4,6 +4,7 @@ taps = [
 brews = [
     "bat",
     "bottom",
+    "ccusage",
     "chezmoi",
     "direnv",
     "eza",
@@ -43,6 +44,7 @@ mac_casks = [
     "raycast",
     "rectangle",
     "scroll-reverser",
+    "swiftbar",
     "visual-studio-code",
     "wezterm",
 ]
