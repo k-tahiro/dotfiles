@@ -60,8 +60,8 @@
           "Bash(uv publish *)",
           "Read(~/.config/zsh/.zprofile.local)",
           "Read(~/.config/zsh/.zshrc.local)",
-          "Read(./.env)",
-          "Read(./.envrc)"
+          "Read(.env)",
+          "Read(.envrc)"
         ]
       }
     }
