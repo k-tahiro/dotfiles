@@ -17,6 +17,7 @@ packages = [
     "Zen-Team.Zen-Browser",
     "Microsoft.VisualStudioCode",
     "wez.wezterm",
+    "SST.OpenCodeDesktop",
     "Obsidian.Obsidian",
     "Logitech.OptionsPlus",
     "CPUID.CPU-Z",
