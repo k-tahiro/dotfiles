@@ -49,11 +49,12 @@
           "Bash(rtk gh sub-issue create *)",
           "Bash(rtk gh sub-issue remove *)",
           "Bash(rtk git push *)",
+          "Bash(rm -rf)",
           "Bash(uv run *)"
         ],
         "deny": [
           "Bash(gcloud auth *)",
-          "Bash(rm -rf *)",
+          "Bash(rm -rf /)",
           "Bash(sudo *)",
           "Bash(uv auth *)",
           "Bash(uv publish *)",
