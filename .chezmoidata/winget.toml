@@ -15,6 +15,7 @@ packages = [
 
     # --- GUI Apps ---
     "Zen-Team.Zen-Browser",
+    "ZedIndustries.Zed",
     "Microsoft.VisualStudioCode",
     "wez.wezterm",
     "SST.OpenCodeDesktop",
