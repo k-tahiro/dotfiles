@@ -33,7 +33,6 @@ casks = [
     "copilot-cli",
 ]
 mac_casks = [
-    "arc",
     "claude",
     "codex-app",
     "codexbar",
