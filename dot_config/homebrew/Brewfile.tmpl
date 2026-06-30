@@ -20,7 +20,7 @@
 {{-   end -}}
 {{- end -}}
 {{ range (sortAlpha $taps) -}}
-tap {{ . | quote }}
+tap {{ . | quote }}, trusted: true
 {{ end -}}
 {{ range (sortAlpha $brews) -}}
 brew {{ . | quote }}

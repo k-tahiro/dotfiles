@@ -1,5 +1,6 @@
 [homebrew.shared]
 taps = [
+    "oven-sh/bun"
 ]
 brews = [
     "bat",
@@ -27,6 +28,7 @@ brews = [
     "zsh",
     "zsh-autosuggestions",
     "zsh-syntax-highlighting",
+    "oven-sh/bun/bun",
 ]
 casks = [
     "codex",
