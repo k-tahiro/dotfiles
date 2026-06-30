@@ -2,5 +2,6 @@
 {{
   fromJson (default "{}" .chezmoi.stdin)
   | setValueAtPath "permissions" .claude.settings.permissions
+  | mergeOverwrite (dict "hooks" .claude.settings.hooks)
   | toPrettyJson
 }}
