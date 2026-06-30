@@ -1,7 +1,16 @@
 {{- /* chezmoi:modify-template */ -}}
-{{
-  fromJson (default "{}" .chezmoi.stdin)
-  | setValueAtPath "permissions" .claude.settings.permissions
-  | mergeOverwrite (dict "hooks" .claude.settings.hooks)
-  | toPrettyJson
-}}
+{{- $existing := fromJson (default "{}" .chezmoi.stdin) -}}
+{{- $result := setValueAtPath "permissions" .claude.settings.permissions $existing -}}
+{{- $existingHooks := dict -}}
+{{- if hasKey $existing "hooks" -}}{{- $existingHooks = index $existing "hooks" -}}{{- end -}}
+{{- range $event, $dataEntries := .claude.settings.hooks -}}
+  {{- $merged := list -}}
+  {{- if hasKey $existingHooks $event -}}{{- $merged = index $existingHooks $event -}}{{- end -}}
+  {{- $seen := list -}}
+  {{- range $merged -}}{{- $seen = append $seen (toJson .) -}}{{- end -}}
+  {{- range $dataEntries -}}
+    {{- if not (has (toJson .) $seen) -}}{{- $merged = append $merged . -}}{{- end -}}
+  {{- end -}}
+  {{- $result = setValueAtPath (list "hooks" $event) $merged $result -}}
+{{- end -}}
+{{ $result | toPrettyJson }}
