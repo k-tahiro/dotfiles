@@ -7,3 +7,8 @@
 ratio = [0, 1, 2]
 show_hidden = true
 
+[opener]
+edit = [
+  { run = 'nvim "$@"', desc = "nvim", block = true, for = "unix" },
+  { run = 'zed --wait "$@"', desc = "Zed", for = "unix" },
+]
