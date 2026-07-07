@@ -14,6 +14,7 @@ brews = [
     "gcc",
     "gh",
     "ghq",
+    "herdr",
     "jq",
     "lazygit",
     "mise",
