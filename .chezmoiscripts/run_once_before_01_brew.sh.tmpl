@@ -11,6 +11,6 @@ echo "Installing Homebrew..."
 
 # Apple Silicon Mac / Linux の場合、brew を PATH に追加
 BREW="{{- .brewPrefix -}}/bin/brew"
-eval "$("BREW" shellenv)"
+eval "$("$BREW" shellenv)"
 
 echo "Homebrew installation complete."
