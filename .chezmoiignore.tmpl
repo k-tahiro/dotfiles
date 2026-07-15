@@ -4,28 +4,6 @@ README.md
 CLAUDE.md
 AGENTS.md
 
-### Windows ###
-{{ if ne .chezmoi.os "windows" }}
-Documents
-.config/winget
-.wslconfig
-**/*.ps1
-**/*.ps1.tmpl
-{{ else }}
-.config/homebrew
-.config/mise
-.config/wezterm
-.config/yazi
-.config/zellij
-.config/zsh
-.config/starship.toml
-.gitconfig
-.vimrc
-.zshenv
-**/*.sh
-**/*.sh.tmpl
-{{ end }}
-
 ### macOS ###
 {{ if ne .chezmoi.os "darwin" }}
 .config/karabiner
