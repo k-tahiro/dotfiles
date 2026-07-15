@@ -33,15 +33,16 @@ brews = [
 ]
 casks = [
     "codex",
-    "copilot-cli",
 ]
 mac_casks = [
+    "arc",
     "claude",
     "codex-app",
     "codexbar",
     "firefox",
     "font-hackgen-nerd",
     "font-moralerspace",
+    "ghostty",
     "karabiner-elements",
     "lm-studio",
     "obsidian",
@@ -71,6 +72,7 @@ brews = [
 ]
 casks = [
     "claude-code@latest",
+    "copilot-cli",
     "gcloud-cli",
 ]
 mac_casks = [
