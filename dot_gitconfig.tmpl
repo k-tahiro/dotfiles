@@ -1,14 +1,12 @@
 [user]
     name = "Keisuke Hirota"
     email = "14054951+k-tahiro@users.noreply.github.com"
-{{- if ne .chezmoi.os "windows" }}
 [credential "https://github.com"]
     helper =
     helper = !{{- .brewPrefix -}}/bin/gh auth git-credential
 [credential "https://gist.github.com"]
     helper =
     helper = !{{- .brewPrefix -}}/bin/gh auth git-credential
-{{- end }}
 [pull]
     rebase = true
 [alias]
