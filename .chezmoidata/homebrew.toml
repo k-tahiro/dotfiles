@@ -49,7 +49,6 @@ mac_casks = [
     "rectangle",
     "scroll-reverser",
     "visual-studio-code",
-    "wezterm",
     "zed",
     "zen",
 ]

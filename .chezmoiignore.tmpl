@@ -9,11 +9,6 @@ AGENTS.md
 .config/karabiner
 {{ end }}
 
-### GUI Applications ###
-{{ if .isHeadless }}
-.config/wezterm
-{{ end }}
-
 ### Claude Code ###
 {{ if not (lookPath "claude") }}
 .claude
