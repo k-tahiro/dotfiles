@@ -41,6 +41,7 @@ mac_casks = [
     "firefox",
     "font-hackgen-nerd",
     "font-moralerspace",
+    "font-udev-gothic-nf",
     "ghostty",
     "karabiner-elements",
     "lm-studio",
