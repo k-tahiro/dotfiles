@@ -52,18 +52,10 @@ alias vim='nvim'
 
 # --- ツールのショートカット ---
 alias lg='lazygit'
-alias zj='zellij attach --create "$(basename $PWD)"'
-alias za='zellij attach'
-alias zls='zellij list-sessions'
 alias cm='chezmoi'
 alias cma='chezmoi apply'
 alias mr='mise run'
 alias mx='mise exec --'
-
-# from https://qiita.com/dai_chi/items/c6590a2ca91c132afdf8
-# zellij: 開発レイアウトで起動
-alias zdev='zellij attach "$(basename $PWD | cut -c1-20)-dev" 2>/dev/null || zellij -n dev -s "$(basename $PWD | cut -c1-20)-dev"'
-alias cc4='zellij attach "$(basename $PWD | cut -c1-19)-quad" 2>/dev/null || zellij -n quad -s "$(basename $PWD | cut -c1-19)-quad"'
 
 # --- 安全・便利系 ---
 alias rm='rm -i'
