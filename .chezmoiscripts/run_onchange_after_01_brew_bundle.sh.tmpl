@@ -13,6 +13,4 @@ if [[ ! -x "$BREW" ]]; then
 fi
 
 eval "$("$BREW" shellenv)"
-
-echo "Checking for new Homebrew packages..."
 "$BREW" bundle install -g --force-cleanup

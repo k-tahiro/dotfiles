@@ -9,7 +9,5 @@ if [[ ! -x "$BREW" ]]; then
 fi
 
 eval "$("$BREW" shellenv)"
-
-echo "Upgrading for Homebrew packages..."
 "$BREW" update
 "$BREW" upgrade -y
