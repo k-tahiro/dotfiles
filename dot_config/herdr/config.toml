@@ -1,0 +1,19 @@
+onboarding = false
+
+[terminal]
+# 新規 pane/tab/workspace の cwd ポリシー。
+# "follow" = フォーカス中 pane/workspace の現在ディレクトリを継承（既定値）
+new_cwd = "follow"
+
+[ui.sound]
+enabled = false
+
+[ui.toast]
+delivery = "herdr"
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[ui]
+agent_panel_sort = "spaces"
