@@ -15,7 +15,7 @@
     isWsl = {{ $isWsl }}
     isWork = {{ $isWork }}
     isHeadless = {{ $isHeadless }}
-    brewPrefix = {{ $brewPrefix }}
+    brewPrefix = {{ $brewPrefix | quote }}
     brewPath = "{{- $brewPrefix -}}/bin/brew"
 
 [edit]
