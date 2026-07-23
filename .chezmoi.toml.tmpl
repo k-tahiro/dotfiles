@@ -9,11 +9,7 @@
 {{- $defaultIsHeadless := not (or $isWindows $isMac) -}}
 {{- $isHeadless := promptBool "Is this a headless machine" $defaultIsHeadless -}}
 
-{{- if $isMac -}}
-{{- $brewPrefix := "/opt/homebrew" -}}
-{{- else -}}
-{{- $brewPrefix := "/home/linuxbrew/.linuxbrew" -}}
-{{- end -}}
+{{- $brewPrefix := ternary "/opt/homebrew" "/home/linuxbrew/.linuxbrew" $isMac -}}
 
 [data]
     isWsl = {{ $isWsl }}
