@@ -14,6 +14,7 @@
     isWork = {{ $isWork }}
     isHeadless = {{ $isHeadless }}
     brewPrefix = "{{- if $isMac -}}/opt/homebrew{{- else -}}/home/linuxbrew/.linuxbrew{{- end -}}"
+    brewPath = "{{- $brewPrefix -}}/bin/brew"
 
 [edit]
     apply = true
