@@ -30,11 +30,9 @@ bun = "latest"
 "aqua:ogulcancelik/herdr" = "latest"
 
 {{- if .isWork }}
+aws-cli = "latest"
+crane = "latest"
 terraform = "1.9.7"
-# aws-cli/craneはaquaバックエンドを明示（neovimと同じ理由: vfoxデフォルトはGitHub API依存が強くレート制限で失敗しやすい）
-"aqua:aws/aws-cli" = "latest"
-"aqua:google/go-containerregistry" = "latest"
 {{- else }}
-# private層専用ツール
-"aqua:anomalyco/opencode" = "latest"
+opencode = "latest"
 {{- end }}
