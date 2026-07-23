@@ -5,14 +5,12 @@ taps = [
 # mise本体は .chezmoiscripts/run_once_before_02_mise_install.sh.tmpl で公式インストーラから導入する。
 # ここにはブートストラップ/シェル/システム系のみ残す。
 brews = [
-    "chezmoi",
     "gcc",
     "zsh",
     "zsh-autosuggestions",
     "zsh-syntax-highlighting",
 ]
 casks = [
-    "codex",
 ]
 mac_casks = [
     "arc",
@@ -40,7 +38,6 @@ taps = [
     "datadog-labs/pack",
 ]
 brews = [
-    "azure-cli",
     "colima",
     "docker",
     "docker-buildx",
@@ -53,7 +50,6 @@ brews = [
 casks = [
     "claude-code@latest",
     "copilot-cli",
-    "gcloud-cli",
 ]
 mac_casks = [
     "jetbrains-toolbox",
