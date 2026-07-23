@@ -15,9 +15,7 @@ SAVEHIST=10000
 
 # 2. ツールの初期化 (Initialization)
 # ------------------------------------------
-eval "$(mise activate zsh)"
 eval "$(zoxide init zsh --cmd cd)"
-eval "$(direnv hook zsh)"
 
 # --- fzf のベース設定 (fd 連携とモダンなUI) ---
 source <(fzf --zsh)
