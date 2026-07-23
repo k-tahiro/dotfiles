@@ -2,6 +2,27 @@
 node = "lts"
 uv = "latest"
 
+# --- Homebrewから移行したCLIツール ---
+bat = "latest"
+bottom = "latest"
+direnv = "latest"
+eza = "latest"
+fd = "latest"
+fzf = "latest"
+gh = "latest"
+ghq = "latest"
+jq = "latest"
+lazygit = "latest"
+# neovimはaquaバックエンドを明示（デフォルトのvfoxはGitHub API依存が強くレート制限で失敗しやすいため）
+"aqua:neovim/neovim" = "latest"
+ripgrep = "latest"
+starship = "latest"
+yazi = "latest"
+yq = "latest"
+zoxide = "latest"
+bun = "latest"
+"npm:ccusage" = "latest"
+
 {{- if .isWork }}
 terraform = "1.9.7"
 {{- end }}

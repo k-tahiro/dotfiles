@@ -1,9 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-# miseのconfig.toml のハッシュ値が変わった（＝中身が書き換わった）時だけ実行されます
-# {{ include "dot_config/mise/config.toml.tmpl" | sha256sum }}
-
 BREW="{{- .brewPrefix -}}/bin/brew"
 
 if [[ ! -x "$BREW" ]]; then
@@ -18,12 +15,11 @@ if ! command -v mise &> /dev/null; then
     exit 1
 fi
 
-# GitHub APIレート制限(未認証60回/時)対策: gh認証済みならトークンを渡して5000回/時に上げる。
-# gh自体もmise管理のため、初回はまだ無い場合がある（その場合はスキップ）。
+# GitHub APIレート制限対策: gh認証済みならトークンを渡す
 export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/mise/shims:$PATH"
 if [[ -z "${GITHUB_TOKEN:-}" ]] && command -v gh &> /dev/null; then
     GITHUB_TOKEN="$(gh auth token 2>/dev/null || true)"
     [[ -n "$GITHUB_TOKEN" ]] && export GITHUB_TOKEN
 fi
 
-mise install
+mise upgrade

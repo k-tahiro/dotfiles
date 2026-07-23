@@ -1,6 +1,12 @@
 #!/bin/bash
 set -euo pipefail
 
+# mise管理のCLI(jq等)をPATHに追加する。
+# apply時のスクリプト環境はmiseがactivateされておらずshimsがPATHに無いため、
+# shimsディレクトリを直接前置してmise管理バイナリを解決できるようにする。
+MISE_SHIMS="${XDG_DATA_HOME:-$HOME/.local/share}/mise/shims"
+[[ -d "$MISE_SHIMS" ]] && export PATH="$MISE_SHIMS:$PATH"
+
 # herdr 未導入なら何もしない
 command -v herdr >/dev/null 2>&1 || exit 0
 

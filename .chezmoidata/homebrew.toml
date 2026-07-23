@@ -1,34 +1,17 @@
 [homebrew.shared]
 taps = [
-    "oven-sh/bun"
 ]
+# CLIツールはmise管理へ移行（dot_config/mise/config.toml.tmpl）。
+# ここにはブートストラップ/シェル/システム系のみ残す。
 brews = [
-    "bat",
-    "bottom",
-    "ccusage",
     "chezmoi",
-    "direnv",
-    "eza",
-    "fd",
-    "fzf",
     "gcc",
-    "gh",
-    "ghq",
     "herdr",
-    "jq",
-    "lazygit",
     "mise",
-    "neovim",
-    "ripgrep",
     "rtk",
-    "starship",
-    "yazi",
-    "yq",
-    "zoxide",
     "zsh",
     "zsh-autosuggestions",
     "zsh-syntax-highlighting",
-    "oven-sh/bun/bun",
 ]
 casks = [
     "codex",
