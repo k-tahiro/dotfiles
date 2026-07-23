@@ -2,11 +2,11 @@
 taps = [
 ]
 # CLIツールはmise管理へ移行（dot_config/mise/config.toml.tmpl）。
+# mise本体は .chezmoiscripts/run_once_before_02_mise_install.sh.tmpl で公式インストーラから導入する。
 # ここにはブートストラップ/シェル/システム系のみ残す。
 brews = [
     "chezmoi",
     "gcc",
-    "mise",
     "zsh",
     "zsh-autosuggestions",
     "zsh-syntax-highlighting",
