@@ -2,10 +2,6 @@
 disable_backends = ["asdf", "vfox"]
 
 [tools]
-node = "lts"
-uv = "latest"
-
-# --- Homebrewから移行したCLIツール ---
 bat = "latest"
 bottom = "latest"
 direnv = "latest"
@@ -16,10 +12,11 @@ gh = "latest"
 ghq = "latest"
 jq = "latest"
 lazygit = "latest"
-# neovimはaquaバックエンドを明示（デフォルトのvfoxはGitHub API依存が強くレート制限で失敗しやすいため）
-"aqua:neovim/neovim" = "latest"
+neovim = "latest"
+node = "lts"
 ripgrep = "latest"
 starship = "latest"
+uv = "latest"
 yazi = "latest"
 yq = "latest"
 zoxide = "latest"
