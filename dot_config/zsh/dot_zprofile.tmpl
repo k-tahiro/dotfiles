@@ -2,16 +2,10 @@
 # .zprofile
 # ==========================================
 
-# Homebrew
-{{- if eq .chezmoi.os "darwin" }}
-if [ -x /opt/homebrew/bin/brew ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-{{- else if eq .chezmoi.os "linux" }}
-if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
-fi
-{{- end }}
+# ツールの初期化
+eval "$({{- .brewPrefix -}}/bin/brew shellenv)"
+eval "$(mise activate zsh)"
+eval "$(direnv hook zsh)"
 
 # デフォルトエディタを Neovim に設定
 export EDITOR="nvim"
