@@ -45,7 +45,7 @@ chezmoi固有のプレフィックス・サフィックスでファイルの役�
 CLIツールとランタイムのインストール先は以下のルールで使い分ける：
 
 - **mise**（`dot_config/mise/config.toml.tmpl`）— CLIツール全般（bat, ripgrep, gh, jq 等）と言語/ランタイム（node, uv, terraform 等）。GitHub API依存が強いものは `aqua:` バックエンドを明示する
-- **Homebrew**（`.chezmoidata/homebrew.toml`）— ブートストラップ/シェル/システム系（mise, chezmoi, zsh, gcc, herdr, rtk）と、mise非対応または相互依存の強いもの（gnupg, container stack 等）、GUIアプリ（cask）
+- **Homebrew**（`.chezmoidata/homebrew.toml`）— ブートストラップ/シェル/システム系（chezmoi, zsh, gcc, herdr, rtk）と、mise非対応または相互依存の強いもの（gnupg, container stack 等）、GUIアプリ（cask）。mise 本体は `run_once_before_02_mise_install.sh.tmpl` で公式インストーラから導入する
 
 ### 環境分岐の仕組み
 
@@ -68,7 +68,31 @@ CLIツールとランタイムのインストール先は以下のルールで�
 | `run_after_` | `chezmoi apply` 後に毎回実行 |
 | `_before` / `_after` | `apply` の前後いずれかで実行 |
 
-数字プレフィックス（`01_`, `02_`）は実行順序を制御する。
+### スクリプトの追加ルール
+
+ファイル名は以下のパターンに従う：
+
+```
+run_<timing>[_<position>]_<NN>_<tool>[_<descriptor>]_<action>.sh[.tmpl]
+```
+
+| 要素 | 値 |
+|---|---|
+| `timing` | `once` / `onchange` / (空) |
+| `position` | `before` / `after` / (空) |
+| `NN` | 2桁数字。タイミングクラスをまたいで**パイプライン全体**の実行順に連番 |
+| `tool` | 操作対象（`brew`, `mise`, `zsh`, `herdr` 等） |
+| `descriptor` | 任意（`bundle` 等） |
+| `action` | **必ず動詞**（`install` / `apply` / `upgrade` / `check` / `set_default` 等） |
+
+**追加時の必須チェック**：
+
+1. **ベース名の一意性** — chezmoi は `run_<timing>[_<position>]_` を除いた残り（`<NN>_<tool>..._<action>`）でスクリプトを識別する。**同じベース名が複数存在すると `inconsistent state` エラーで `chezmoi diff` が失敗する**。特に同じ `tool` を複数タイミングで扱う場合は `action` で必ず区別する（例：`02_mise_install`（バイナリ導入）と `04_mise_apply`（config 適用））。
+2. **番号はパイプライン全体**で振る — `run_once_before_*` の最大値より大きい数字を次の `run_onchange_after_*` に振る、という流れ。現在の最大番号は `08`。
+3. **アクション動詞の明示** — 末尾に必ず動詞を付ける。`01_brew` のような動詞なしの名前は禁止。
+4. **冪等性** — `run_once_*` はリネーム・状態リセット・chezmoi バージョンアップ等で再実行され得る。冒頭に `command -v <tool> &> /dev/null` 等のガードを入れ、既存環境では `exit 0` で no-op にする。
+5. **追加前の検証** — 新規 / リネーム後は必ず `chezmoi execute-template < <file.tmpl>` でレンダリング確認し、`chezmoi diff` で `inconsistent state` が出ていないことを確認する。
+6. **履歴保持** — リネームは `git mv` で行い、ファイル削除→新規作成にすると履歴が切れる。
 
 ### Git自動コミット
 

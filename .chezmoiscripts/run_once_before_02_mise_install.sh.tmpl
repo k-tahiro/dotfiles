@@ -1,10 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-# run_once_before_01_brew.sh の直後（02）に配置し、後続の
-# run_onchange_after_02_mise.sh などが mise を使えるようにする。
-# ファイル名末尾の _install は、既存の run_onchange_after_02_mise.sh と
-# ベース名が衝突しないようにするためのサフィックス。
+# run_once_before_01_brew_install.sh の直後（02）に配置し、後続の
+# run_onchange_after_04_mise_apply.sh などが mise を使えるようにする。
 #
 # 公式インストーラ (https://mise.run) を使うことで、macOS / Linux / WSL /
 # Git Bash など Homebrew を持たない環境でも同じ手順で mise を導入できる。
