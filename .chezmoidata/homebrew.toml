@@ -6,9 +6,7 @@ taps = [
 brews = [
     "chezmoi",
     "gcc",
-    "herdr",
     "mise",
-    "rtk",
     "zsh",
     "zsh-autosuggestions",
     "zsh-syntax-highlighting",
@@ -63,10 +61,8 @@ mac_casks = [
 
 [homebrew.private]
 taps = [
-    "anomalyco/tap",
 ]
 brews = [
-    "anomalyco/tap/opencode",
 ]
 casks = [
 ]

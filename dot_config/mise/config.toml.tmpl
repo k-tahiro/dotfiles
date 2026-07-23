@@ -22,10 +22,16 @@ yq = "latest"
 zoxide = "latest"
 bun = "latest"
 "npm:ccusage" = "latest"
+# rtk(Rust Token Killer)/herdr(端末マルチプレクサ)もaquaバックエンドを明示
+"aqua:rtk-ai/rtk" = "latest"
+"aqua:ogulcancelik/herdr" = "latest"
 
 {{- if .isWork }}
 terraform = "1.9.7"
 # aws-cli/craneはaquaバックエンドを明示（neovimと同じ理由: vfoxデフォルトはGitHub API依存が強くレート制限で失敗しやすい）
 "aqua:aws/aws-cli" = "latest"
 "aqua:google/go-containerregistry" = "latest"
+{{- else }}
+# private層専用ツール
+"aqua:anomalyco/opencode" = "latest"
 {{- end }}
