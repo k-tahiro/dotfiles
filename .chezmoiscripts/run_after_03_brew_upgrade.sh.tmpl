@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-BREW="{{- .brewPrefix -}}/bin/brew"
+BREW={{ .brewBin | quote }}
 
 if [[ ! -x "$BREW" ]]; then
     echo "Error: Homebrew not found at $BREW"

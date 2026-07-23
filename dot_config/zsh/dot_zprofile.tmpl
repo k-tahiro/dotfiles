@@ -3,7 +3,7 @@
 # ==========================================
 
 # ツールの初期化
-eval "$({{- .brewPrefix -}}/bin/brew shellenv)"
+eval "$({{- .brewBin }} shellenv)"
 eval "$(mise activate zsh)"
 eval "$(direnv hook zsh)"
 

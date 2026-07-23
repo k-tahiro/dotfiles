@@ -5,7 +5,7 @@ set -euo pipefail
 # {{ include ".chezmoidata/homebrew.toml" | sha256sum }}
 # {{ include "dot_config/homebrew/Brewfile.tmpl" | sha256sum }}
 
-BREW="{{- .brewPrefix -}}/bin/brew"
+BREW={{ .brewBin | quote }}
 
 if [[ ! -x "$BREW" ]]; then
     echo "Error: Homebrew not found at $BREW"
