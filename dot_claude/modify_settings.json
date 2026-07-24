@@ -13,4 +13,10 @@
   {{- end -}}
   {{- $result = setValueAtPath (list "hooks" $event) $merged $result -}}
 {{- end -}}
+{{- $existingEnv := dict -}}
+{{- if hasKey $existing "env" -}}{{- $existingEnv = index $existing "env" -}}{{- end -}}
+{{- range $k, $v := .claude.settings.env -}}
+  {{- $existingEnv = setValueAtPath $k $v $existingEnv -}}
+{{- end -}}
+{{- $result = setValueAtPath "env" $existingEnv $result -}}
 {{ $result | toPrettyJson }}
