@@ -10,5 +10,6 @@ if ! command -v mise &> /dev/null; then
 fi
 
 mise bootstrap -y
+mise bootstrap packages prune -y
 mise install -y
 mise prune -y
