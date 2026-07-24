@@ -25,13 +25,16 @@ yazi = "latest"
 yq = "latest"
 zoxide = "latest"
 
+{{- if eq .chezmoi.os "darwin" }}
+colima = "latest"
+{{- end }}
+
 {{- if .isWork }}
 aws-cli = "latest"
 azure-cli = "latest"
 claude-code = "latest"
 copilot-cli = "latest"
 codex = "latest"
-colima = "latest"
 crane = "latest"
 docker-cli = "latest"
 docker-compose = "latest"
