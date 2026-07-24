@@ -48,8 +48,6 @@ brews = [
     "datadog-labs/pack/pup",
 ]
 casks = [
-    "claude-code@latest",
-    "copilot-cli",
 ]
 mac_casks = [
     "jetbrains-toolbox",
