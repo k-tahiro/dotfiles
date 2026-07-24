@@ -33,10 +33,11 @@ chezmoi固有のプレフィックス・サフィックスでファイルの役�
 
 `.chezmoidata/` 配下のTOML/JSONファイルでデータを定義し、テンプレート内で参照する。
 
-- `homebrew.toml` — Homebrewパッケージ（bootstrap/shell/system系 + GUI cask、`shared` / `work` / `private`別）
 - `claude.json` — Claude Code権限設定
 - `mcp.toml` — MCPサーバー設定（`shared` / `work` / `private`別）
 - `winget.toml` — Windows Packageマネージャー設定
+
+> Homebrew パッケージ定義は `.chezmoidata/homebrew.toml` から `dot_config/mise/config.toml.tmpl` の `[bootstrap.packages]` セクション（`brew:` / `brew-cask:` バックエンド）に統合済み。Single Source of Truth は mise。
 
 テンプレート内では `.chezmoi.os`、`.chezmoi.hostname` 等の組み込み変数に加え、`.chezmoidata` 以下のカスタム変数が使える。`chezmoi data` で現在の変数値を確認できる。
 
@@ -44,8 +45,8 @@ chezmoi固有のプレフィックス・サフィックスでファイルの役�
 
 CLIツールとランタイムのインストール先は以下のルールで使い分ける：
 
-- **mise**（`dot_config/mise/config.toml.tmpl`）— CLIツール全般（bat, ripgrep, gh, jq 等）と言語/ランタイム（node, uv, terraform 等）。GitHub API依存が強いものは `aqua:` バックエンドを明示する
-- **Homebrew**（`.chezmoidata/homebrew.toml`）— ブートストラップ/シェル/システム系（chezmoi, zsh, gcc, herdr, rtk）と、mise非対応または相互依存の強いもの（gnupg, container stack 等）、GUIアプリ（cask）。mise 本体は `run_once_before_02_mise_install.sh.tmpl` で公式インストーラから導入する
+- **mise**（`dot_config/mise/config.toml.tmpl`）— ツール管理の **Single Source of Truth**。`[tools]` セクションに CLI ツール（bat, ripgrep, gh, jq, lazygit, uv, terraform 等）と言語/ランタイム（node, bun, lts）を、`[bootstrap.packages]` セクションにバックエンド指定付きのパッケージ（`apt:` / `brew:` / `brew-cask:` / `aqua:`）を集約する。GitHub API 依存が強いものは `aqua:` バックエンドを明示する
+- **Homebrew** — パッケージ管理の責務は mise に統一済み。Homebrew 自体は mise の `brew:` / `brew-cask:` バックエンドのランタイム依存としてのみ動作する。Homebrew 自体の導入は `run_once_before_01_brew_install.sh.tmpl`、mise 本体の導入は `run_once_before_02_mise_install.sh.tmpl`（公式インストーラ）で行う
 
 ### 環境分岐の仕組み
 
@@ -105,7 +106,6 @@ run_<timing>[_<position>]_<NN>_<tool>[_<descriptor>]_<action>.sh[.tmpl]
 | `.chezmoi.toml.tmpl` | chezmoi本体設定・環境変数プロンプト |
 | `.chezmoiignore.tmpl` | OS/環境別の無視ファイル設定 |
 | `dot_config/zsh/dot_zshrc.tmpl` | Zsh設定（エイリアス・関数・プラグイン） |
-| `dot_config/homebrew/Brewfile.tmpl` | Homebrewパッケージ（bootstrap/shell/system系・GUI cask） |
-| `dot_config/mise/config.toml.tmpl` | CLIツール + 言語/ランタイムのバージョン管理（bat, ripgrep, gh, node, uv等） |
+| `dot_config/mise/config.toml.tmpl` | ツール管理の Single Source of Truth。CLIツール・言語/ランタイム・`brew:` / `brew-cask:` 経由のパッケージ集約（bat, ripgrep, gh, node, uv, arc, raycast, ghostty 等） |
 | `dot_gitconfig.tmpl` | Git設定 |
 | `dot_claude/modify_settings.json` | Claude Code権限設定 |

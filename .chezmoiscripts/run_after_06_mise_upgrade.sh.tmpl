@@ -1,25 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-BREW={{ .brewBin | quote }}
-
-if [[ ! -x "$BREW" ]]; then
-    echo "Error: Homebrew not found at $BREW"
-    exit 1
-fi
-
-eval "$("$BREW" shellenv)"
-
 if ! command -v mise &> /dev/null; then
     echo "Error: mise is not installed. Please install mise first."
     exit 1
-fi
-
-# GitHub APIレート制限対策: gh認証済みならトークンを渡す
-export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/mise/shims:$PATH"
-if [[ -z "${GITHUB_TOKEN:-}" ]] && command -v gh &> /dev/null; then
-    GITHUB_TOKEN="$(gh auth token 2>/dev/null || true)"
-    [[ -n "$GITHUB_TOKEN" ]] && export GITHUB_TOKEN
 fi
 
 mise self-update

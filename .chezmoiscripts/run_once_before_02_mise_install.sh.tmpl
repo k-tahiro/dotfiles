@@ -1,15 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-# run_once_before_01_brew_install.sh の直後（02）に配置し、後続の
-# run_onchange_after_04_mise_apply.sh などが mise を使えるようにする。
-#
-# 公式インストーラ (https://mise.run) を使うことで、macOS / Linux / WSL /
-# Git Bash など Homebrew を持たない環境でも同じ手順で mise を導入できる。
-# 旧来は Homebrew 経由でインストールしていたが、公式インストーラに統一する。
-#
-# 冪等: 既に mise がインストール済みならスキップする（brew 経由の既存環境も対象）。
-
 if command -v mise &> /dev/null; then
     echo "mise is already installed. Skipping."
     exit 0
@@ -18,10 +9,6 @@ fi
 echo "Installing mise via official installer..."
 curl -fsSL https://mise.run | sh
 
-# 公式インストーラは mise バイナリを ~/.local/bin に、shims を
-# $XDG_DATA_HOME/mise/shims（既定 ~/.local/share/mise/shims）に配置する。
-# 現在のスクリプトプロセス内から mise および mise 管理 shims を
-# 解決できるよう PATH を更新する。
 MISE_BIN="${HOME}/.local/bin"
 MISE_SHIMS="${XDG_DATA_HOME:-$HOME/.local/share}/mise/shims"
 export PATH="$MISE_BIN:$MISE_SHIMS:$PATH"
