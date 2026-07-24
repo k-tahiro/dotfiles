@@ -38,10 +38,6 @@ taps = [
     "datadog-labs/pack",
 ]
 brews = [
-    "colima",
-    "docker",
-    "docker-buildx",
-    "docker-compose",
     "git-secret",
     "gnupg",
     "libomp",
