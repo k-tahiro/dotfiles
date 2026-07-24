@@ -149,8 +149,8 @@ function notify() {
 
 # 6. プラグイン (Plugins)
 # ------------------------------------------
-# Homebrewのインストール先パスを取得
-HOMEBREW_PREFIX=$(brew --prefix)
+{{- if eq .chezmoi.os "darwin" }}
+HOMEBREW_PREFIX={{- .brewPrefix | quote }}
 
 # ① 過去の履歴からコマンドを薄いグレーでサジェスト（右矢印 '→' または 'Ctrl+E' で確定）
 if [ -f "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
@@ -161,6 +161,7 @@ fi
 if [ -f "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
   source "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
+{{- end }}
 
 # 7. Local
 # ------------------------------------------
