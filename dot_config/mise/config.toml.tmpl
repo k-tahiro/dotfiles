@@ -1,3 +1,32 @@
+[bootstrap.packages]
+{{- if eq .chezmoi.os "darwin" }}
+"brew:gcc" = "latest"
+"brew:zsh-autosuggestions" = "latest"
+"brew:zsh-syntax-highlighting" = "latest"
+"brew-cask:arc" = "latest"
+"brew-cask:claude" = "latest"
+"brew-cask:codex-app" = "latest"
+"brew-cask:codexbar" = "latest"
+"brew-cask:firefox" = "latest"
+"brew-cask:font-hackgen-nerd" = "latest"
+"brew-cask:font-moralerspace" = "latest"
+"brew-cask:font-udev-gothic-nf" = "latest"
+"brew-cask:ghostty" = "latest"
+"brew-cask:karabiner-elements" = "latest"
+"brew-cask:lm-studio" = "latest"
+"brew-cask:obsidian" = "latest"
+"brew-cask:raycast" = "latest"
+"brew-cask:rectangle" = "latest"
+"brew-cask:scroll-reverser" = "latest"
+"brew-cask:visual-studio-code" = "latest"
+"brew-cask:zed" = "latest"
+"brew-cask:zen" = "latest"
+{{- if .isWork }}
+"brew:git-secret" = "latest"
+"brew:gnupg" = "latest"
+{{- end }}
+{{- end }}
+
 [settings]
 disable_backends = ["asdf", "vfox"]
 

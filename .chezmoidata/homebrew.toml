@@ -39,12 +39,10 @@ taps = [
 brews = [
     "git-secret",
     "gnupg",
-    "libomp",
 ]
 casks = [
 ]
 mac_casks = [
-    "jetbrains-toolbox",
 ]
 
 [homebrew.private]
