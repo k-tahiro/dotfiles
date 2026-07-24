@@ -35,13 +35,11 @@ mac_casks = [
 
 [homebrew.work]
 taps = [
-    "datadog-labs/pack",
 ]
 brews = [
     "git-secret",
     "gnupg",
     "libomp",
-    "datadog-labs/pack/pup",
 ]
 casks = [
 ]
