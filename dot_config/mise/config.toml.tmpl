@@ -1,5 +1,7 @@
 [bootstrap.packages]
-{{- if eq .chezmoi.os "darwin" }}
+"apt:build-essential" = "latest"
+"apt:zsh-autosuggestions" = "latest"
+"apt:zsh-syntax-highlighting" = "latest"
 "brew:gcc" = "latest"
 "brew:zsh-autosuggestions" = "latest"
 "brew:zsh-syntax-highlighting" = "latest"
@@ -24,7 +26,6 @@
 {{- if .isWork }}
 "brew:git-secret" = "latest"
 "brew:gnupg" = "latest"
-{{- end }}
 {{- end }}
 
 [settings]

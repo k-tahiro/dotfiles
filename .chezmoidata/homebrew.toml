@@ -37,8 +37,6 @@ mac_casks = [
 taps = [
 ]
 brews = [
-    "git-secret",
-    "gnupg",
 ]
 casks = [
 ]
