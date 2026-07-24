@@ -6,5 +6,6 @@ if ! command -v mise &> /dev/null; then
     exit 1
 fi
 
-mise self-update
-mise upgrade
+mise self-update -y
+mise bootstrap packages upgrade -y
+mise upgrade -y
