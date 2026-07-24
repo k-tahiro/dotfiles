@@ -89,7 +89,7 @@ run_<timing>[_<position>]_<NN>_<tool>[_<descriptor>]_<action>.sh[.tmpl]
 **追加時の必須チェック**：
 
 1. **ベース名の一意性** — chezmoi は `run_<timing>[_<position>]_` を除いた残り（`<NN>_<tool>..._<action>`）でスクリプトを識別する。**同じベース名が複数存在すると `inconsistent state` エラーで `chezmoi diff` が失敗する**。特に同じ `tool` を複数タイミングで扱う場合は `action` で必ず区別する（例：`02_mise_install`（バイナリ導入）と `04_mise_apply`（config 適用））。
-2. **番号はパイプライン全体**で振る — `run_once_before_*` の最大値より大きい数字を次の `run_onchange_after_*` に振る、という流れ。現在の最大番号は `08`。
+2. **番号はパイプライン全体**で振る — `run_once_before_*` の最大値より大きい数字を次の `run_onchange_after_*` に振る、という流れ。
 3. **アクション動詞の明示** — 末尾に必ず動詞を付ける。`01_brew` のような動詞なしの名前は禁止。
 4. **冪等性** — `run_once_*` はリネーム・状態リセット・chezmoi バージョンアップ等で再実行され得る。冒頭に `command -v <tool> &> /dev/null` 等のガードを入れ、既存環境では `exit 0` で no-op にする。
 5. **追加前の検証** — 新規 / リネーム後は必ず `chezmoi execute-template < <file.tmpl>` でレンダリング確認し、`chezmoi diff` で `inconsistent state` が出ていないことを確認する。
