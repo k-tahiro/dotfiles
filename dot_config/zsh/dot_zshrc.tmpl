@@ -150,18 +150,20 @@ function notify() {
 # 6. プラグイン (Plugins)
 # ------------------------------------------
 {{- if eq .chezmoi.os "darwin" }}
-HOMEBREW_PREFIX={{- .brewPrefix | quote }}
+SHARE_DIR="{{- .brewPrefix -}}/share"
+{{- else }}
+SHARE_DIR="/usr/share"
+{{- end }}
 
 # ① 過去の履歴からコマンドを薄いグレーでサジェスト（右矢印 '→' または 'Ctrl+E' で確定）
-if [ -f "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
-  source "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+if [ -f "${SHARE_DIR}/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  source "${SHARE_DIR}/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
 # ② コマンドの構文ハイライト（※必ず設定の最後に読み込む！）
-if [ -f "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-  source "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [ -f "${SHARE_DIR}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source "${SHARE_DIR}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
-{{- end }}
 
 # 7. Local
 # ------------------------------------------
