@@ -1,12 +1,12 @@
 {{- /* chezmoi:modify-template */ -}}
 {{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
+
 {{- $mcpServers := (.mcp.shared | default dict) -}}
 {{- if .isWork -}}
 {{-   $mcpServers = mergeOverwrite $mcpServers (.mcp.work | default dict) -}}
 {{- else -}}
 {{-   $mcpServers = mergeOverwrite $mcpServers (.mcp.private | default dict) -}}
 {{- end -}}
-
 {{- range $name, $server := $mcpServers -}}
   {{- $entry := dict "enabled" true -}}
 
