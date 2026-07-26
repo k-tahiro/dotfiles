@@ -1,3 +1,6 @@
 {{- /* chezmoi:modify-template */ -}}
+
+{{- $multiplexer := dict "type" "auto" "layout" "main-vertical" "main_pane_size" 60 -}}
+
 {{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
 {{- $config | toPrettyJson -}}
