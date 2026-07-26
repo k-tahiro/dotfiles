@@ -1,5 +1,4 @@
 {{- /* chezmoi:modify-template */ -}}
-{{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
 
 {{- $mcpServers := (.mcp.shared | default dict) -}}
 {{- if .isWork -}}
@@ -32,5 +31,9 @@
   {{- $mcpServers = set $mcpServers $name $entry -}}
 {{- end -}}
 
+{{- $plugin := list "oh-my-opencode-slim" -}}
+
+{{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
 {{- $config = set $config "mcp" $mcpServers -}}
+{{- $config = set $config "plugin" $plugin -}}
 {{- $config | toPrettyJson -}}
