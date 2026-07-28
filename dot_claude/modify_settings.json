@@ -11,8 +11,11 @@
 {{- $allow = append $allow "Read" -}}
 {{- $permissions = setValueAtPath "allow" $allow $permissions -}}
 {{- $deny := list -}}
-{{- $deny = append $deny "Bash(rm -rf /*)" -}}
 {{- $deny = append $deny "Bash(sudo *)" -}}
+{{- $deny = append $deny "Bash(rm -rf *)" -}}
+{{- $deny = append $deny "Read(**/.env*)" -}}
+{{- $deny = append $deny "Read(id_rsa)" -}}
+{{- $deny = append $deny "Read(id_ed25519)" -}}
 {{- $permissions = setValueAtPath "deny" $deny $permissions -}}
 
 {{- $settings := fromJson (default "{}" .chezmoi.stdin) -}}
