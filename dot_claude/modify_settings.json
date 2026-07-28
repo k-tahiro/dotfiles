@@ -7,6 +7,9 @@
 
 {{- $permissions := dict -}}
 {{- $permissions = setValueAtPath "defaultMode" "plan" $permissions -}}
+{{- $allow := list -}}
+{{- $allow = append $allow "Read" -}}
+{{- $permissions = setValueAtPath "allow" $allow $permissions -}}
 {{- $deny := list -}}
 {{- $deny = append $deny "Bash(rm -rf /*)" -}}
 {{- $deny = append $deny "Bash(sudo *)" -}}
