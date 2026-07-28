@@ -10,6 +10,7 @@
 {{- $permissions = setValueAtPath "disableBypassPermissionsMode" "disable" $permissions -}}
 {{- $allow := list -}}
 {{- $allow = append $allow "Read" -}}
+{{- $allow = append $allow "WebFetch" -}}
 {{- $permissions = setValueAtPath "allow" $allow $permissions -}}
 {{- $deny := list -}}
 {{- $deny = append $deny "Bash(sudo *)" -}}
