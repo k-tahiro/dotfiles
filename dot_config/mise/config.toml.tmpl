@@ -35,11 +35,7 @@
 {{- end }}
 
 [settings]
-{{- if .isWork }}
-disable_backends = []
-{{- else }}
 disable_backends = ["asdf", "vfox"]
-{{- end }}
 
 [tools]
 bat = "latest"
