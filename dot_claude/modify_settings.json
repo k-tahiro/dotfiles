@@ -7,6 +7,7 @@
 
 {{- $permissions := dict -}}
 {{- $permissions = setValueAtPath "defaultMode" "plan" $permissions -}}
+{{- $permissions = setValueAtPath "disableBypassPermissionsMode" "disable" $permissions -}}
 {{- $allow := list -}}
 {{- $allow = append $allow "Read" -}}
 {{- $permissions = setValueAtPath "allow" $allow $permissions -}}
