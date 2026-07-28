@@ -1,22 +1,12 @@
 {{- /* chezmoi:modify-template */ -}}
+
+{{- $env := dict -}}
+{{- $env = setValueAtPath "ANTHROPIC_DEFAULT_MODEL" "opusplan" $env -}}
+{{- $env = setValueAtPath "ANTHROPIC_DEFAULT_OPUS_MODEL" "claude-fable-5[1m]" $env -}}
+{{- $env = setValueAtPath "ANTHROPIC_DEFAULT_SONNET_MODEL" "claude-sonnet-5[1m]" $env -}}
+
+{{- $permissions := dict -}}
+{{- $permissions = setValueAtPath "defaultMode" "plan" $permissions -}}
+
 {{- $existing := fromJson (default "{}" .chezmoi.stdin) -}}
-{{- $result := setValueAtPath "permissions" .claude.settings.permissions $existing -}}
-{{- $existingHooks := dict -}}
-{{- if hasKey $existing "hooks" -}}{{- $existingHooks = index $existing "hooks" -}}{{- end -}}
-{{- range $event, $dataEntries := .claude.settings.hooks -}}
-  {{- $merged := list -}}
-  {{- if hasKey $existingHooks $event -}}{{- $merged = index $existingHooks $event -}}{{- end -}}
-  {{- $seen := list -}}
-  {{- range $merged -}}{{- $seen = append $seen (toJson .) -}}{{- end -}}
-  {{- range $dataEntries -}}
-    {{- if not (has (toJson .) $seen) -}}{{- $merged = append $merged . -}}{{- end -}}
-  {{- end -}}
-  {{- $result = setValueAtPath (list "hooks" $event) $merged $result -}}
-{{- end -}}
-{{- $existingEnv := dict -}}
-{{- if hasKey $existing "env" -}}{{- $existingEnv = index $existing "env" -}}{{- end -}}
-{{- range $k, $v := .claude.settings.env -}}
-  {{- $existingEnv = setValueAtPath $k $v $existingEnv -}}
-{{- end -}}
-{{- $result = setValueAtPath "env" $existingEnv $result -}}
-{{ $result | toPrettyJson }}
+{{- $existing | toPrettyJson -}}
