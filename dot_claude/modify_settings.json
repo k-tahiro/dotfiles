@@ -7,6 +7,11 @@
 
 {{- $permissions := dict -}}
 {{- $permissions = setValueAtPath "defaultMode" "plan" $permissions -}}
+{{- $deny := list -}}
+{{- $deny = append $deny "Bash(rm -rf /*)" -}}
+{{- $deny = append $deny "Bash(sudo *)" -}}
+{{- $permissions = setValueAtPath "deny" $deny $permissions -}}
 
-{{- $existing := fromJson (default "{}" .chezmoi.stdin) -}}
-{{- $existing | toPrettyJson -}}
+{{- $settings := fromJson (default "{}" .chezmoi.stdin) -}}
+{{- $settings = setValueAtPath "env" (mergeOverwrite $settings.env $env) $settings -}}
+{{- $settings | toPrettyJson -}}
