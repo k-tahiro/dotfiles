@@ -10,3 +10,7 @@ args = ["start-mcp-server", "--project-from-cwd", "--context"]
 [mcp.work]
 
 [mcp.private]
+[mcp.private.proximo]
+command = "uvx"
+args = ["proximo-proxmox"]
+env = { "PROXMOX_API_BASE_URL" = "PROXMOX_API_BASE_URL", "PROXMOX_NODE" = "PROXMOX_NODE", "PROXMOX_TOKEN_PATH" = "PROXMOX_TOKEN_PATH" }

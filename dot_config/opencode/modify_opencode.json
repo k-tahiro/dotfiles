@@ -13,19 +13,19 @@
     {{- $entry = set $entry "type" "remote" -}}
     {{- $entry = set $entry "url" $server.url -}}
 
-    {{- if eq $name "github" -}}
+    {{- if hasKey $server "bearer_token_env_var" -}}
       {{- $token_env := $server.bearer_token_env_var -}}
       {{- $entry = set $entry "headers" (dict "Authorization" (printf "Bearer {env:%s}" $token_env)) -}}
     {{- end -}}
-  {{- else if hasKey $server "command" -}}
+  {{- else -}}
     {{- $entry = set $entry "type" "local" -}}
     {{- $cmd := list $server.command -}}
-    {{- if hasKey $server "args" -}}
-      {{- range $server.args -}}
-        {{- $cmd = append $cmd . -}}
-      {{- end -}}
-    {{- end -}}
+    {{- $cmd = concat $cmd ($server.args | default list) -}}
     {{- $entry = set $entry "command" $cmd -}}
+
+    {{- if hasKey $server "env" -}}
+      {{- $entry = set $entry "environment" $server.env -}}
+    {{- end -}}
   {{- end -}}
 
   {{- $mcpServers = set $mcpServers $name $entry -}}
