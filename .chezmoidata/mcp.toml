@@ -13,4 +13,3 @@ args = ["start-mcp-server", "--project-from-cwd", "--context"]
 [mcp.private.proximo]
 command = "uvx"
 args = ["proximo-proxmox"]
-env = { "PROXMOX_API_BASE_URL" = "PROXMOX_API_BASE_URL", "PROXMOX_NODE" = "PROXMOX_NODE", "PROXMOX_TOKEN_PATH" = "PROXMOX_TOKEN_PATH", "PROXIMO_VERIFY_TLS" = "PROXIMO_VERIFY_TLS" }
