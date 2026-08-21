@@ -1,10 +1,5 @@
 {{- /* chezmoi:modify-template */ -}}
 
-{{- $env := dict -}}
-{{- $env = setValueAtPath "ANTHROPIC_DEFAULT_MODEL" "opusplan" $env -}}
-{{- $env = setValueAtPath "ANTHROPIC_DEFAULT_OPUS_MODEL" "claude-fable-5[1m]" $env -}}
-{{- $env = setValueAtPath "ANTHROPIC_DEFAULT_SONNET_MODEL" "claude-sonnet-5[1m]" $env -}}
-
 {{- $permissions := dict -}}
 {{- $permissions = setValueAtPath "defaultMode" "plan" $permissions -}}
 {{- $permissions = setValueAtPath "disableBypassPermissionsMode" "disable" $permissions -}}
@@ -19,6 +14,5 @@
 {{- $permissions = setValueAtPath "deny" $deny $permissions -}}
 
 {{- $settings := fromJson (default "{}" .chezmoi.stdin) -}}
-{{- $settings = setValueAtPath "env" (mergeOverwrite $settings.env $env) $settings -}}
 {{- $settings = setValueAtPath "permissions" (mergeOverwrite $settings.permissions $permissions) $settings -}}
 {{- $settings | toPrettyJson -}}
