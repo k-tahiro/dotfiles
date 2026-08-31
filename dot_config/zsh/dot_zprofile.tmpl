@@ -13,6 +13,7 @@ export VISUAL="nvim"
 # GitHub
 export GITHUB_TOKEN="$(gh auth token)"
 export GITHUB_PAT="$(gh auth token)"
+export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"
 
 # PATH設定
 {{- if eq .chezmoi.os "darwin" }}
