@@ -1,7 +1,6 @@
 [mcp.shared]
 [mcp.shared.github]
-url = "https://api.githubcopilot.com/mcp"
-bearer_token_env_var = "GITHUB_PAT"
+command = "github-mcp-server-stdio"
 
 [mcp.shared.serena]
 command = "serena"

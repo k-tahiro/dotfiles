@@ -1,0 +1,12 @@
+#!/bin/sh
+# GitHub MCP Server を stdio で起動するラッパー。
+# トークンは設定ファイルに保存せず、起動のたびに gh CLI から取得する。
+set -eu
+
+export PATH="$HOME/.local/bin:$PATH"
+
+GITHUB_PERSONAL_ACCESS_TOKEN=$(mise x -- gh auth token)
+export GITHUB_PERSONAL_ACCESS_TOKEN
+export GITHUB_TOOLSETS=context,repos,issues,pull_requests,actions
+
+exec mise x -- github-mcp-server stdio
