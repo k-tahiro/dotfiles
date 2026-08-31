@@ -8,5 +8,8 @@ export PATH="$HOME/.local/bin:$PATH"
 GITHUB_PERSONAL_ACCESS_TOKEN=$(mise x -- gh auth token)
 export GITHUB_PERSONAL_ACCESS_TOKEN
 export GITHUB_TOOLSETS=context,repos,issues,pull_requests,actions
+# 破壊的ツールを除外し、workflow 改変（= CI 経由の任意コード実行）とノーレビューマージの経路を塞ぐ。
+# ファイル書き込み・マージが必要な場面は gh CLI / git 側に寄せる。
+export GITHUB_EXCLUDE_TOOLS=create_repository,fork_repository,merge_pull_request,create_or_update_file,push_files,delete_file,actions_run_trigger
 
 exec mise x -- github-mcp-server stdio
