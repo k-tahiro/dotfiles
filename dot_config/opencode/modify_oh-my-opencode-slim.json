@@ -12,11 +12,20 @@
       "fixer" (dict "model" "opencode/hy3-free" "variant" "high" "temperature" 0.2 "skills" (list) "mcps" (list))
       "observer" (dict "model" "opencode/mimo-v2.5-free" "variant" "low" "temperature" 0.2 "skills" (list) "mcps" (list))
     )
+    "best-price-opencode-go" (dict
+      "orchestrator" (dict "model" "opencode-go/deepseek-v4-flash" "variant" "max" "skills" (list "*") "mcps" (list "*" "!context7"))
+      "oracle" (dict "model" "opencode-go/deepseek-v4-pro" "variant" "max" "skills" (list "simplify") "mcps" (list))
+      "explorer" (dict "model" "opencode-go/deepseek-v4-flash" "variant" "high" "skills" (list) "mcps" (list))
+      "librarian" (dict "model" "opencode-go/deepseek-v4-flash" "variant" "high" "skills" (list) "mcps" (list "context7" "gh_grep"))
+      "fixer" (dict "model" "opencode-go/deepseek-v4-flash" "variant" "high" "skills" (list) "mcps" (list))
+      "designer" (dict "model" "opencode-go/mimo-v2.5" "skills" (list) "mcps" (list))
+      "observer" (dict "model" "opencode-go/mimo-v2.5" "skills" (list) "mcps" (list))
+    )
   )
 -}}
 
 {{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
 {{- $config = mergeOverwrite $config (dict "multiplexer" $multiplexer) -}}
 {{- $config = mergeOverwrite $config (dict "presets" $presets) -}}
-{{- $config = mergeOverwrite $config (dict "preset" "opencode-zen-free") -}}
+{{- $config = mergeOverwrite $config (dict "preset" "best-price-opencode-go") -}}
 {{- $config | toPrettyJson -}}
