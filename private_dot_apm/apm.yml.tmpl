@@ -6,6 +6,12 @@ targets:
 {{- if lookPath "claude"}}
   - claude
 {{- end }}
+{{- if lookPath "codex"}}
+  - codex
+{{- end }}
+{{- if lookPath "opencode"}}
+  - opencode
+{{- end }}
 
 dependencies:
   apm:
