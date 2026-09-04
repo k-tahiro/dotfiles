@@ -2,11 +2,11 @@
 {{- $multiplexer := dict "type" "auto" "layout" "main-vertical" "main_pane_size" 60 -}}
 {{- $presets := dict -}}
 {{- 
-  $presets = mergeOverwrite $presets (
-    dict "opencode-zen-free" (
-      dict "orchestrator" (dict "model" "opencode/x-preview-f-free" "variant" "high" "temperature" 0.4 "skills" (list "*") "mcps" (list "*" "!context7"))
-      dict "oracle" (dict "model" "opencode/big-pickle" "variant" "max" "temperature" 0.4 "skills" (list "simplify") "mcps" (list))
-      dict "explorer" (dict "model" "opencode/nemotron-3.5-lightining-free" "temperature" 0.2 "skills" (list) "mcps" (list))
+  $presets = mergeOverwrite $presets (dict
+    "opencode-zen-free" (dict
+      "orchestrator" (dict "model" "opencode/x-preview-f-free" "variant" "high" "temperature" 0.4 "skills" (list "*") "mcps" (list "*" "!context7"))
+      "oracle" (dict "model" "opencode/big-pickle" "variant" "max" "temperature" 0.4 "skills" (list "simplify") "mcps" (list))
+      "explorer" (dict "model" "opencode/nemotron-3.5-lightining-free" "temperature" 0.2 "skills" (list) "mcps" (list))
     )
   )
 -}}
