@@ -1,7 +1,7 @@
 name: k-tahiro
 version: 1.0.0
 description: APM project for k-tahiro
-author: Keisuke Hirota
+author: k-tahiro
 # Which agent platforms to deploy to (uncomment to pin):
 # targets:
 #   - copilot
