@@ -16,6 +16,10 @@ targets:
 dependencies:
   apm:
     - iKora128/stop-ai-slop-jp
-  mcp: []
+  mcp:
+    - name: github
+      registry: false
+      transport: stdio
+      command: github-mcp-server-stdio
 includes: auto
 scripts: {}
