@@ -1,7 +1,9 @@
 {{- /* chezmoi:modify-template */ -}}
 {{- $multiplexer := dict "type" "auto" "layout" "main-vertical" "main_pane_size" 60 -}}
 {{- $presets := dict -}}
-{{- $presets = mergeOverwrite $presets (dict "opencode-zen-free" (dict "orchestrator" (dict "model" "opencode/x-preview-f-free"))) -}}
+{{- 
+  $presets = mergeOverwrite $presets (dict "opencode-zen-free" (dict "orchestrator" (dict "model" "opencode/x-preview-f-free")))
+-}}
 
 {{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
 {{- $config = mergeOverwrite $config (dict "multiplexer" $multiplexer) -}}
