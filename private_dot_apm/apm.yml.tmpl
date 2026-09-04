@@ -17,7 +17,11 @@ dependencies:
   apm:
     - iKora128/stop-ai-slop-jp
   mcp:
-    - io.github.github/github-mcp-server
+    # - io.github.github/github-mcp-server
+    - name: github
+      registry: false
+      transport: stdio
+      command: github-mcp-server-stdio
     - oraios/serena
 includes: auto
 scripts: {}
