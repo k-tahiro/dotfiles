@@ -1,39 +1,5 @@
 {{- /* chezmoi:modify-template */ -}}
-
-{{- $mcpServers := (.mcp.shared | default dict) -}}
-{{- if .isWork -}}
-{{-   $mcpServers = mergeOverwrite $mcpServers (.mcp.work | default dict) -}}
-{{- else -}}
-{{-   $mcpServers = mergeOverwrite $mcpServers (.mcp.private | default dict) -}}
-{{- end -}}
-{{- range $name, $server := $mcpServers -}}
-  {{- $entry := dict "enabled" true -}}
-
-  {{- if hasKey $server "url" -}}
-    {{- $entry = set $entry "type" "remote" -}}
-    {{- $entry = set $entry "url" $server.url -}}
-
-    {{- if hasKey $server "bearer_token_env_var" -}}
-      {{- $token_env := $server.bearer_token_env_var -}}
-      {{- $entry = set $entry "headers" (dict "Authorization" (printf "Bearer {env:%s}" $token_env)) -}}
-    {{- end -}}
-  {{- else -}}
-    {{- $entry = set $entry "type" "local" -}}
-    {{- $cmd := list $server.command -}}
-    {{- $cmd = concat $cmd ($server.args | default list) -}}
-    {{- $entry = set $entry "command" $cmd -}}
-
-    {{- if hasKey $server "env" -}}
-      {{- $entry = set $entry "environment" $server.env -}}
-    {{- end -}}
-  {{- end -}}
-
-  {{- $mcpServers = set $mcpServers $name $entry -}}
-{{- end -}}
-
 {{- $plugin := list "oh-my-opencode-slim" -}}
-
 {{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
-{{- $config = set $config "mcp" $mcpServers -}}
 {{- $config = set $config "plugin" $plugin -}}
 {{- $config | toPrettyJson -}}
