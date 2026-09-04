@@ -8,6 +8,9 @@
       "oracle" (dict "model" "opencode/big-pickle" "variant" "max" "temperature" 0.4 "skills" (list "simplify") "mcps" (list))
       "explorer" (dict "model" "opencode/nemotron-3.5-lightining-free" "temperature" 0.2 "skills" (list) "mcps" (list))
       "librarian" (dict "model" "opencode/nemotron-3.5-lightining-free" "temperature" 0.2 "skills" (list) "mcps" (list "context7" "gh_grep"))
+      "designer" (dict "model" "opencode/mimo-v2.5-free" "variant" "medium" "temperature" 0.3 "skills" (list) "mcps" (list))
+      "fixer" (dict "model" "opencode/hy3-free" "variant" "high" "temperature" 0.2 "skills" (list) "mcps" (list))
+      "observer" (dict "model" "opencode/mimo-v2.5-free" "variant" "low" "temperature" 0.2 "skills" (list) "mcps" (list))
     )
   )
 -}}
