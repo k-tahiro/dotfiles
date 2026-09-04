@@ -4,7 +4,7 @@
 {{- 
   $presets = mergeOverwrite $presets (
     dict "opencode-zen-free" (
-      dict "orchestrator" (dict "model" "opencode/x-preview-f-free")
+      dict "orchestrator" (dict "model" "opencode/x-preview-f-free" "variant" "high" "temperature" 0.4 "skills" (list "*") "mcps" (list "*" "!context7"))
     )
   )
 -}}
