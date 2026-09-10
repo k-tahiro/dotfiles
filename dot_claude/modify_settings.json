@@ -1,8 +1,5 @@
 {{- /* chezmoi:modify-template */ -}}
 
-{{- $permissions := dict -}}
-{{- $permissions = setValueAtPath "defaultMode" "plan" $permissions -}}
-{{- $permissions = setValueAtPath "disableBypassPermissionsMode" "disable" $permissions -}}
 {{- $allow := list
   "Read"
   "WebFetch"
@@ -12,6 +9,10 @@
   "Bash(rm -rf *)"
   "Read(//**/.env*)"
 -}}
+
+{{- $permissions := dict -}}
+{{- $permissions = setValueAtPath "defaultMode" "plan" $permissions -}}
+{{- $permissions = setValueAtPath "disableBypassPermissionsMode" "disable" $permissions -}}
 {{- $permissions = setValueAtPath "allow" $allow $permissions -}}
 {{- $permissions = setValueAtPath "deny" $deny $permissions -}}
 
