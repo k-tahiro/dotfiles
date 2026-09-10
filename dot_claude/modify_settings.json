@@ -3,14 +3,16 @@
 {{- $permissions := dict -}}
 {{- $permissions = setValueAtPath "defaultMode" "plan" $permissions -}}
 {{- $permissions = setValueAtPath "disableBypassPermissionsMode" "disable" $permissions -}}
-{{- $allow := list -}}
-{{- $allow = append $allow "Read" -}}
-{{- $allow = append $allow "WebFetch" -}}
+{{- $allow := list
+  "Read"
+  "WebFetch"
+-}}
+{{- $deny := list
+  "Bash(sudo *)"
+  "Bash(rm -rf *)"
+  "Read(//**/.env*)"
+-}}
 {{- $permissions = setValueAtPath "allow" $allow $permissions -}}
-{{- $deny := list -}}
-{{- $deny = append $deny "Bash(sudo *)" -}}
-{{- $deny = append $deny "Bash(rm -rf *)" -}}
-{{- $deny = append $deny "Read(//**/.env*)" -}}
 {{- $permissions = setValueAtPath "deny" $deny $permissions -}}
 
 {{- $settings := fromJson (default "{}" .chezmoi.stdin) -}}
