@@ -37,7 +37,6 @@ chezmoi固有のプレフィックス・サフィックスでファイルの役�
 **`.chezmoidata/` 配下**（chezmoi が自動ロード）：
 
 - `claude.json` — Claude Code の permissions / hooks / env 設定
-- `mcp.toml` — MCP サーバー設定（`[mcp.shared]` / `[mcp.work]` / `[mcp.private]`）
 
 **`.chezmoi.toml.tmpl` で計算**:
 
@@ -55,17 +54,18 @@ chezmoi固有のプレフィックス・サフィックスでファイルの役�
 
 `chezmoi data` で現在の変数値を確認できる。
 
-### MCP サーバー設定の出し分け
+### MCP サーバー設定
 
-`.chezmoidata/mcp.toml` で `shared` / `work` / `private` の3系統を定義し、以下の `modify_*` テンプレートが `data.isWork` を見て work 系統と private 系統を切り替えて出力先に patch を当てる：
+MCP サーバーは APM（mise の `[tools]` で導入）で配布する。Single Source of Truth は `private_dot_apm/apm.yml.tmpl`（→ `~/.apm/apm.yml`）の `dependencies.mcp`：
 
-| ソース | 出力先 |
+| サーバー | 定義 |
 |---|---|
-| `modify_private_dot_claude.json`（リポジトリ直下） | `~/.claude.json`（mode 600） |
-| `dot_codex/modify_config.toml` | `~/.codex/config.toml` |
-| `dot_config/opencode/modify_opencode.json` | `~/.config/opencode.json` |
+| `github` | `github-mcp-server-stdio`（`dot_local/bin/executable_github-mcp-server-stdio`） |
+| `serena` | `oraios/serena` |
 
-serena サーバーには `claude-code` / `codex` のサフィックスを動的に付与する。`url` を持つサーバーは `type = "http"` を補完し、`bearer_token_env_var` は `Authorization: Bearer ${...}` ヘッダへ変換する。
+`targets` は `lookPath` で `claude` / `codex` / `opencode` の有無を判定し、存在するツールにのみ MCP 設定を配布する。`github-mcp-server-stdio` はトークンを設定ファイルに保存せず、起動のたびに `gh auth token` から取得する。
+
+> かつて `.chezmoidata/mcp.toml` と `modify_*` テンプレートで work/private を出し分けていたが、APM 移行に伴い削除済み。
 
 ### ツール管理の責務分担
 
@@ -137,12 +137,12 @@ run_<timing>[_<position>]_<NN>_<tool>[_<descriptor>]_<action>.sh[.tmpl]
 | `.chezmoi.toml.tmpl` | chezmoi 本体設定・OS 検出・プロンプト・data 変数・auto commit/push |
 | `.chezmoiignore.tmpl` | OS / CLI ツール有無で dotfile ソースを除外（always / not-darwin / no-claude / no-codex / no-opencode の5セクション） |
 | `.chezmoidata/claude.json` | Claude Code の permissions / hooks / env 設定 |
-| `.chezmoidata/mcp.toml` | MCP サーバー設定（shared / work / private） |
+| `private_dot_apm/apm.yml.tmpl` | APM プロジェクト定義（MCP サーバーの Single Source of Truth） |
 | `dot_zshenv` | XDG ディレクトリ・`ZDOTDIR`・PATH・`.zshenv.local` の読み込み |
 | `dot_vimrc.tmpl` | 最小 vimrc（`defaults.vim` + fzf runtimepath） |
 | `dot_claude/modify_settings.json` | `~/.claude/settings.json` への modify-template（permissions / hooks / env を patch） |
-| `dot_codex/modify_config.toml` | Codex の MCP サーバー設定（work/private 切り替え） |
-| `modify_private_dot_claude.json` | `~/.claude.json` への modify-template（mode 600） |
+| `dot_codex/modify_config.toml` | `~/.codex/config.toml` への modify-template（`project_doc_fallback_filenames` に `CLAUDE.md` を追加） |
+| `dot_codex/modify_AGENTS.md` | `~/.codex/AGENTS.md` への modify-template（内容は素通し） |
 
 ### `dot_config/` 配下
 
@@ -157,5 +157,5 @@ run_<timing>[_<position>]_<NN>_<tool>[_<descriptor>]_<action>.sh[.tmpl]
 | `dot_config/starship.toml` | Starship プロンプト（catppuccin テーマ） |
 | `dot_config/yazi/yazi.toml` | Yazi ファイルマネージャ レイアウト |
 | `dot_config/herdr/config.toml` | herdr（AI ターミナル）設定（catppuccin テーマ、cwd 追従、sound off） |
-| `dot_config/opencode/modify_opencode.json` | `~/.config/opencode.json` の MCP 設定 patch |
+| `dot_config/opencode/modify_opencode.json` | `~/.config/opencode.json` への modify-template（`plugin` に `oh-my-opencode-slim` を設定） |
 | `dot_config/opencode/modify_oh-my-opencode-slim.json` | `~/.config/oh-my-opencode-slim.json` の multiplexer レイアウト patch |

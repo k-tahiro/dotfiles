@@ -9,6 +9,6 @@ show_hidden = true
 
 [opener]
 edit = [
-  { run = 'nvim "$@"', desc = "nvim", block = true, for = "unix" },
-  { run = 'zed --wait "$@"', desc = "Zed", for = "unix" },
+  { run = 'nvim %s', desc = "nvim", block = true, for = "unix" },
+  { run = 'zed --wait %s', desc = "Zed", for = "unix" },
 ]
