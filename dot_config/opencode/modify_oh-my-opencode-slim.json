@@ -1,28 +1,18 @@
 {{- /* chezmoi:modify-template */ -}}
 {{- $multiplexer := dict "type" "auto" "layout" "main-vertical" "main_pane_size" 60 -}}
 {{- $presets := dict -}}
-{{- 
-  $presets = mergeOverwrite $presets (dict
-    "opencode-zen-free" (dict
-      "orchestrator" (dict "model" "opencode/x-preview-f-free" "variant" "high" "temperature" 0.4 "skills" (list "*") "mcps" (list "*" "!context7"))
-      "oracle" (dict "model" "opencode/big-pickle" "variant" "max" "temperature" 0.4 "skills" (list "simplify") "mcps" (list))
-      "explorer" (dict "model" "opencode/nemotron-3.5-lightining-free" "temperature" 0.2 "skills" (list) "mcps" (list))
-      "librarian" (dict "model" "opencode/nemotron-3.5-lightining-free" "temperature" 0.2 "skills" (list) "mcps" (list "context7" "gh_grep"))
-      "designer" (dict "model" "opencode/mimo-v2.5-free" "variant" "medium" "temperature" 0.3 "skills" (list) "mcps" (list))
-      "fixer" (dict "model" "opencode/hy3-free" "variant" "high" "temperature" 0.2 "skills" (list) "mcps" (list))
-      "observer" (dict "model" "opencode/mimo-v2.5-free" "variant" "low" "temperature" 0.2 "skills" (list) "mcps" (list))
-    )
-    "best-price-opencode-go" (dict
-      "orchestrator" (dict "model" "opencode-go/deepseek-v4-flash" "variant" "max" "skills" (list "*") "mcps" (list "*" "!context7"))
-      "oracle" (dict "model" "opencode-go/deepseek-v4-pro" "variant" "max" "skills" (list "simplify") "mcps" (list))
-      "explorer" (dict "model" "opencode-go/deepseek-v4-flash" "variant" "high" "skills" (list) "mcps" (list))
-      "librarian" (dict "model" "opencode-go/deepseek-v4-flash" "variant" "high" "skills" (list) "mcps" (list "context7" "gh_grep"))
-      "fixer" (dict "model" "opencode-go/deepseek-v4-flash" "variant" "high" "skills" (list) "mcps" (list))
-      "designer" (dict "model" "opencode-go/mimo-v2.5" "skills" (list) "mcps" (list))
-      "observer" (dict "model" "opencode-go/mimo-v2.5" "skills" (list) "mcps" (list))
-    )
-  )
--}}
+{{- range $presetName, $agents := .ohMyOpencodeSlim.presets -}}
+
+  {{- $preset := dict -}}
+
+  {{- range $agentName, $override := $agents -}}
+    {{- $capabilities := default (dict) (index $.ohMyOpencodeSlim.agentCapabilities $agentName) -}}
+    {{- $agent := mergeOverwrite (deepCopy $capabilities) $override -}}
+    {{- $_ := set $preset $agentName $agent -}}
+  {{- end -}}
+
+  {{- $_ := set $presets $presetName $preset  -}}
+{{- end -}}
 
 {{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
 {{- $config = mergeOverwrite $config (dict "multiplexer" $multiplexer) -}}

@@ -1,13 +1,57 @@
-[oh-my-opencode-slim.template]
+[ohMyOpencodeSlim.agentCapabilities]
 orchestrator = {
   skills = ["*"],
   mcps = ["*", "!context7"]
 }
 oracle = {
-  skills = ["simplify"]
+  skills = ["simplify"],
+  mcps = []
 }
 librarian = {
+  skills = [],
   mcps = ["context7", "gh_grep"]
 }
+explorer = {
+  skills = [],
+  mcps = []
+}
+designer = {
+  skills = [],
+  mcps = []
+}
+fixer = {
+  skills = [],
+  mcps = []
+}
+observer = {
+  skills = [],
+  mcps = []
+}
 
-[oh-my-opencode-slim.presets]
+[ohMyOpencodeSlim.presets.best-price-opencode-go]
+orchestrator = {
+  model = "opencode-go/deepseek-v4-flash",
+  variant = "max"
+}
+oracle = {
+  model = "opencode-go/deepseek-v4-pro",
+  variant = "max"
+}
+explorer = {
+  model = "opencode-go/deepseek-v4-flash",
+  variant = "high"
+}
+librarian = {
+  model = "opencode-go/deepseek-v4-flash",
+  variant = "high"
+}
+fixer = {
+  model = "opencode-go/deepseek-v4-flash",
+  variant = "high"
+}
+designer = {
+  model = "opencode-go/mimo-v2.5"
+}
+observer = {
+  model = "opencode-go/mimo-v2.5"
+}
