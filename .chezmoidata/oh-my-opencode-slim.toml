@@ -1,0 +1,13 @@
+[oh-my-opencode-slim.template]
+orchestrator = {
+  skills = ["*"],
+  mcps = ["*", "!context7"]
+}
+oracle = {
+  skills = ["simplify"]
+}
+librarian = {
+  mcps = ["context7", "gh_grep"]
+}
+
+[oh-my-opencode-slim.presets]

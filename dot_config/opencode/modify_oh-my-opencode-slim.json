@@ -21,15 +21,6 @@
       "designer" (dict "model" "opencode-go/mimo-v2.5" "skills" (list) "mcps" (list))
       "observer" (dict "model" "opencode-go/mimo-v2.5" "skills" (list) "mcps" (list))
     )
-    "latest" (dict
-      "orchestrator" (dict "model" "openai/gpt-5.6-terra" "variant" "medium" "skills" (list "deepwork" "verification-planning" "oh-my-opencode-slim" "grill-with-docs" "grilling") "mcps" (list))
-      "oracle" (dict "model" "opencode-go/deepseek-v4-pro" "variant" "max" "skills" (list "codebase-design" "simplify" "diagnosing-bugs" "code-review") "mcps" (list))
-      "council" (dict "model" "openai/gpt-5.6-sol" "skills" (list) "mcps" (list))
-      "librarian" (dict "model" "opencode/deepseek-v4-flash-free" "variant" "high" "skills" (list "customer-research") "mcps" (list "websearch" "context7" "gh_grep" "firecrawl"))
-      "explorer" (dict "model" "openai/gpt-5.3-codex-spark" "variant" "low" "skills" (list) "mcps" (list "codegraph"))
-      "designer" (dict "model" "openai/gpt-5.6-sol" "variant" "medium" "skills" (list "design-taste-frontend" "make-interfaces-feel-better" "better-icons" "image" "agent-browser") "mcps" (list "codegraph"))
-      "fixer" (dict "model" "opencode/deepseek-v4-flash-free" "variant" "high" "skills" (list "tdd") "mcps" (list "codegraph"))
-    )
   )
 -}}
 
