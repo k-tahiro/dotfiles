@@ -1,5 +1,5 @@
 [ohMyOpencodeSlim]
-preset = "community-gpt-go"
+preset = "opencode-go"
 
 [ohMyOpencodeSlim.agentCapabilities]
 orchestrator = {
