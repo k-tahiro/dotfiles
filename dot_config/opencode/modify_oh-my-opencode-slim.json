@@ -17,5 +17,5 @@
 {{- $config := fromJson (default "{}" .chezmoi.stdin) -}}
 {{- $config = mergeOverwrite $config (dict "multiplexer" $multiplexer) -}}
 {{- $config = mergeOverwrite $config (dict "presets" $presets) -}}
-{{- $config = mergeOverwrite $config (dict "preset" "best-price-opencode-go") -}}
+{{- $config = mergeOverwrite $config (dict "preset" $.ohMyOpencodeSlim.preset) -}}
 {{- $config | toPrettyJson -}}

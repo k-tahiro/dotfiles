@@ -1,3 +1,6 @@
+[ohMyOpencodeSlim]
+preset = "community-gpt-go"
+
 [ohMyOpencodeSlim.agentCapabilities]
 orchestrator = {
   skills = ["*"],
@@ -28,30 +31,93 @@ observer = {
   mcps = []
 }
 
-[ohMyOpencodeSlim.presets.best-price-opencode-go]
+[ohMyOpencodeSlim.presets.community-go-minimax]
 orchestrator = {
-  model = "opencode-go/deepseek-v4-flash",
+  model = "opencode-go/minimax-m3",
   variant = "max"
 }
 oracle = {
-  model = "opencode-go/deepseek-v4-pro",
+  model = "opencode-go/mimo-v2.5-pro",
   variant = "max"
 }
 explorer = {
   model = "opencode-go/deepseek-v4-flash",
-  variant = "high"
+  variant = "max"
 }
 librarian = {
-  model = "opencode-go/deepseek-v4-flash",
-  variant = "high"
+  model = "opencode-go/mimo-v2.5",
+  variant = "max",
+  mcps = ["websearch", "context7", "gh_grep"]
 }
 fixer = {
   model = "opencode-go/deepseek-v4-flash",
-  variant = "high"
+  variant = "max"
 }
 designer = {
-  model = "opencode-go/mimo-v2.5"
+  model = "opencode-go/mimo-v2.5",
+  variant = "max"
 }
 observer = {
-  model = "opencode-go/mimo-v2.5"
+  model = "opencode-go/mimo-v2.5",
+  variant = "max"
+}
+
+[ohMyOpencodeSlim.presets.community-gpt-go]
+orchestrator = {
+  model = "openai/gpt-5.6-terra",
+  variant = "medium",
+  skills = [
+    "deepwork",
+    "verification-planning",
+    "oh-my-opencode-slim",
+    "grill-with-docs",
+    "grilling",
+  ],
+  mcps = []
+}
+oracle = {
+  model = "opencode-go/deepseek-v4-pro",
+  variant = "max",
+  skills = [
+    "codebase-design",
+    "simplify",
+    "diagnosing-bugs",
+    "code-review",
+  ],
+  mcps = []
+}
+council = {
+  model = "openai/gpt-5.6-sol",
+  skills = [],
+  mcps = []
+}
+librarian = {
+  model = "opencode/deepseek-v4-flash-free",
+  variant = "high",
+  skills = ["customer-research"],
+  mcps = ["websearch", "context7", "gh_grep", "firecrawl"]
+}
+explorer = {
+  model = "openai/gpt-5.3-codex-spark",
+  variant = "low",
+  skills = [],
+  mcps = ["codegraph"]
+}
+designer = {
+  model = "openai/gpt-5.6-sol",
+  variant = "medium",
+  skills = [
+    "design-taste-frontend",
+    "make-interfaces-feel-better",
+    "better-icons",
+    "image",
+    "agent-browser",
+  ],
+  mcps = ["codegraph"]
+}
+fixer = {
+  model = "opencode/deepseek-v4-flash-free",
+  variant = "high",
+  skills = ["tdd"],
+  mcps = ["codegraph"]
 }
