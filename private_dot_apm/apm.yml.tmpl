@@ -18,6 +18,10 @@ dependencies:
     - iKora128/stop-ai-slop-jp
     - langfuse/skills
     - mattpocock/skills
+{{- if .isWork }}
+{{- else }}
+    - typesafe-ai/skills
+{{- end }}
   mcp:
     # - io.github.github/github-mcp-server
     - name: github
