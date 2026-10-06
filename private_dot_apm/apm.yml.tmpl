@@ -25,6 +25,7 @@ dependencies:
 {{- end }}
   mcp:
     - name: io.github.github/github-mcp-server
+      transport: http
       headers:
         Authorization: "Bearer ${GITHUB_TOKEN}"
     - oraios/serena
