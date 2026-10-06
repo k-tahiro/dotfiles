@@ -6,4 +6,4 @@ if ! command -v apm &> /dev/null; then
     exit 1
 fi
 
-apm install --global
+apm install --update --global
