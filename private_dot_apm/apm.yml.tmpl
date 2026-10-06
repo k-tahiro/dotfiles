@@ -26,7 +26,7 @@ dependencies:
   mcp:
     - name: io.github.github/github-mcp-server
       headers:
-        Authorization: "Bearer ${GITHUB_TOKEN}"
+        Authorization: "Bearer ${env:GITHUB_TOKEN}"
     - oraios/serena
 includes: auto
 scripts: {}
