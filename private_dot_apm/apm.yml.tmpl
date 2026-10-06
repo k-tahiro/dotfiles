@@ -24,9 +24,7 @@ dependencies:
     - typesafe-ai/skills
 {{- end }}
   mcp:
-    - name: io.github.github/github-mcp-server
-      headers:
-        Authorization: "Bearer ${env:GITHUB_TOKEN}"
+    - io.github.github/github-mcp-server
     - oraios/serena
 includes: auto
 scripts: {}
