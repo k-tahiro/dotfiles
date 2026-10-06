@@ -18,13 +18,12 @@ dependencies:
     - iKora128/stop-ai-slop-jp
     - langfuse/skills
     - mattpocock/skills
-    - cosense-cli@cosense-cli
+    - name: cosense-cli
+      marketplace: helpfeel/cosense-cli
 {{- if .isWork }}
 {{- else }}
     - typesafe-ai/skills
 {{- end }}
-  marketplace:
-    - helpfeel/cosense-cli
   mcp:
     # - io.github.github/github-mcp-server
     - name: github
