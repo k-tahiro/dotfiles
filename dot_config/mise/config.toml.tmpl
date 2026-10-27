@@ -66,8 +66,6 @@ uv = "latest"
 yazi = "latest"
 yq = "latest"
 zoxide = "latest"
-"npm:@deepseek-ai/dsh" = "0.2.1-rc.2"
-"npm:@helpfeel/cosense-cli" = "latest"
 
 {{- if eq .chezmoi.os "darwin" }}
 colima = "latest"
@@ -84,7 +82,9 @@ gcloud = "latest"  # only hosted on asdf or vfox
 terraform = "1.15.8"
 "aqua:DataDog/pup" = "latest"
 "aqua:docker/buildx" = "latest"
+"npm:@helpfeel/cosense-cli" = "latest"
 {{- else }}
 opencode = "latest"
 "npm:zenn-cli" = "latest"
+"npm:@deepseek-ai/dsh" = "0.2.1-rc.2"
 {{- end }}
