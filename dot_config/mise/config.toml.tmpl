@@ -30,6 +30,10 @@
 {{- end }}
 {{- end }}
 
+# Workaround for https://github.com/jdx/mise/issues/15034
+[plugins]
+gcloud = "https://github.com/jdx/vfox-gcloud"
+
 [settings]
 {{- if .isWork }}
 disable_backends = []
