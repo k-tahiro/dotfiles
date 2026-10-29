@@ -30,9 +30,11 @@
 {{- end }}
 {{- end }}
 
+{{- if .isWork }}
 # Workaround for https://github.com/jdx/mise/issues/15034
 [plugins]
 gcloud = "https://github.com/jdx/vfox-gcloud"
+{{- end }}
 
 [settings]
 {{- if .isWork }}
