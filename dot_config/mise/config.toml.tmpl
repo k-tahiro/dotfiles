@@ -47,11 +47,9 @@ disable_backends = ["asdf", "ubi", "vfox"]
 apm = "latest"
 bat = "latest"
 bottom = "latest"
-bun = "latest"
 chezmoi = "latest"
 claude-code = "latest"
 codex = "latest"
-copilot-cli = "latest"
 direnv = "latest"
 eza = "latest"
 fd = "latest"
@@ -64,7 +62,6 @@ lazygit = "latest"
 marp-cli = "latest"
 neovim = "latest"
 node = "lts"
-pi = "latest"
 ripgrep = "latest"
 rtk = "latest"
 starship = "latest"
@@ -79,19 +76,33 @@ lima = "latest"
 {{- end }}
 
 {{- if .isWork }}
-aws-cli = "latest"
-azure-cli = "latest"
+# Docker
 crane = "latest"
 docker-cli = "latest"
 docker-compose = "latest"
+"aqua:docker/buildx" = "latest"
+
+# Cloud
+aws-cli = "latest"
+azure-cli = "latest"
 gcloud = "latest"  # only hosted on asdf or vfox
 terraform = "latest"
 "aqua:DataDog/pup" = "latest"
-"aqua:docker/buildx" = "latest"
+
+# Others
 "npm:@helpfeel/cosense-cli" = "latest"
 {{- else }}
+# OpenCode
 opencode = "latest"
-pnpm = "latest"
-"npm:zenn-cli" = "latest"
+bun = "latest"
+
+# Pi
+pi = "latest"
+
+# DeepSeek Harness
 "npm:@deepseek-ai/dsh" = { version = "latest", prerelease = true }
+pnpm = "latest"
+
+# Others
+"npm:zenn-cli" = "latest"
 {{- end }}
