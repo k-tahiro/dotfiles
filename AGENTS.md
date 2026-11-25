@@ -67,6 +67,16 @@ MCP サーバーは APM（mise の `[tools]` で導入）で配布する。Singl
 
 > かつて `.chezmoidata/mcp.toml` と `modify_*` テンプレートで work/private を出し分けていたが、APM 移行に伴い削除済み。
 
+### Claude Code の日本語ガード hook
+
+[minorun365/claude-code-japanese-guard](https://github.com/minorun365/claude-code-japanese-guard)（Apache-2.0）を `.chezmoiexternal.toml.tmpl` で `~/.claude/hooks/japanese-guard.py` に配布し、`dot_claude/modify_settings.json` で `hooks.Stop` と `hooks.PreToolUse`（matcher `mcp__.*__wrap_up`）に登録する。英語主体の応答をターン終了時に差し戻させる hook。
+
+- 上流は `hooks/*.json` を持たない（`.py` 単体）ため、APM の依存としては解決できない。chezmoi の externals で配布する。
+- `url` は commit SHA でピン留めし、`checksum.sha256` と**セットで**更新する。更新手順はファイル内のコメントに記載。
+- `claude` 未導入の環境では、配布も hook 登録も行わない（`lookPath` で判定）。
+- 登録前に `contains` で重複チェックするので、apply を繰り返しても増えない。手で消せば次の apply で戻る。
+- Claude Code 専用。Codex / OpenCode には効かない。
+
 ### ツール管理の責務分担
 
 **Single Source of Truth は mise**（`dot_config/mise/config.toml.tmpl`）。CLIツール・言語ランタイム・システムパッケージを集約する。
@@ -136,11 +146,12 @@ run_<timing>[_<position>]_<NN>_<tool>[_<descriptor>]_<action>.sh[.tmpl]
 |---|---|
 | `.chezmoi.toml.tmpl` | chezmoi 本体設定・OS 検出・プロンプト・data 変数・auto commit/push |
 | `.chezmoiignore.tmpl` | OS / CLI ツール有無で dotfile ソースを除外（always / not-darwin / no-claude / no-codex / no-opencode の5セクション） |
+| `.chezmoiexternal.toml.tmpl` | 外部ファイルの取得定義（`~/.claude/hooks/japanese-guard.py` を commit SHA ピン留めで配布） |
 | `.chezmoidata/claude.json` | Claude Code の permissions / hooks / env 設定 |
 | `private_dot_apm/apm.yml.tmpl` | APM プロジェクト定義（MCP サーバーの Single Source of Truth） |
 | `dot_zshenv` | XDG ディレクトリ・`ZDOTDIR`・PATH・`.zshenv.local` の読み込み |
 | `dot_vimrc.tmpl` | 最小 vimrc（`defaults.vim` + fzf runtimepath） |
-| `dot_claude/modify_settings.json` | `~/.claude/settings.json` への modify-template（permissions / hooks / env を patch） |
+| `dot_claude/modify_settings.json` | `~/.claude/settings.json` への modify-template（permissions / 日本語ガード hook を patch。既存の hook は保持し、重複登録しない） |
 | `dot_codex/modify_config.toml` | `~/.codex/config.toml` への modify-template（`project_doc_fallback_filenames` に `CLAUDE.md` を追加） |
 | `dot_codex/modify_AGENTS.md` | `~/.codex/AGENTS.md` への modify-template（内容は素通し） |
 

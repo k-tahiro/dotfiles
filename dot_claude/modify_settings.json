@@ -1,5 +1,10 @@
 {{- /* chezmoi:modify-template */ -}}
 
+{{- /* ---- 1. 入力 ---- */ -}}
+{{- $settings := fromJson (default "{}" .chezmoi.stdin) -}}
+
+{{- /* ---- 2. 組み立て（$settings は読むだけで、書き換えない） ---- */ -}}
+
 {{- $allow := list
   "Read"
   "WebFetch"
@@ -16,6 +21,41 @@
 {{- $permissions = setValueAtPath "allow" $allow $permissions -}}
 {{- $permissions = setValueAtPath "deny" $deny $permissions -}}
 
-{{- $settings := fromJson (default "{}" .chezmoi.stdin) -}}
+{{- /* 日本語ガード hook: 登録したいエントリ（event ごと） */ -}}
+{{- $guard := dict "type" "command" "command" "~/.claude/hooks/japanese-guard.py" -}}
+{{- $hookPlan := dict
+  "Stop" (list
+    (dict "hooks" (list $guard))
+  )
+  "PreToolUse" (list
+    (dict "matcher" "mcp__.*__wrap_up" "hooks" (list $guard))
+  )
+-}}
+
+{{- /* 日本語ガード hook: 実際に足す分だけに絞った差分（登録済みの event は空になる） */ -}}
+{{- $hookPatch := dict -}}
+{{- if lookPath "claude" -}}
+  {{- $hooks := default (dict) (index $settings "hooks") -}}
+  {{- $cmd := index $guard "command" -}}
+  {{- range $event, $entries := $hookPlan -}}
+    {{- $existing := default (list) (index $hooks $event) -}}
+    {{- if not (contains $cmd (toJson $existing)) -}}
+      {{- $hookPatch = setValueAtPath $event $entries $hookPatch -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* ---- 3. 挿入（組み立て済みのデータを当てるだけ） ---- */ -}}
+
 {{- $settings = setValueAtPath "permissions" (mergeOverwrite $settings.permissions $permissions) $settings -}}
+
+{{- if $hookPatch -}}
+  {{- $hooks := default (dict) (index $settings "hooks") -}}
+  {{- range $event, $entries := $hookPatch -}}
+    {{- $hooks = setValueAtPath $event (append (default (list) (index $hooks $event)) $entries) $hooks -}}
+  {{- end -}}
+  {{- $settings = setValueAtPath "hooks" $hooks $settings -}}
+{{- end -}}
+
+{{- /* ---- 4. 出力 ---- */ -}}
 {{- $settings | toPrettyJson -}}

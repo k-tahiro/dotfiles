@@ -1,0 +1,11 @@
+{{- if lookPath "claude" }}
+# Claude Code の日本語ガード hook（応答が英語主体なら差し戻す）
+# 上流: https://github.com/minorun365/claude-code-japanese-guard (Apache-2.0)
+# 更新するときは url の commit SHA と checksum.sha256 をセットで書き換える:
+#   curl -fsSL https://raw.githubusercontent.com/minorun365/claude-code-japanese-guard/<SHA>/hooks/japanese-guard.py | sha256sum
+[".claude/hooks/japanese-guard.py"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/minorun365/claude-code-japanese-guard/2b4965f31b8859ec71dea06395a0aecf15e68da1/hooks/japanese-guard.py"
+    executable = true
+    checksum.sha256 = "fbc2b46beda83a01fd32c3e0fdc7c0d64e45633c3e9f81d57916b7352e5ea1f1"
+{{- end }}
